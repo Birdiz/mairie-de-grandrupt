@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "histoire": "Histoire",
+    "actualites": "Actualités",
+    "entreprises": "Entreprises",
+    "contact": "Contact",
+    "skipToContent": "Aller au contenu principal"
+  },
+  "home": {
+    "title": "Bienvenue à Grandrupt",
+    "subtitle": "Village de la Haute-Moselle",
+    "description": "Découvrez notre village, son histoire, ses actualités et ses entreprises locales."
+  },
+  "histoire": {
+    "title": "Histoire & Présentation",
+    "description": "L'histoire et la présentation de Grandrupt."
+  },
+  "actualites": {
+    "title": "Actualités & Agenda",
+    "description": "Les dernières actualités et événements de Grandrupt."
+  },
+  "entreprises": {
+    "title": "Entreprises du village",
+    "description": "Les entreprises et commerces locaux de Grandrupt."
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "description": "Contactez la mairie de Grandrupt.",
+    "form": {
+      "name": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Votre adresse e-mail",
+      "emailPlaceholder": "jean.dupont@exemple.fr",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Objet de votre message",
+      "message": "Votre message",
+      "messagePlaceholder": "Écrivez votre message ici...",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "successTitle": "Message envoyé",
+      "successMessage": "Votre message a bien été transmis. Nous vous répondrons dans les meilleurs délais.",
+      "errorTitle": "Erreur",
+      "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement."
+    },
+    "address": {
+      "title": "Adresse",
+      "mairie": "Mairie de Grandrupt",
+      "street": "Rue de la Mairie",
+      "city": "88210 Grandrupt",
+      "phone": "Téléphone",
+      "phoneNumber": "03 29 XX XX XX",
+      "email": "E-mail",
+      "emailAddress": "mairie@grandrupt.fr",
+      "hours": "Horaires d'ouverture",
+      "hoursDetail": "Mardi et jeudi : 9h - 12h"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Mairie de Grandrupt. Tous droits réservés.",
+    "legalNotice": "Mentions légales",
+    "accessibility": "Accessibilité"
+  }
+}
