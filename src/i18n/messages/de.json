@@ -85,17 +85,8 @@
     "backToList": "Retour aux actualités"
   },
   "entreprises": {
-    "title": "Entreprises & Commerces",
-    "description": "Les entreprises et artisans qui font vivre Grandrupt.",
-    "hero": {
-      "subtitle": "Découvrez les entreprises et artisans qui font vivre notre village."
-    },
-    "intro": "Malgré sa modeste taille, Grandrupt compte quelques entreprises et artisans qui contribuent à la vie économique locale et perpétuent le savoir-faire vosgien.",
-    "cta": {
-      "title": "Vous êtes artisan ou entrepreneur ?",
-      "subtitle": "Faites référencer votre activité sur le site de la mairie.",
-      "button": "Contacter la mairie"
-    }
+    "title": "Entreprises du village",
+    "description": "Les entreprises et commerces locaux de Grandrupt."
   },
   "contact": {
     "title": "Nous contacter",
