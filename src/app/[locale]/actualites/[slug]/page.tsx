@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { getArticleBySlug, getAllSlugs, formatDate } from "@/lib/actualites";
 import { ProseContent } from "@/components/ui/ProseContent";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -23,7 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const article = getArticleBySlug(slug);
 
   if (!article) notFound();
