@@ -15,6 +15,12 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Build-time placeholders so env validation (src/lib/env.ts) and Payload config
+# load during `next build`. Real values are injected at runtime via env_file.
+ENV RESEND_API_KEY=build-placeholder
+ENV PAYLOAD_SECRET=build-placeholder
+ENV DATABASE_URI=file:./data/payload.db
+
 RUN npm run build
 
 # ─── Stage 3: runner (production) ─────────────────────────────────────────────
@@ -32,6 +38,11 @@ COPY --from=builder /app/public ./public
 # Standalone output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Persistent data dirs (SQLite DB + uploaded media), owned by the runtime user.
+# Mounted as volumes in docker-compose.prod.yml; the named volumes inherit this
+# ownership on first creation so the app can write to them.
+RUN mkdir -p /app/data /app/media && chown -R nextjs:nodejs /app/data /app/media
 
 USER nextjs
 

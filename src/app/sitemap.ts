@@ -3,8 +3,11 @@ import { getAllArticles } from "@/lib/actualites";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://grandrupt.fr";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const articles = getAllArticles();
+// Reads published articles from the CMS database at request time.
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getAllArticles();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },

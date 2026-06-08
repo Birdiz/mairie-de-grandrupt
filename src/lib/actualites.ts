@@ -1,67 +1,70 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
-function toDateString(value: unknown): string {
-  if (value instanceof Date) return value.toISOString().split("T")[0];
-  return String(value);
-}
+export type ArticleMedia = {
+  url: string;
+  alt: string;
+};
 
 export type Article = {
   slug: string;
   title: string;
   date: string;
   excerpt: string;
-  content: string;
+  content: SerializedEditorState;
+  coverImage: ArticleMedia | null;
 };
 
-const CONTENT_DIR = path.join(process.cwd(), "src/content/actualites");
-
-export function getAllArticles(): Article[] {
-  const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
-
-  return files
-    .map((file) => {
-      const slug = file.replace(/\.md$/, "");
-      const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
-      const { data, content } = matter(raw);
-      return {
-        slug,
-        title: data.title as string,
-        date: toDateString(data.date),
-        excerpt: data.excerpt as string,
-        content,
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+function toDateString(value: unknown): string {
+  if (value instanceof Date) return value.toISOString();
+  return String(value);
 }
 
-export function getArticleBySlug(slug: string): Article | null {
-  const filePath = path.join(CONTENT_DIR, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return null;
-
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
+function toArticle(doc: any): Article {
+  const cover = doc?.coverImage && typeof doc.coverImage === "object" ? doc.coverImage : null;
   return {
-    slug,
-    title: data.title as string,
-    date: toDateString(data.date),
-    excerpt: data.excerpt as string,
-    content,
+    slug: doc.slug,
+    title: doc.title,
+    date: toDateString(doc.date),
+    excerpt: doc.excerpt,
+    content: doc.content as SerializedEditorState,
+    coverImage:
+      cover && typeof cover.url === "string"
+        ? { url: cover.url, alt: typeof cover.alt === "string" ? cover.alt : "" }
+        : null,
   };
 }
 
-export function getAllSlugs(): string[] {
-  return fs
-    .readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => f.replace(/\.md$/, ""));
+async function getClient() {
+  return getPayload({ config });
 }
 
-export function formatDate(dateStr: string): string {
-  return new Intl.DateTimeFormat("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(dateStr));
+/** All published articles, newest first. */
+export async function getAllArticles(): Promise<Article[]> {
+  const payload = await getClient();
+  const { docs } = await payload.find({
+    collection: "actualites",
+    where: { _status: { equals: "published" } },
+    sort: "-date",
+    depth: 1,
+    limit: 200,
+    overrideAccess: true,
+  });
+  return docs.map(toArticle);
+}
+
+/** A single published article by slug, or null. */
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const payload = await getClient();
+  const { docs } = await payload.find({
+    collection: "actualites",
+    where: {
+      and: [{ slug: { equals: slug } }, { _status: { equals: "published" } }],
+    },
+    depth: 1,
+    limit: 1,
+    overrideAccess: true,
+  });
+  return docs[0] ? toArticle(docs[0]) : null;
 }
