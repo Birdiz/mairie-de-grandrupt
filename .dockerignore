@@ -6,3 +6,7 @@ tests
 *.md
 .env*
 !.env.example
+
+# Payload runtime data — provided via volumes, not the build
+data
+media

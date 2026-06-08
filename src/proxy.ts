@@ -4,7 +4,7 @@ import { routing } from "./i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp)).*)",
-  ],
+  // Exclude Payload's admin (`/admin`) and API (`/api`) routes, Next internals
+  // and static assets from next-intl's locale routing.
+  matcher: ["/((?!api|admin|_next|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp)).*)"],
 };

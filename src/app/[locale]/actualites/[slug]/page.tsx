@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getArticleBySlug, getAllSlugs, formatDate } from "@/lib/actualites";
-import { ProseContent } from "@/components/ui/ProseContent";
+import { getArticleBySlug } from "@/lib/actualites";
+import { formatDate } from "@/lib/dates";
+import { RichTextContent } from "@/components/ui/RichTextContent";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -11,13 +12,9 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return {};
   return { title: article.title };
 }
@@ -25,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article) notFound();
 
@@ -62,7 +59,7 @@ export default async function ArticlePage({ params }: Props) {
       <section className="bg-background py-16">
         <div className="mx-auto max-w-4xl px-6 sm:px-10">
           <FadeIn>
-            <ProseContent content={article.content} />
+            <RichTextContent content={article.content} />
           </FadeIn>
 
           <div className="border-border mt-12 border-t pt-8">

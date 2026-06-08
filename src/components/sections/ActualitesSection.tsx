@@ -1,12 +1,12 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getAllArticles, formatDate } from "@/lib/actualites";
+import type { Article } from "@/lib/actualites";
+import { formatDate } from "@/lib/dates";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-export function ActualitesSection() {
+export function ActualitesSection({ articles }: { articles: Article[] }) {
   const t = useTranslations("home.actualites");
-  const articles = getAllArticles().slice(0, 3);
   const delays = [undefined, "delay-150", "delay-300"] as const;
 
   return (
@@ -19,7 +19,7 @@ export function ActualitesSection() {
         </FadeIn>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article, i) => (
+          {articles.slice(0, 3).map((article, i) => (
             <FadeIn key={article.slug} delay={delays[i]}>
               <article className="border-border bg-card flex h-full flex-col rounded-xl border p-8 transition-shadow hover:shadow-md">
                 <time

@@ -10,4 +10,12 @@ services:
       - NEXT_TELEMETRY_DISABLED=1
     env_file:
       - .env.local
+    volumes:
+      # Persist the SQLite database and uploaded media across restarts/rebuilds.
+      - mairie-data:/app/data
+      - mairie-media:/app/media
     restart: unless-stopped
+
+volumes:
+  mairie-data:
+  mairie-media:

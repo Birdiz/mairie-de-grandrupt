@@ -20,6 +20,10 @@
 # production
 /build
 
+# Payload CMS runtime data (SQLite DB + uploaded media)
+/data
+/media
+
 # misc
 .DS_Store
 *.pem

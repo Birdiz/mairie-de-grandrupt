@@ -1,12 +1,12 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getAllArticles, formatDate } from "@/lib/actualites";
+import type { Article } from "@/lib/actualites";
+import { formatDate } from "@/lib/dates";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-export function ActualitesList() {
+export function ActualitesList({ articles }: { articles: Article[] }) {
   const t = useTranslations("actualites");
-  const articles = getAllArticles();
 
   return (
     <section className="bg-background py-24" aria-labelledby="actualites-list-title">
