@@ -17,7 +17,7 @@ export function ContactHero() {
       <div className="relative mx-auto w-full max-w-6xl px-6 py-16 sm:px-10">
         <FadeIn>
           <p className="mb-4 font-sans text-sm font-semibold tracking-widest text-white/70 uppercase">
-            Mairie de Grandrupt
+            Grandrupt
           </p>
         </FadeIn>
         <FadeIn delay="delay-150">

@@ -30,8 +30,8 @@ export default function MentionsLegalesPage() {
             Éditeur du site
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            Le présent site est édité par la <strong>Mairie de Grandrupt</strong>, commune de
-            Grandrupt (88210), Vosges, France.
+            Le présent site est édité par la <strong>commune de Grandrupt</strong> (88210), Vosges,
+            France.
           </p>
           <ul className="text-muted-foreground mt-3 space-y-1">
             <li>
@@ -71,9 +71,9 @@ export default function MentionsLegalesPage() {
           </h2>
           <p className="text-muted-foreground leading-relaxed">
             L&apos;ensemble du contenu de ce site (textes, images, graphismes) est la propriété de
-            la Mairie de Grandrupt ou de ses partenaires. Toute reproduction, représentation ou
-            diffusion, intégrale ou partielle, est interdite sans l&apos;autorisation écrite
-            préalable de la mairie.
+            Grandrupt ou de ses partenaires. Toute reproduction, représentation ou diffusion,
+            intégrale ou partielle, est interdite sans l&apos;autorisation écrite préalable de la
+            commune.
           </p>
         </section>
 
@@ -120,7 +120,7 @@ export default function MentionsLegalesPage() {
             Liens hypertextes
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            La Mairie de Grandrupt décline toute responsabilité quant au contenu des sites externes
+            La commune de Grandrupt décline toute responsabilité quant au contenu des sites externes
             vers lesquels des liens pourraient être établis depuis ce site.
           </p>
         </section>

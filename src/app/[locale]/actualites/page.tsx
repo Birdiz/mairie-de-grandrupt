@@ -4,7 +4,8 @@ import { ActualitesHero } from "@/components/sections/ActualitesHero";
 import { ActualitesList } from "@/components/sections/ActualitesList";
 import { getAllArticles } from "@/lib/actualites";
 
-// Reads published articles from the CMS database at request time.
+// Rendered at request time: no SQLite DB exists during `next build`, and a single
+// local query per request is negligible for this site's traffic.
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
