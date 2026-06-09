@@ -12,7 +12,7 @@
   },
   "home": {
     "meta": {
-      "description": "Site officiel de la Mairie de Grandrupt — actualités, démarches administratives et contact. Village des Vosges, Grand Est."
+      "description": "Site officiel de Grandrupt — actualités, démarches administratives et contact. Village des Vosges, Grand Est."
     },
     "title": "Bienvenue à Grandrupt",
     "subtitle": "Village des Vosges",
@@ -123,7 +123,7 @@
     },
     "address": {
       "title": "Adresse",
-      "mairie": "Mairie de Grandrupt",
+      "mairie": "Grandrupt",
       "street": "8 rue de la Mairie",
       "city": "88210 Grandrupt",
       "phone": "Téléphone",
@@ -136,11 +136,11 @@
   },
   "mentionsLegales": {
     "title": "Mentions légales",
-    "description": "Informations légales relatives au site officiel de la Mairie de Grandrupt."
+    "description": "Informations légales relatives au site officiel de Grandrupt."
   },
   "accessibilite": {
     "title": "Accessibilité",
-    "description": "Déclaration d'accessibilité du site officiel de la Mairie de Grandrupt."
+    "description": "Déclaration d'accessibilité du site officiel de Grandrupt."
   },
   "notFound": {
     "title": "Page introuvable",
@@ -148,7 +148,7 @@
     "backHome": "Retour à l'accueil"
   },
   "footer": {
-    "copyright": "© {year} Mairie de Grandrupt. Tous droits réservés.",
+    "copyright": "© {year} Grandrupt. Tous droits réservés.",
     "legalNotice": "Mentions légales",
     "accessibility": "Accessibilité"
   }

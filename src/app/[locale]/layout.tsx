@@ -23,10 +23,10 @@ const sourceSans3 = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mairie de Grandrupt",
-    template: "%s | Mairie de Grandrupt",
+    default: "Grandrupt",
+    template: "%s | Grandrupt",
   },
-  description: "Site officiel de la Mairie de Grandrupt, village des Vosges.",
+  description: "Site officiel de Grandrupt, village des Vosges.",
 };
 
 export function generateStaticParams() {

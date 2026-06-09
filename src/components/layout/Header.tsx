@@ -8,9 +8,9 @@ export function Header() {
         <Link
           href="/"
           className="focus-visible:ring-ring flex flex-col leading-tight focus-visible:rounded-sm focus-visible:ring-2 focus-visible:outline-none"
-          aria-label="Mairie de Grandrupt — Accueil"
+          aria-label="Grandrupt — Accueil"
         >
-          <span className="text-foreground text-lg font-bold md:text-xl">Mairie de Grandrupt</span>
+          <span className="text-foreground text-lg font-bold md:text-xl">Grandrupt</span>
           <span className="text-muted-foreground text-xs md:text-base">Vosges · 88210</span>
         </Link>
         <Nav />

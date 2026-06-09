@@ -17,8 +17,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build-time placeholders so env validation (src/lib/env.ts) and Payload config
 # load during `next build`. Real values are injected at runtime via env_file.
+# PAYLOAD_SECRET must be >= 32 chars to pass the startup check in payload.config.ts;
+# this build-time value is never used to sign anything at runtime.
 ENV RESEND_API_KEY=build-placeholder
-ENV PAYLOAD_SECRET=build-placeholder
+ENV PAYLOAD_SECRET=build-placeholder-build-placeholder-32
 ENV DATABASE_URI=file:./data/payload.db
 
 RUN npm run build

@@ -1,4 +1,4 @@
-# Mairie de Grandrupt — Site officiel
+# Grandrupt — Site officiel
 
 Site web de la commune de Grandrupt, construit avec Next.js 16, Tailwind CSS 4 et next-intl. Accessible, multilingue (fr/de/en), dockerisé. Les actualités sont gérées depuis un back-office (Payload CMS) avec gestion des rôles.
 

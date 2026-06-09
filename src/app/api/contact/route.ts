@@ -3,6 +3,16 @@ import { contactSchema } from "@/lib/validations";
 import { resend } from "@/lib/resend";
 import { env } from "@/lib/env";
 
+/** Escape user-supplied text before interpolating it into the HTML email body. */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(request: NextRequest) {
   let body: unknown;
 
@@ -34,10 +44,10 @@ export async function POST(request: NextRequest) {
       subject: `[Contact] ${subject}`,
       text: `Nom : ${name}\nE-mail : ${email}\n\nMessage :\n${message}`,
       html: `
-        <p><strong>Nom :</strong> ${name}</p>
-        <p><strong>E-mail :</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Nom :</strong> ${escapeHtml(name)}</p>
+        <p><strong>E-mail :</strong> <a href="mailto:${encodeURIComponent(email)}">${escapeHtml(email)}</a></p>
         <hr />
-        <p>${message.replace(/\n/g, "<br />")}</p>
+        <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
       `,
     });
   } catch (error) {
