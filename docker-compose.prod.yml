@@ -3,8 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
+    # No host port published: traffic comes through the `caddy` proxy below over
+    # the internal network. If you instead front the app with your OWN proxy
+    # (Nginx/Traefik/…), remove the `caddy` service and expose the app with:
+    #   ports:
+    #     - "127.0.0.1:3000:3000"
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
@@ -16,6 +21,26 @@ services:
       - mairie-media:/app/media
     restart: unless-stopped
 
+  caddy:
+    image: caddy:2-alpine
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    # SITE_DOMAIN (your public domain, with DNS pointing here) is read from
+    # .env.local and used by the Caddyfile to request a Let's Encrypt cert.
+    # Falls back to `localhost` (self-signed) when unset — for a local smoke test.
+    env_file:
+      - .env.local
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data # certificates — must persist
+      - caddy_config:/config
+    restart: unless-stopped
+
 volumes:
   mairie-data:
   mairie-media:
+  caddy_data:
+  caddy_config:

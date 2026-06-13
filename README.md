@@ -86,26 +86,39 @@ Les actualités sont gérées depuis le back-office Payload, accessible sur **`/
 make docker-dev   # → http://localhost:3000
 ```
 
-**Production :**
+**Production (auto-hébergée) :**
+
+Le site est conçu pour être **auto-hébergé** (VPS, idéalement en Europe pour le RGPD) — données et médias restent sur votre infra. `docker-compose.prod.yml` démarre deux conteneurs :
+
+- `web` — l'app Next.js + Payload (interne au réseau Docker),
+- `caddy` — reverse proxy qui gère le **HTTPS automatiquement** (Let's Encrypt) et proxifie vers `web`.
 
 ```bash
-make docker-prod  # build l'image puis démarre le conteneur → http://localhost:3000
+# 1. Renseigner les variables (dont SITE_DOMAIN + PAYLOAD_SECRET)
+cp .env.example .env.local && nano .env.local
+# 2. Construire + démarrer (web + caddy)
+make docker-prod
+# 3. Ouvrir https://<votre-domaine>/admin et créer le premier compte (auto-admin)
 ```
 
-> L'env file `.env.local` est chargé automatiquement par Docker Compose.
+> Le DNS (`A`/`AAAA`) de `SITE_DOMAIN` doit pointer vers le serveur **avant** le démarrage, pour que Caddy obtienne le certificat. Sans `SITE_DOMAIN`, Caddy sert `https://localhost` avec un certificat auto-signé (utile pour un test local).
 
 ### Checklist de mise en production
 
-1. **Variables d'environnement** : renseigner `.env.local` (clé Resend + `PAYLOAD_SECRET` long et secret + `DATABASE_URI`).
-2. **Données persistantes** : `docker-compose.prod.yml` monte deux volumes nommés :
-   - `mairie-data` → `/app/data` (base SQLite),
-   - `mairie-media` → `/app/media` (images téléversées).
-     Ils survivent aux redéploiements ; **les inclure dans la stratégie de sauvegarde** (une sauvegarde = copier le fichier `payload.db` + le dossier media).
-3. **Premier admin** : après le premier démarrage, créer le compte admin sur `/admin` (voir ci-dessus).
-4. **Schéma de base** : en production, Payload désactive le `push` et exécute les **migrations** au démarrage. Elles sont versionnées dans `src/migrations/` et embarquées dans la config (`prodMigrations`) — elles s'appliquent automatiquement, aucune commande manuelle requise. En développement, le schéma est synchronisé automatiquement (`push`).
-5. **Reverse proxy** : placer le conteneur derrière un proxy HTTPS (Nginx, Caddy, Traefik…) ; le serveur écoute sur le port `3000`.
+1. **Variables d'environnement** (`.env.local`) : `RESEND_API_KEY`, `PAYLOAD_SECRET` (≥ 32 car. — refusé au démarrage sinon), `SITE_DOMAIN`, `NEXT_PUBLIC_SITE_URL`.
+2. **Données persistantes** : quatre volumes nommés (`mairie-data` = base SQLite, `mairie-media` = uploads, `caddy_data`/`caddy_config` = certificats). Ils survivent aux redéploiements.
+3. **Premier admin** : après le premier démarrage, créer le compte sur `/admin` (auto-promu administrateur).
+4. **Schéma de base** : en production, Payload désactive le `push` et exécute les **migrations** au démarrage (versionnées dans `src/migrations/`, embarquées via `prodMigrations`) — automatique. En dev, le schéma se synchronise via `push`.
+5. **Sauvegardes** : `./scripts/backup.sh [dossier]` archive `mairie-data` + `mairie-media`. Exemple cron quotidien :
+   ```cron
+   0 3 * * * cd /chemin/app && ./scripts/backup.sh /var/backups/grandrupt >> /var/log/grandrupt-backup.log 2>&1
+   ```
+
+**Vous avez déjà un reverse proxy** (Nginx/Traefik) ? Retirez le service `caddy` de `docker-compose.prod.yml`, exposez `web` sur `127.0.0.1:3000` et pointez votre proxy dessus.
 
 > Le **premier build d'image est long** (réinstallation complète des dépendances + compilation de binaires natifs `sharp`/SQLite sur Alpine). Les builds suivants sont rapides grâce au cache de layers Docker tant que `package.json` ne change pas. Vérifier que le démon Docker tourne avant de lancer la commande.
+
+> ⚠️ **Vercel (et autres plateformes serverless) ne sont pas supportés** avec cette configuration : la base **SQLite** et les **médias** sont stockés sur le système de fichiers local, qui n'est ni persistant ni accessible en écriture sur Vercel (erreur `SQLITE_CANTOPEN`). Y déployer nécessiterait une base hébergée (ex. Turso/libsql, compatible avec nos migrations) **et** un stockage objet (Vercel Blob / S3) — non retenu ici pour des raisons de souveraineté des données (RGPD).
 
 ### Faire évoluer le schéma (nouvelle migration)
 
