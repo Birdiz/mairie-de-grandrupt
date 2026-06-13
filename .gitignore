@@ -36,6 +36,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but the placeholder template IS committed so `cp .env.example .env.local` works.
+!.env.example
 
 # vercel
 .vercel
