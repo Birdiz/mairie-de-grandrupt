@@ -11,7 +11,9 @@ const navItems = [
   { href: "/", labelKey: "home" },
   { href: "/histoire", labelKey: "histoire" },
   { href: "/actualites", labelKey: "actualites" },
-  { href: "/entreprises", labelKey: "entreprises" },
+  // Page "Entreprises" retirée du menu tant que les données ne sont pas réelles
+  // (la page reste accessible par URL). Pour la rallumer : décommenter la ligne.
+  // { href: "/entreprises", labelKey: "entreprises" },
   { href: "/contact", labelKey: "contact" },
 ] as const;
 

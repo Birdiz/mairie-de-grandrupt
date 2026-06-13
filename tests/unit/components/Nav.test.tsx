@@ -48,10 +48,10 @@ describe("Nav", () => {
     }
   });
 
-  it("renders 5 navigation links in the desktop nav", () => {
+  it("renders 4 navigation links in the desktop nav", () => {
     mockUsePathname.mockReturnValue("/");
     render(<Nav />);
-    expect(getDesktopNav().getAllByRole("link")).toHaveLength(5);
+    expect(getDesktopNav().getAllByRole("link")).toHaveLength(4);
   });
 
   it("marks the home link active on /", () => {
@@ -100,7 +100,15 @@ describe("Nav", () => {
     expect(hrefs).toContain("/");
     expect(hrefs).toContain("/histoire");
     expect(hrefs).toContain("/actualites");
-    expect(hrefs).toContain("/entreprises");
     expect(hrefs).toContain("/contact");
+  });
+
+  it("does not expose the hidden Entreprises page in the nav", () => {
+    mockUsePathname.mockReturnValue("/");
+    render(<Nav />);
+    const hrefs = getDesktopNav()
+      .getAllByRole("link")
+      .map((l) => l.getAttribute("href"));
+    expect(hrefs).not.toContain("/entreprises");
   });
 });
