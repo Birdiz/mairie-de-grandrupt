@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload";
 import { isLoggedIn, isPublisherOrAdmin } from "../access/index.ts";
 import {
   enforcePublishPermission,
+  fillFromProcesVerbal,
   revalidateActualite,
   revalidateActualiteDelete,
   slugifyFromTitle,
@@ -31,6 +32,7 @@ export const Actualites: CollectionConfig = {
     maxPerDoc: 20,
   },
   hooks: {
+    beforeValidate: [fillFromProcesVerbal],
     beforeChange: [enforcePublishPermission],
     afterChange: [revalidateActualite],
     afterDelete: [revalidateActualiteDelete],
@@ -41,6 +43,22 @@ export const Actualites: CollectionConfig = {
       type: "text",
       required: true,
       label: "Titre",
+    },
+    {
+      name: "type",
+      type: "select",
+      required: true,
+      defaultValue: "standard",
+      label: "Type",
+      options: [
+        { label: "Actualité", value: "standard" },
+        { label: "Procès-verbal du conseil municipal", value: "proces-verbal" },
+      ],
+      admin: {
+        position: "sidebar",
+        description:
+          "« Procès-verbal » remplit automatiquement titre, résumé et contenu à partir du PDF joint.",
+      },
     },
     {
       name: "slug",
@@ -82,6 +100,23 @@ export const Actualites: CollectionConfig = {
       relationTo: "media",
       required: false,
       label: "Image de couverture",
+    },
+    {
+      name: "document",
+      type: "upload",
+      relationTo: "documents",
+      required: false,
+      label: "Document PDF joint",
+      admin: {
+        description:
+          "Proposé au téléchargement en bas de l'article. Obligatoire pour un procès-verbal.",
+      },
+      // A procès-verbal without its PDF would not satisfy the commune's legal
+      // publication duty (art. L2121-25 CGCT), so the file is required there.
+      validate: (value: unknown, { data }: { data?: { type?: string } }) =>
+        !value && data?.type === "proces-verbal"
+          ? "Un procès-verbal doit être accompagné de son PDF."
+          : true,
     },
     {
       name: "content",

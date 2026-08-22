@@ -7,13 +7,25 @@ export type ArticleMedia = {
   alt: string;
 };
 
+export type ArticleType = "standard" | "proces-verbal";
+
+export type ArticleDocument = {
+  url: string;
+  filename: string;
+  /** Size in bytes, so the download link can announce its weight (RGAA 13.3). */
+  filesize: number | null;
+  title: string;
+};
+
 export type Article = {
   slug: string;
   title: string;
   date: string;
+  type: ArticleType;
   excerpt: string;
   content: SerializedEditorState;
   coverImage: ArticleMedia | null;
+  document: ArticleDocument | null;
 };
 
 function toDateString(value: unknown): string {
@@ -23,15 +35,26 @@ function toDateString(value: unknown): string {
 
 function toArticle(doc: any): Article {
   const cover = doc?.coverImage && typeof doc.coverImage === "object" ? doc.coverImage : null;
+  const file = doc?.document && typeof doc.document === "object" ? doc.document : null;
   return {
     slug: doc.slug,
     title: doc.title,
     date: toDateString(doc.date),
+    type: doc.type === "proces-verbal" ? "proces-verbal" : "standard",
     excerpt: doc.excerpt,
     content: doc.content as SerializedEditorState,
     coverImage:
       cover && typeof cover.url === "string"
         ? { url: cover.url, alt: typeof cover.alt === "string" ? cover.alt : "" }
+        : null,
+    document:
+      file && typeof file.url === "string"
+        ? {
+            url: file.url,
+            filename: typeof file.filename === "string" ? file.filename : "",
+            filesize: typeof file.filesize === "number" ? file.filesize : null,
+            title: typeof file.title === "string" ? file.title : "",
+          }
         : null,
   };
 }

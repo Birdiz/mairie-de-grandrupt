@@ -82,7 +82,10 @@
     },
     "readMore": "Lire la suite",
     "seeAll": "Toutes les actualités",
-    "backToList": "Retour aux actualités"
+    "backToList": "Retour aux actualités",
+    "downloadDocument": "Download the document",
+    "downloadPv": "Download the minutes",
+    "pvBadge": "Council minutes"
   },
   "entreprises": {
     "title": "Entreprises du village",

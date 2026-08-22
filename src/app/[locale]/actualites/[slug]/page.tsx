@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { getArticleBySlug } from "@/lib/actualites";
 import { formatDate } from "@/lib/dates";
 import { RichTextContent } from "@/components/ui/RichTextContent";
+import { DocumentDownload } from "@/components/ui/DocumentDownload";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -61,6 +62,15 @@ export default async function ArticlePage({ params }: Props) {
           <FadeIn>
             <RichTextContent content={article.content} />
           </FadeIn>
+
+          {article.document && (
+            <FadeIn className="mt-10">
+              <DocumentDownload
+                document={article.document}
+                label={t(article.type === "proces-verbal" ? "downloadPv" : "downloadDocument")}
+              />
+            </FadeIn>
+          )}
 
           <div className="border-border mt-12 border-t pt-8">
             <Link
