@@ -37,6 +37,11 @@ CONTACT_EMAIL_FROM=noreply@grandrupt.fr
 # Payload CMS
 PAYLOAD_SECRET=<chaîne_aléatoire_longue>   # openssl rand -base64 32
 DATABASE_URI=file:./data/payload.db        # SQLite (chemin relatif au dossier de l'app)
+
+# Domaine (production ; laisser vide en local)
+SITE_DOMAIN=www.grandrupt.fr               # adresse canonique servie par Caddy
+SITE_DOMAIN_APEX=grandrupt.fr              # domaine nu, redirigé en 301 vers le www
+SITE_URL=https://www.grandrupt.fr          # URL absolue (sitemap.xml, robots.txt)
 ```
 
 ## Commandes
@@ -94,22 +99,36 @@ Le site est conçu pour être **auto-hébergé** (VPS, idéalement en Europe pou
 - `caddy` — reverse proxy qui gère le **HTTPS automatiquement** (Let's Encrypt) et proxifie vers `web`.
 
 ```bash
-# 1. Renseigner les variables (dont SITE_DOMAIN + PAYLOAD_SECRET)
+# 1. Renseigner les variables (dont SITE_DOMAIN, SITE_DOMAIN_APEX, SITE_URL + PAYLOAD_SECRET)
 cp .env.example .env.local && nano .env.local
 # 2. Construire + démarrer (web + caddy)
 make docker-prod
 # 3. Ouvrir https://<votre-domaine>/admin et créer le premier compte (auto-admin)
 ```
 
-> Le DNS (`A`/`AAAA`) de `SITE_DOMAIN` doit pointer vers le serveur **avant** le démarrage, pour que Caddy obtienne le certificat. Sans `SITE_DOMAIN`, Caddy sert `https://localhost` avec un certificat auto-signé (utile pour un test local).
+#### DNS à configurer chez le registrar
+
+Deux enregistrements, **tous les deux vers l'IP publique du serveur** :
+
+| Type | Nom   | Valeur        |
+| ---- | ----- | ------------- |
+| `A`  | `@`   | `<IP_du_VPS>` |
+| `A`  | `www` | `<IP_du_VPS>` |
+
+Ajouter les mêmes en `AAAA` si le serveur a une IPv6. Caddy sert `www.grandrupt.fr`
+(`SITE_DOMAIN`) et redirige `grandrupt.fr` (`SITE_DOMAIN_APEX`) dessus en 301.
+
+> Le DNS doit résoudre **avant** le premier démarrage : Caddy demande les certificats Let's Encrypt au lancement, et la validation échoue si le domaine ne pointe pas encore vers le serveur. Sans `SITE_DOMAIN`, Caddy sert `https://localhost` avec un certificat auto-signé (utile pour un test local).
 
 ### Checklist de mise en production
 
-1. **Variables d'environnement** (`.env.local`) : `RESEND_API_KEY`, `PAYLOAD_SECRET` (≥ 32 car. — refusé au démarrage sinon), `SITE_DOMAIN`, `NEXT_PUBLIC_SITE_URL`.
-2. **Données persistantes** : quatre volumes nommés (`mairie-data` = base SQLite, `mairie-media` = uploads, `caddy_data`/`caddy_config` = certificats). Ils survivent aux redéploiements.
-3. **Premier admin** : après le premier démarrage, créer le compte sur `/admin` (auto-promu administrateur).
-4. **Schéma de base** : en production, Payload désactive le `push` et exécute les **migrations** au démarrage (versionnées dans `src/migrations/`, embarquées via `prodMigrations`) — automatique. En dev, le schéma se synchronise via `push`.
-5. **Sauvegardes** : `./scripts/backup.sh [dossier]` archive `mairie-data` + `mairie-media`. Exemple cron quotidien :
+1. **Variables d'environnement** (`.env.local`) : `RESEND_API_KEY`, `PAYLOAD_SECRET` (≥ 32 car. — refusé au démarrage sinon), `SITE_DOMAIN`, `SITE_DOMAIN_APEX`, `SITE_URL`.
+2. **Nom de domaine** : le déposer **au nom de la commune**, pas à celui du prestataire ou d'un élu à titre personnel. L'AFNIC protège les noms de collectivités territoriales (art. L45-2 du CPCE), et un dépôt par un tiers peut être contesté — sans compter le risque de perdre le domaine au moment de passer la main.
+3. **Domaine vérifié chez Resend** : ajouter les enregistrements DNS fournis par Resend (`TXT` DKIM + SPF, éventuellement `MX` pour le retour) sur `grandrupt.fr`. Sans cette vérification, les messages du formulaire de contact envoyés depuis `CONTACT_EMAIL_FROM` sont rejetés ou classés en spam.
+4. **Données persistantes** : quatre volumes nommés (`mairie-data` = base SQLite, `mairie-media` = uploads, `caddy_data`/`caddy_config` = certificats). Ils survivent aux redéploiements.
+5. **Premier admin** : après le premier démarrage, créer le compte sur `/admin` (auto-promu administrateur).
+6. **Schéma de base** : en production, Payload désactive le `push` et exécute les **migrations** au démarrage (versionnées dans `src/migrations/`, embarquées via `prodMigrations`) — automatique. En dev, le schéma se synchronise via `push`.
+7. **Sauvegardes** : `./scripts/backup.sh [dossier]` archive `mairie-data` + `mairie-media`. Exemple cron quotidien :
    ```cron
    0 3 * * * cd /chemin/app && ./scripts/backup.sh /var/backups/grandrupt >> /var/log/grandrupt-backup.log 2>&1
    ```

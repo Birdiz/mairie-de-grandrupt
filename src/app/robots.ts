@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://grandrupt.fr";
+// Reads SITE_URL at request time; without this the file is generated at build
+// time and the domain would be frozen into the image.
+export const dynamic = "force-dynamic";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${siteUrl()}/sitemap.xml`,
   };
 }

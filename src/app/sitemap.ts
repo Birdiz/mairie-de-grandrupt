@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/actualites";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://grandrupt.fr";
+import { siteUrl } from "@/lib/site";
 
 // Reads published articles from the CMS database at request time.
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const BASE_URL = siteUrl();
   const articles = await getAllArticles();
 
   const staticRoutes: MetadataRoute.Sitemap = [
