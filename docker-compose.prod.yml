@@ -28,9 +28,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    # SITE_DOMAIN (your public domain, with DNS pointing here) is read from
-    # .env.local and used by the Caddyfile to request a Let's Encrypt cert.
-    # Falls back to `localhost` (self-signed) when unset — for a local smoke test.
+    # SITE_DOMAIN (canonical www address) and SITE_DOMAIN_APEX (bare domain,
+    # redirected to it) are read from .env.local and used by the Caddyfile to
+    # request Let's Encrypt certs. Both need DNS pointing here.
+    # Fall back to `localhost` / `apex.localhost` (self-signed) when unset — for
+    # a local smoke test.
     env_file:
       - .env.local
     volumes:

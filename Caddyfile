@@ -1,10 +1,17 @@
 # Reverse proxy with automatic HTTPS (Let's Encrypt) in front of the Next.js app.
 #
-# SITE_DOMAIN is read from the environment (docker-compose.prod.yml passes it).
-# - Set SITE_DOMAIN=mairie-grandrupt.fr (your real domain) for a public cert.
-# - Left unset it falls back to `localhost`, where Caddy serves its own
-#   self-signed certificate — handy for a local smoke test.
+# SITE_DOMAIN and SITE_DOMAIN_APEX are read from the environment
+# (docker-compose.prod.yml passes them).
+# - SITE_DOMAIN is the canonical address actually served, e.g. www.grandrupt.fr.
+# - SITE_DOMAIN_APEX is the bare domain, e.g. grandrupt.fr, permanently
+#   redirected to the canonical one so both spellings work.
+# Left unset they fall back to `localhost` / `apex.localhost`, where Caddy serves
+# its own self-signed certificates — handy for a local smoke test.
 {$SITE_DOMAIN:localhost} {
 	encode gzip
 	reverse_proxy web:3000
+}
+
+{$SITE_DOMAIN_APEX:apex.localhost} {
+	redir https://{$SITE_DOMAIN:localhost}{uri} permanent
 }
