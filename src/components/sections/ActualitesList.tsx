@@ -27,12 +27,16 @@ export function ActualitesList({ articles }: { articles: Article[] }) {
               delay={i === 0 ? undefined : i === 1 ? "delay-150" : "delay-300"}
             >
               <article className="border-border bg-card flex h-full flex-col rounded-xl border p-8 transition-shadow hover:shadow-md">
-                <time
-                  dateTime={article.date}
-                  className="text-muted-foreground mb-3 font-sans text-sm"
-                >
-                  {formatDate(article.date)}
-                </time>
+                <div className="mb-3 flex flex-wrap items-center gap-3">
+                  <time dateTime={article.date} className="text-muted-foreground font-sans text-sm">
+                    {formatDate(article.date)}
+                  </time>
+                  {article.type === "proces-verbal" && (
+                    <span className="bg-primary/10 text-primary rounded-full px-3 py-1 font-sans text-xs font-semibold">
+                      {t("pvBadge")}
+                    </span>
+                  )}
+                </div>
                 <h3 className="font-heading text-foreground mb-3 text-xl leading-snug">
                   {article.title}
                 </h3>

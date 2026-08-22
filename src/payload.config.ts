@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { Users } from "./collections/Users.ts";
 import { Actualites } from "./collections/Actualites.ts";
 import { Media } from "./collections/Media.ts";
+import { Documents } from "./collections/Documents.ts";
 import { migrations } from "./migrations/index.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,7 +30,7 @@ export default buildConfig({
       titleSuffix: "— Grandrupt",
     },
   },
-  collections: [Actualites, Media, Users],
+  collections: [Actualites, Media, Documents, Users],
   editor: lexicalEditor(),
   secret,
   db: sqliteAdapter({

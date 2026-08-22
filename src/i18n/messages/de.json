@@ -82,7 +82,10 @@
     },
     "readMore": "Lire la suite",
     "seeAll": "Toutes les actualités",
-    "backToList": "Retour aux actualités"
+    "backToList": "Retour aux actualités",
+    "downloadDocument": "Dokument herunterladen",
+    "downloadPv": "Protokoll herunterladen",
+    "pvBadge": "Sitzungsprotokoll"
   },
   "entreprises": {
     "title": "Entreprises du village",

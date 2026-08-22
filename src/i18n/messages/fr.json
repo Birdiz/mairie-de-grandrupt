@@ -82,7 +82,10 @@
     },
     "readMore": "Lire la suite",
     "seeAll": "Toutes les actualités",
-    "backToList": "Retour aux actualités"
+    "backToList": "Retour aux actualités",
+    "downloadDocument": "Télécharger le document",
+    "downloadPv": "Télécharger le procès-verbal",
+    "pvBadge": "Procès-verbal"
   },
   "entreprises": {
     "title": "Entreprises & Commerces",

@@ -11,7 +11,7 @@ const config = [
     },
   },
   {
-    ignores: [".next/**", "node_modules/**", "out/**"],
+    ignores: [".next/**", "node_modules/**", "out/**", "src/payload-types.ts"],
   },
 ];
 
