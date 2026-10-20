@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { Nav } from "./Nav";
 
@@ -21,7 +21,9 @@ export function Header() {
             </span>
           </span>
         </Link>
-        <Nav />
+        <div className="flex items-center self-stretch">
+          <Nav />
+        </div>
       </div>
     </header>
   );

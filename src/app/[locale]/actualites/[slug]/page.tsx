@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getAllArticles, getArticleBySlug } from "@/lib/actualites";
 import { formatDate } from "@/lib/dates";
 import { RichTextContent } from "@/components/ui/RichTextContent";
