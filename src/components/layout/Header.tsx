@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "./Logo";
 import { Nav } from "./Nav";
 
 export function Header() {
@@ -7,11 +8,16 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:py-5">
         <Link
           href="/"
-          className="focus-visible:ring-ring flex flex-col leading-tight focus-visible:rounded-sm focus-visible:ring-2 focus-visible:outline-none"
+          className="focus-visible:ring-ring flex items-center gap-3 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:outline-none"
           aria-label="Grandrupt — Accueil"
         >
-          <span className="text-foreground text-lg font-bold md:text-xl">Grandrupt</span>
-          <span className="text-muted-foreground text-xs md:text-base">Vosges · 88210</span>
+          <Logo className="h-10 w-auto shrink-0 md:h-12" />
+          <span className="flex flex-col leading-tight">
+            <span className="text-foreground font-heading text-xl font-bold md:text-2xl">
+              Grandrupt
+            </span>
+            <span className="text-muted-foreground text-xs md:text-base">Vosges · 88210</span>
+          </span>
         </Link>
         <Nav />
       </div>
