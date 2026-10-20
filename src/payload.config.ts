@@ -11,6 +11,7 @@ import { Actualites } from "./collections/Actualites.ts";
 import { Media } from "./collections/Media.ts";
 import { Documents } from "./collections/Documents.ts";
 import { migrations } from "./migrations/index.ts";
+import { frOverrides } from "./payload-translations.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -38,6 +39,7 @@ export default buildConfig({
   i18n: {
     supportedLanguages: { fr },
     fallbackLanguage: "fr",
+    translations: { fr: frOverrides },
   },
   collections: [Actualites, Media, Documents, Users],
   editor: lexicalEditor(),
