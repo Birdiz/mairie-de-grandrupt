@@ -4,7 +4,6 @@ import { request, type FullConfig } from "@playwright/test";
 // En CI, la base SQLite est neuve à chaque exécution : on y crée par l'API REST
 // un admin jetable (mot de passe aléatoire, jamais réutilisé) et les actualités
 // publiées dont les tests ont besoin. En local, on garde les données du dev.
-// Cinq articles : l'accueil en affiche quatre, le cinquième vérifie la limite.
 const ARTICLES = [
   {
     title: "Conseil municipal de mars 2026",
@@ -21,15 +20,16 @@ const ARTICLES = [
     slug: "travaux-voirie-rue-principale",
     date: "2026-01-15T12:00:00.000Z",
   },
+  // L'accueil n'en affiche que 4 : la cinquième vérifie la limite.
   {
-    title: "Ramassage des encombrants",
-    slug: "ramassage-des-encombrants",
-    date: "2025-12-05T12:00:00.000Z",
+    title: "Vœux du maire 2026",
+    slug: "voeux-du-maire-2026",
+    date: "2026-01-08T12:00:00.000Z",
   },
   {
-    title: "Marché de Noël 2025",
-    slug: "marche-de-noel-2025",
-    date: "2025-11-28T12:00:00.000Z",
+    title: "Collecte des sapins de Noël",
+    slug: "collecte-des-sapins-de-noel",
+    date: "2025-12-28T12:00:00.000Z",
   },
 ];
 
