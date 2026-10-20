@@ -1,95 +1,95 @@
 {
   "nav": {
-    "home": "Accueil",
-    "histoire": "Histoire",
-    "actualites": "Actualités",
-    "entreprises": "Entreprises",
+    "home": "Home",
+    "histoire": "History",
+    "actualites": "News",
+    "entreprises": "Businesses",
     "contact": "Contact",
-    "skipToContent": "Aller au contenu principal",
-    "mainNav": "Navigation principale",
-    "openMenu": "Ouvrir le menu de navigation",
-    "closeMenu": "Fermer le menu de navigation"
+    "skipToContent": "Skip to main content",
+    "mainNav": "Main navigation",
+    "openMenu": "Open the navigation menu",
+    "closeMenu": "Close the navigation menu"
   },
   "home": {
     "meta": {
-      "description": "Site officiel de Grandrupt — actualités, démarches administratives et contact. Village des Vosges, Grand Est."
+      "description": "Official website of Grandrupt — news, administrative procedures and contact. A village in the Vosges, Grand Est region of France."
     },
-    "title": "Bienvenue à Grandrupt",
-    "subtitle": "Village des Vosges",
-    "description": "Découvrez notre village, son histoire, ses actualités et ses entreprises locales.",
+    "title": "Welcome to Grandrupt",
+    "subtitle": "A village in the Vosges",
+    "description": "Discover our village, its history, its news and its local businesses.",
     "hero": {
-      "cta": "Découvrir le village"
+      "cta": "Discover the village"
     },
     "actualites": {
-      "title": "Actualités",
-      "seeAll": "Toutes les actualités",
-      "readMore": "Lire la suite"
+      "title": "News",
+      "seeAll": "All news",
+      "readMore": "Read more"
     },
     "services": {
-      "title": "Vos démarches",
-      "etatCivil": "État civil",
-      "urbanisme": "Urbanisme",
-      "elections": "Élections",
-      "aideSociale": "Aide sociale",
-      "cimetiere": "Cimetière",
+      "title": "Your procedures",
+      "etatCivil": "Civil registry",
+      "urbanisme": "Planning and building",
+      "elections": "Elections",
+      "aideSociale": "Social assistance",
+      "cimetiere": "Cemetery",
       "contact": "Contact"
     },
     "village": {
-      "title": "Grandrupt, au cœur des Vosges",
-      "text": "Niché dans la vallée du Rabodeau, Grandrupt est un village vosgien de caractère où la forêt de sapins côtoie les prairies verdoyantes. Avec moins d'une centaine d'habitants, il préserve un cadre de vie authentique, loin de l'agitation urbaine, tout en assurant à ses habitants les services essentiels.",
-      "cta": "En savoir plus"
+      "title": "Grandrupt, in the heart of the Vosges",
+      "text": "Nestled in the Rabodeau valley, Grandrupt is a Vosges village full of character, where fir forests meet green meadows. With fewer than a hundred inhabitants, it offers an authentic way of life, far from the bustle of the city, while providing its residents with essential services.",
+      "cta": "Learn more"
     },
     "contactBandeau": {
-      "title": "Une question ?",
-      "subtitle": "La mairie est à votre disposition pour vous accompagner dans vos démarches.",
-      "cta": "Contacter la mairie"
+      "title": "Any questions?",
+      "subtitle": "The town hall is here to help you with your procedures.",
+      "cta": "Contact the town hall"
     }
   },
   "histoire": {
-    "title": "Histoire & Présentation",
-    "description": "L'histoire et la présentation de Grandrupt.",
+    "title": "History & Overview",
+    "description": "The history and an overview of Grandrupt.",
     "hero": {
-      "subtitle": "Découvrez l'histoire et le patrimoine de notre village vosgien."
+      "subtitle": "Discover the history and heritage of our Vosges village."
     },
     "presentation": {
-      "title": "Grandrupt, au cœur des Vosges",
-      "p1": "Niché dans la vallée du Rabodeau, entre forêts de sapins et prairies verdoyantes, Grandrupt est un village vosgien de caractère. Avec une petite centaine d'habitants, il offre un cadre de vie authentique et paisible, au cœur du massif vosgien, à quelques kilomètres de Senones.",
-      "p2": "Le village s'étend sur environ 9 km² à une altitude moyenne de 400 mètres. Ses paysages typiques des Hautes-Vosges, ses forêts domaniales et ses ruisseaux font de Grandrupt un lieu de ressourcement apprécié des amateurs de nature et de randonnée."
+      "title": "Grandrupt, in the heart of the Vosges",
+      "p1": "Nestled in the Rabodeau valley, between fir forests and green meadows, Grandrupt is a Vosges village full of character. With just under a hundred inhabitants, it offers an authentic and peaceful way of life in the heart of the Vosges mountains, a few kilometres from Senones.",
+      "p2": "The village covers about 9 km² at an average altitude of 400 metres. Its landscapes, typical of the Hautes-Vosges, its state forests and its streams make Grandrupt a place to recharge, popular with nature lovers and hikers."
     },
     "stats": {
-      "title": "Grandrupt en chiffres",
+      "title": "Grandrupt in figures",
       "population": "~80",
-      "populationLabel": "habitants",
+      "populationLabel": "inhabitants",
       "altitude": "400 m",
-      "altitudeLabel": "altitude moyenne",
+      "altitudeLabel": "average altitude",
       "superficie": "9 km²",
-      "superficieLabel": "superficie",
-      "origine": "XIIe s.",
-      "origineLabel": "première mention"
+      "superficieLabel": "area",
+      "origine": "12th c.",
+      "origineLabel": "first mention"
     },
     "history": {
-      "title": "Quelques pages d'histoire",
-      "p1": "Les premières traces écrites de Grandrupt remontent au Moyen Âge, lorsque le village apparaît dans les registres abbatiaux de Senones. Comme nombre de hameaux vosgiens, il s'est développé autour de l'exploitation forestière et du travail du bois, activités qui ont longtemps façonné l'économie et le paysage local.",
-      "p2": "Au fil des siècles, Grandrupt a traversé les grandes pages de l'histoire lorraine : les guerres, les annexions, la reconstruction. Les générations successives ont su préserver l'identité et la solidarité caractéristiques des villages vosgiens, transmettant un héritage commun fait de simplicité et de résilience.",
-      "p3": "Aujourd'hui, la commune continue d'assurer à ses habitants les services essentiels tout en préservant son cadre naturel exceptionnel. La mairie reste le cœur de la vie communale, garante du lien entre les habitants et de la continuité des traditions locales."
+      "title": "A few pages of history",
+      "p1": "The earliest written records of Grandrupt date back to the Middle Ages, when the village appears in the registers of Senones Abbey. Like many Vosges hamlets, it grew up around forestry and woodworking, activities that long shaped the local economy and landscape.",
+      "p2": "Over the centuries, Grandrupt has lived through the great chapters of Lorraine's history: wars, annexations, reconstruction. Successive generations have preserved the identity and solidarity typical of Vosges villages, passing on a shared heritage of simplicity and resilience.",
+      "p3": "Today, the municipality continues to provide its residents with essential services while preserving its exceptional natural setting. The town hall remains the heart of community life, keeping residents connected and local traditions alive."
     }
   },
   "actualites": {
-    "title": "Actualités & Agenda",
-    "description": "Les dernières actualités et événements de Grandrupt.",
+    "title": "News & Events",
+    "description": "The latest news and events in Grandrupt.",
     "hero": {
-      "subtitle": "Restez informés des dernières nouvelles et décisions du village."
+      "subtitle": "Stay informed about the latest news and decisions in the village."
     },
-    "readMore": "Lire la suite",
-    "seeAll": "Toutes les actualités",
-    "backToList": "Retour aux actualités",
+    "readMore": "Read more",
+    "seeAll": "All news",
+    "backToList": "Back to news",
     "downloadDocument": "Download the document",
     "downloadPv": "Download the minutes",
-    "pvBadge": "Council minutes"
+    "pvBadge": "Minutes"
   },
   "entreprises": {
-    "title": "Entreprises du village",
-    "description": "Les entreprises et commerces locaux de Grandrupt.",
+    "title": "Businesses & Shops",
+    "description": "The businesses and craftspeople who keep Grandrupt alive.",
     "hero": {
       "subtitle": "Discover the businesses and craftspeople who keep our village alive."
     },
@@ -101,58 +101,58 @@
     }
   },
   "contact": {
-    "title": "Nous contacter",
-    "description": "Contactez la mairie de Grandrupt.",
+    "title": "Contact us",
+    "description": "Contact the town hall of Grandrupt.",
     "hero": {
-      "subtitle": "La mairie est à votre écoute pour toutes vos démarches administratives."
+      "subtitle": "The town hall is here to help you with all your administrative procedures."
     },
     "form": {
-      "title": "Envoyez-nous un message",
-      "name": "Votre nom",
-      "namePlaceholder": "Jean Dupont",
-      "email": "Votre adresse e-mail",
-      "emailPlaceholder": "jean.dupont@exemple.fr",
-      "subject": "Sujet",
-      "subjectPlaceholder": "Objet de votre message",
-      "message": "Votre message",
-      "messagePlaceholder": "Écrivez votre message ici...",
-      "submit": "Envoyer le message",
-      "submitting": "Envoi en cours...",
-      "successTitle": "Message envoyé",
-      "successMessage": "Votre message a bien été transmis. Nous vous répondrons dans les meilleurs délais.",
-      "errorTitle": "Erreur",
-      "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
-      "requiredFields": "* Champs obligatoires"
+      "title": "Send us a message",
+      "name": "Your name",
+      "namePlaceholder": "John Smith",
+      "email": "Your email address",
+      "emailPlaceholder": "john.smith@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Subject of your message",
+      "message": "Your message",
+      "messagePlaceholder": "Write your message here...",
+      "submit": "Send the message",
+      "submitting": "Sending...",
+      "successTitle": "Message sent",
+      "successMessage": "Your message has been sent. We will reply as soon as possible.",
+      "errorTitle": "Error",
+      "errorMessage": "Something went wrong. Please try again or contact us directly.",
+      "requiredFields": "* Required fields"
     },
     "address": {
-      "title": "Adresse",
+      "title": "Address",
       "mairie": "Grandrupt",
       "street": "8 rue de la Mairie",
       "city": "88210 Grandrupt",
-      "phone": "Téléphone",
+      "phone": "Phone",
       "phoneNumber": "03 29 41 03 74",
-      "email": "E-mail",
+      "email": "Email",
       "emailAddress": "communedegrandrupt@orange.fr",
-      "hours": "Horaires d'ouverture",
-      "hoursDetail": "Mardi : 9h - 12h\nJeudi : 14h - 17h\nVendredi : 13h - 17h"
+      "hours": "Opening hours",
+      "hoursDetail": "Tuesday: 9 am - 12 pm\nThursday: 2 pm - 5 pm\nFriday: 1 pm - 5 pm"
     }
   },
   "mentionsLegales": {
-    "title": "Mentions légales",
-    "description": "Informations légales relatives au site officiel de Grandrupt."
+    "title": "Legal notice",
+    "description": "Legal information about the official website of Grandrupt."
   },
   "accessibilite": {
-    "title": "Accessibilité",
-    "description": "Déclaration d'accessibilité du site officiel de Grandrupt."
+    "title": "Accessibility",
+    "description": "Accessibility statement for the official website of Grandrupt."
   },
   "notFound": {
-    "title": "Page introuvable",
-    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
-    "backHome": "Retour à l'accueil"
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home page"
   },
   "footer": {
-    "copyright": "© {year} Grandrupt. Tous droits réservés.",
-    "legalNotice": "Mentions légales",
-    "accessibility": "Accessibilité"
+    "copyright": "© {year} Grandrupt. All rights reserved.",
+    "legalNotice": "Legal notice",
+    "accessibility": "Accessibility"
   }
 }
