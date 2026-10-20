@@ -35,6 +35,10 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-brand-marine: var(--brand-marine);
+  --color-brand-sapin: var(--brand-sapin);
+  --color-brand-sapin-clair: var(--brand-sapin-clair);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -48,89 +52,195 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Charte graphique v2 (octobre 2026) : tout découle du logo.
+ * Deux familles de teintes seulement : 167° (sapin) et 262° (marine), plus le papier à 85°.
+ * Contrastes vérifiés : texte courant ≥ 7:1 (AAA), bordures de champs ≥ 3:1.
+ */
 :root {
-  /* Vosges — palette principale */
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.22 0.022 258);
+  --background: oklch(0.982 0.006 85);
+  --foreground: oklch(0.25 0.045 262);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.022 258);
+  --card-foreground: oklch(0.25 0.045 262);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.022 258);
-  --primary: oklch(0.38 0.108 143);
+  --popover-foreground: oklch(0.25 0.045 262);
+  --primary: oklch(0.44 0.085 167);
+  --primary-hover: oklch(0.38 0.08 167);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.965 0.008 258);
-  --secondary-foreground: oklch(0.31 0.022 258);
-  --muted: oklch(0.965 0.008 258);
-  --muted-foreground: oklch(0.52 0.022 258);
-  --accent: oklch(0.93 0.03 143);
-  --accent-foreground: oklch(0.38 0.108 143);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.012 258);
-  --input: oklch(0.88 0.012 258);
-  --ring: oklch(0.38 0.108 143);
-  --amber: oklch(0.72 0.105 74);
-  --chart-1: oklch(0.38 0.108 143);
-  --chart-2: oklch(0.54 0.108 143);
-  --chart-3: oklch(0.65 0.095 44);
-  --chart-4: oklch(0.72 0.105 74);
-  --chart-5: oklch(0.31 0.022 258);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.965 0.008 258);
-  --sidebar-foreground: oklch(0.22 0.022 258);
-  --sidebar-primary: oklch(0.38 0.108 143);
+  --secondary: oklch(0.94 0.02 262);
+  --secondary-foreground: oklch(0.355 0.087 262);
+  --muted: oklch(0.955 0.008 85);
+  --muted-foreground: oklch(0.43 0.03 262);
+  --accent: oklch(0.945 0.03 167);
+  --accent-foreground: oklch(0.33 0.07 167);
+  --destructive: oklch(0.5 0.17 28);
+  --border: oklch(0.87 0.012 262);
+  --input: oklch(0.55 0.03 262);
+  --ring: oklch(0.355 0.087 262);
+  /* Couleurs exactes du logo : réservées au logo et aux motifs */
+  --brand-marine: oklch(0.355 0.091 261.3);
+  --brand-sapin: oklch(0.52 0.095 167.8);
+  --brand-sapin-clair: oklch(0.652 0.108 169.5);
+  --chart-1: oklch(0.44 0.085 167);
+  --chart-2: oklch(0.652 0.108 169.5);
+  --chart-3: oklch(0.355 0.087 262);
+  --chart-4: oklch(0.55 0.03 262);
+  --chart-5: oklch(0.25 0.045 262);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.955 0.008 85);
+  --sidebar-foreground: oklch(0.25 0.045 262);
+  --sidebar-primary: oklch(0.44 0.085 167);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.93 0.03 143);
-  --sidebar-accent-foreground: oklch(0.38 0.108 143);
-  --sidebar-border: oklch(0.88 0.012 258);
-  --sidebar-ring: oklch(0.38 0.108 143);
+  --sidebar-accent: oklch(0.945 0.03 167);
+  --sidebar-accent-foreground: oklch(0.33 0.07 167);
+  --sidebar-border: oklch(0.87 0.012 262);
+  --sidebar-ring: oklch(0.355 0.087 262);
 }
 
 .dark {
-  --background: oklch(0.18 0.022 258);
-  --foreground: oklch(0.95 0.005 258);
-  --card: oklch(0.22 0.022 258);
-  --card-foreground: oklch(0.95 0.005 258);
-  --popover: oklch(0.22 0.022 258);
-  --popover-foreground: oklch(0.95 0.005 258);
-  --primary: oklch(0.54 0.108 143);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.27 0.022 258);
-  --secondary-foreground: oklch(0.95 0.005 258);
-  --muted: oklch(0.27 0.022 258);
-  --muted-foreground: oklch(0.65 0.015 258);
-  --accent: oklch(0.3 0.04 143);
-  --accent-foreground: oklch(0.85 0.04 143);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.54 0.108 143);
-  --amber: oklch(0.72 0.105 74);
-  --chart-1: oklch(0.54 0.108 143);
-  --chart-2: oklch(0.65 0.095 44);
-  --chart-3: oklch(0.72 0.105 74);
-  --chart-4: oklch(0.75 0.03 143);
-  --chart-5: oklch(0.65 0.015 258);
-  --sidebar: oklch(0.22 0.022 258);
-  --sidebar-foreground: oklch(0.95 0.005 258);
-  --sidebar-primary: oklch(0.54 0.108 143);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.3 0.04 143);
-  --sidebar-accent-foreground: oklch(0.85 0.04 143);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.54 0.108 143);
+  --background: oklch(0.2 0.035 262);
+  --foreground: oklch(0.95 0.008 85);
+  --card: oklch(0.24 0.04 262);
+  --card-foreground: oklch(0.95 0.008 85);
+  --popover: oklch(0.24 0.04 262);
+  --popover-foreground: oklch(0.95 0.008 85);
+  --primary: oklch(0.76 0.11 167);
+  --primary-hover: oklch(0.85 0.08 167);
+  --primary-foreground: oklch(0.2 0.04 200);
+  --secondary: oklch(0.3 0.05 262);
+  --secondary-foreground: oklch(0.95 0.008 85);
+  --muted: oklch(0.27 0.035 262);
+  --muted-foreground: oklch(0.78 0.02 262);
+  --accent: oklch(0.3 0.05 167);
+  --accent-foreground: oklch(0.9 0.05 167);
+  --destructive: oklch(0.72 0.15 28);
+  --border: oklch(0.34 0.035 262);
+  --input: oklch(0.6 0.03 262);
+  --ring: oklch(0.85 0.08 167);
+  --chart-1: oklch(0.76 0.11 167);
+  --chart-2: oklch(0.652 0.108 169.5);
+  --chart-3: oklch(0.78 0.02 262);
+  --chart-4: oklch(0.6 0.03 262);
+  --chart-5: oklch(0.95 0.008 85);
+  --sidebar: oklch(0.24 0.04 262);
+  --sidebar-foreground: oklch(0.95 0.008 85);
+  --sidebar-primary: oklch(0.76 0.11 167);
+  --sidebar-primary-foreground: oklch(0.2 0.04 200);
+  --sidebar-accent: oklch(0.3 0.05 167);
+  --sidebar-accent-foreground: oklch(0.9 0.05 167);
+  --sidebar-border: oklch(0.34 0.035 262);
+  --sidebar-ring: oklch(0.85 0.08 167);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+    @apply border-border;
   }
   html {
     @apply font-sans;
   }
-  p {
-    @apply text-justify;
+  body {
+    @apply bg-background text-foreground;
+    font-size: 1.1875rem;
+    line-height: 1.6;
   }
+  /* Liens toujours soulignés : 1,5 px, 3 px au survol */
+  a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
+  }
+  a:hover {
+    text-decoration-thickness: 3px;
+  }
+  /* Focus clavier : anneau marine de 3 px, décalé de 3 px */
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Échelle typographique : Playfair uniquement en Bold et à partir de 24 px */
+@utility text-h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  text-wrap: balance;
+  @media (width >= 48rem) {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+}
+@utility text-h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.375rem;
+  text-wrap: balance;
+  @media (width >= 48rem) {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+}
+@utility text-h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  @media (width >= 48rem) {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+}
+@utility text-h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.3125rem;
+  line-height: 1.75rem;
+  @media (width >= 48rem) {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+  }
+}
+@utility text-chapo {
+  font-size: 1.25rem;
+  line-height: 1.9375rem;
+  @media (width >= 48rem) {
+    font-size: 1.375rem;
+    line-height: 2.125rem;
+  }
+}
+@utility text-body {
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  @media (width >= 48rem) {
+    font-size: 1.1875rem;
+    line-height: 1.875rem;
+  }
+}
+@utility text-small {
+  font-size: 1.0625rem;
+  line-height: 1.625rem;
+}
+
+/* Motif « le rupt » : l'ondulation du ruisseau, séparateur décoratif (un seul par écran) */
+@utility motif-rupt {
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12'%3E%3Cpath d='M0 6 Q12 0 24 6 T48 6' fill='none' stroke='%231f3a6b' stroke-width='2.5'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+@utility motif-rupt-clair {
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12'%3E%3Cpath d='M0 6 Q12 0 24 6 T48 6' fill='none' stroke='%233ba585' stroke-width='2.5'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+/* Motif « les trois plans » : signature en haut du pied de page */
+@utility motif-plans {
+  height: 19px;
+  background:
+    linear-gradient(var(--brand-marine), var(--brand-marine)) 0 0 / 100% 5px no-repeat,
+    linear-gradient(var(--brand-sapin), var(--brand-sapin)) 0 7px / 100% 5px no-repeat,
+    linear-gradient(var(--brand-sapin-clair), var(--brand-sapin-clair)) 0 14px / 100% 5px no-repeat,
+    #fff;
 }

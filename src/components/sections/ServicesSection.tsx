@@ -1,55 +1,39 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { FileText, Building2, Vote, Heart, Flower2, Phone } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { EtagesPuce } from "@/components/ui/EtagesPuce";
 
-type Service = {
-  key: string;
-  icon: React.ElementType;
-  href: string;
-};
-
-const SERVICES: Service[] = [
-  { key: "etatCivil", icon: FileText, href: "/contact" },
-  { key: "urbanisme", icon: Building2, href: "/contact" },
-  { key: "elections", icon: Vote, href: "/contact" },
-  { key: "aideSociale", icon: Heart, href: "/contact" },
-  { key: "cimetiere", icon: Flower2, href: "/contact" },
-  { key: "contact", icon: Phone, href: "/contact" },
-];
+const SERVICES = ["etatCivil", "urbanisme", "elections", "aideSociale", "cimetiere", "contact"];
 
 export function ServicesSection() {
   const t = useTranslations("home.services");
 
   return (
-    <section className="bg-secondary py-24" aria-labelledby="services-title">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        <FadeIn className="mb-14 text-center">
-          <h2 id="services-title" className="font-heading text-foreground text-4xl md:text-5xl">
+    <section aria-labelledby="services-title">
+      <div className="mx-auto grid max-w-6xl gap-x-14 gap-y-4 px-4 py-9 sm:px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:py-16 lg:px-8">
+        <div className="flex flex-col gap-4">
+          <h2 id="services-title" className="text-h2">
             {t("title")}
           </h2>
-        </FadeIn>
-
-        <FadeIn delay="delay-150">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {SERVICES.map(({ key, icon: Icon, href }) => (
+          <p>{t("intro")}</p>
+        </div>
+        <ul className="grid gap-x-10 sm:grid-cols-2">
+          {SERVICES.map((key) => (
+            <li key={key}>
               <Link
-                key={key}
-                href={href}
-                className="group bg-card hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring flex flex-col items-center gap-4 rounded-xl p-8 text-center transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                href="/contact"
+                className="border-border text-foreground hover:bg-accent hover:text-accent-foreground group -mx-2 flex min-h-15 gap-3.5 border-t px-2 py-4.5 no-underline"
               >
-                <Icon
-                  size={32}
-                  className="text-primary group-hover:text-accent-foreground transition-colors"
-                  aria-hidden="true"
-                />
-                <span className="text-foreground group-hover:text-accent-foreground font-sans text-sm font-semibold transition-colors">
-                  {t(key)}
+                <EtagesPuce className="mt-1.5" />
+                <span className="flex flex-col gap-1">
+                  <span className="text-primary group-hover:text-accent-foreground text-[1.3125rem] leading-[1.3] font-bold underline decoration-[1.5px] underline-offset-4 group-hover:decoration-[3px]">
+                    {t(key)}
+                  </span>
+                  <span className="text-lg leading-normal">{t(`${key}Text`)}</span>
                 </span>
               </Link>
-            ))}
-          </div>
-        </FadeIn>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
