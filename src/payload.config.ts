@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { fr } from "@payloadcms/translations/languages/fr";
 import sharp from "sharp";
 
 import { Users } from "./collections/Users.ts";
@@ -10,6 +11,7 @@ import { Actualites } from "./collections/Actualites.ts";
 import { Media } from "./collections/Media.ts";
 import { Documents } from "./collections/Documents.ts";
 import { migrations } from "./migrations/index.ts";
+import { frOverrides } from "./payload-translations.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -29,6 +31,15 @@ export default buildConfig({
     meta: {
       titleSuffix: "— Grandrupt",
     },
+    // date-fns pattern, rendered with the French locale: « 12 mars 2026 à 14:30 ».
+    dateFormat: "d MMMM yyyy 'à' HH:mm",
+  },
+  // The admin is used by the mairie's staff only: French is the sole language,
+  // whatever the browser's Accept-Language says.
+  i18n: {
+    supportedLanguages: { fr },
+    fallbackLanguage: "fr",
+    translations: { fr: frOverrides },
   },
   collections: [Actualites, Media, Documents, Users],
   editor: lexicalEditor(),
