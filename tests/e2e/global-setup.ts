@@ -20,6 +20,17 @@ const ARTICLES = [
     slug: "travaux-voirie-rue-principale",
     date: "2026-01-15T12:00:00.000Z",
   },
+  // L'accueil n'en affiche que 4 : la cinquième vérifie la limite.
+  {
+    title: "Vœux du maire 2026",
+    slug: "voeux-du-maire-2026",
+    date: "2026-01-08T12:00:00.000Z",
+  },
+  {
+    title: "Collecte des sapins de Noël",
+    slug: "collecte-des-sapins-de-noel",
+    date: "2025-12-28T12:00:00.000Z",
+  },
 ];
 
 function lexicalParagraph(text: string) {
