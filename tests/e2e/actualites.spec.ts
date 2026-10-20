@@ -22,19 +22,31 @@ test.describe("Actualités", () => {
 
   test("le lien 'Retour aux actualités' ramène à la liste", async ({ page }) => {
     await page.goto("/actualites/conseil-municipal-mars-2026");
-    await page.getByRole("link", { name: /retour aux actualités/i }).click();
+    // Le lien figure en haut et en bas de l'article.
+    await page
+      .getByRole("link", { name: /retour aux actualités/i })
+      .first()
+      .click();
     await expect(page).toHaveURL(/\/actualites$/);
   });
 
   test("la page d'un article connu s'affiche correctement", async ({ page }) => {
     await page.goto("/actualites/conseil-municipal-mars-2026");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /retour aux actualités/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /retour aux actualités/i }).first()).toBeVisible();
   });
 
+  // Une frontière loading.tsx au-dessus du notFound() de l'article ferait
+  // partir la réponse en streaming avec un 200 (soft 404).
   test("une URL d'article inconnue renvoie une 404", async ({ page }) => {
     const response = await page.goto("/actualites/article-inexistant");
     expect(response?.status()).toBe(404);
+    await expect(page.getByRole("heading", { name: /page introuvable/i })).toBeVisible();
+  });
+
+  test("la page d'un article connu renvoie un 200", async ({ page }) => {
+    const response = await page.goto("/actualites/conseil-municipal-mars-2026");
+    expect(response?.status()).toBe(200);
   });
 
   test("la page d'accueil affiche les 4 dernières actualités", async ({ page }) => {
