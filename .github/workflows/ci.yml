@@ -78,10 +78,11 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
 
-      # SQLite ne crée pas le dossier de la base (DATABASE_URI=file:./data/…).
+      # SQLite ne crée pas le dossier de la base, et server.js fait un chdir dans
+      # .next/standalone : file:./data/… y pointe (comme /app/data en Docker).
       - name: Tests E2E (Playwright)
         run: |
-          mkdir -p data
+          mkdir -p .next/standalone/data
           npx playwright test --project=chromium
 
       - name: Rapport Playwright
