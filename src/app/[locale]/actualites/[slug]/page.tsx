@@ -61,6 +61,7 @@ export default async function ArticlePage({ params }: Props) {
               document={article.document}
               label={t(isPv ? "downloadPv" : "downloadDocument")}
               meta={t("uploadedOn", { date: formatDate(article.date) })}
+              typeLabel={t("documentPdf")}
             />
           )}
 

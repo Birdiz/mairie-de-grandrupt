@@ -113,7 +113,8 @@
     "previousPv": "Procès-verbaux précédents",
     "otherNews": "Autres actualités",
     "paperTitle": "Besoin d'une version papier ?",
-    "paperText": "Les procès-verbaux sont affichés en mairie et peuvent être imprimés sur demande au secrétariat."
+    "paperText": "Les procès-verbaux sont affichés en mairie et peuvent être imprimés sur demande au secrétariat.",
+    "documentPdf": "Document PDF"
   },
   "entreprises": {
     "title": "Entreprises & Commerces",

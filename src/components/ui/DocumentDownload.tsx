@@ -14,6 +14,8 @@ type Props = {
   title?: string;
   /** Ligne de détails déjà formatée, par exemple « mis en ligne le 15 septembre 2026 ». */
   meta?: string;
+  /** Nature du fichier, traduite (« Document PDF »). */
+  typeLabel?: string;
 };
 
 /**
@@ -22,7 +24,13 @@ type Props = {
  * Le nom accessible du lien précise le document, son format et son poids, comme
  * l'exige le critère RGAA 13.3 pour les fichiers en téléchargement.
  */
-export function DocumentDownload({ document, label, title, meta }: Props) {
+export function DocumentDownload({
+  document,
+  label,
+  title,
+  meta,
+  typeLabel = "Document PDF",
+}: Props) {
   const size = formatFileSize(document.filesize);
   const details = size ? `PDF, ${size}` : "PDF";
   const heading = title || document.title;
@@ -42,7 +50,7 @@ export function DocumentDownload({ document, label, title, meta }: Props) {
       <div className="flex flex-col gap-3">
         {heading && <p className="text-h4">{heading}</p>}
         <p className="text-muted-foreground text-small">
-          {[size ? `Document PDF · ${size}` : "Document PDF", meta].filter(Boolean).join(" · ")}
+          {[size ? `${typeLabel} · ${size}` : typeLabel, meta].filter(Boolean).join(" · ")}
         </p>
         <a
           href={document.url}
