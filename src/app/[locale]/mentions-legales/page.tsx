@@ -12,28 +12,25 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function MentionsLegalesPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <div className="mb-8">
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-        >
+    <div className="mx-auto max-w-6xl px-4 pt-5 pb-16 sm:px-6 lg:px-8">
+      <div className="mb-4">
+        <Link href="/" className="text-primary text-small inline-flex min-h-11 items-center">
           ← Accueil
         </Link>
       </div>
 
-      <h1 className="text-foreground mb-8 font-serif text-3xl font-bold">Mentions légales</h1>
+      <h1 className="text-h1 mb-8">Mentions légales</h1>
 
-      <div className="prose-content text-foreground space-y-8">
+      <div className="flex flex-col gap-10">
         <section aria-labelledby="editeur">
-          <h2 id="editeur" className="mb-3 text-xl font-semibold">
+          <h2 id="editeur" className="text-h3 mb-3">
             Éditeur du site
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Le présent site est édité par la <strong>commune de Grandrupt</strong> (88210), Vosges,
             France.
           </p>
-          <ul className="text-muted-foreground mt-3 space-y-1">
+          <ul className="mt-3 list-disc space-y-1.5 pl-6">
             <li>
               <strong>Adresse :</strong> 8 rue de la Mairie, 88210 Grandrupt
             </li>
@@ -42,10 +39,7 @@ export default function MentionsLegalesPage() {
             </li>
             <li>
               <strong>E-mail :</strong>{" "}
-              <a
-                href="mailto:communedegrandrupt@orange.fr"
-                className="hover:text-foreground underline transition-colors"
-              >
+              <a href="mailto:communedegrandrupt@orange.fr" className="text-primary">
                 communedegrandrupt@orange.fr
               </a>
             </li>
@@ -56,20 +50,20 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section aria-labelledby="hebergeur">
-          <h2 id="hebergeur" className="mb-3 text-xl font-semibold">
+          <h2 id="hebergeur" className="text-h3 mb-3">
             Hébergeur
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Ce site est hébergé par un prestataire tiers. Pour toute question relative à
             l&apos;hébergement, veuillez contacter la mairie.
           </p>
         </section>
 
         <section aria-labelledby="propriete">
-          <h2 id="propriete" className="mb-3 text-xl font-semibold">
+          <h2 id="propriete" className="text-h3 mb-3">
             Propriété intellectuelle
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             L&apos;ensemble du contenu de ce site (textes, images, graphismes) est la propriété de
             Grandrupt ou de ses partenaires. Toute reproduction, représentation ou diffusion,
             intégrale ou partielle, est interdite sans l&apos;autorisation écrite préalable de la
@@ -78,27 +72,24 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section aria-labelledby="donnees">
-          <h2 id="donnees" className="mb-3 text-xl font-semibold">
+          <h2 id="donnees" className="text-h3 mb-3">
             Données personnelles
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE
             2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez
             d&apos;un droit d&apos;accès, de rectification et de suppression des données vous
             concernant.
           </p>
-          <p className="text-muted-foreground mt-3 leading-relaxed">
+          <p className="mt-3 max-w-[66ch] text-pretty">
             Les données collectées via le formulaire de contact (nom, adresse e-mail, sujet et
             message) sont utilisées uniquement pour répondre à votre demande et ne sont pas
             conservées au-delà de ce traitement.
           </p>
-          <p className="text-muted-foreground mt-3 leading-relaxed">
+          <p className="mt-3 max-w-[66ch] text-pretty">
             Pour exercer vos droits ou pour toute question relative à vos données personnelles,
             contactez la mairie à{" "}
-            <a
-              href="mailto:communedegrandrupt@orange.fr"
-              className="hover:text-foreground underline transition-colors"
-            >
+            <a href="mailto:communedegrandrupt@orange.fr" className="text-primary">
               communedegrandrupt@orange.fr
             </a>
             .
@@ -106,20 +97,20 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section aria-labelledby="cookies">
-          <h2 id="cookies" className="mb-3 text-xl font-semibold">
+          <h2 id="cookies" className="text-h3 mb-3">
             Cookies
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Ce site n&apos;utilise pas de cookies de traçage ou de profilage. Aucun cookie tiers à
             des fins publicitaires n&apos;est déposé sur votre terminal.
           </p>
         </section>
 
         <section aria-labelledby="liens">
-          <h2 id="liens" className="mb-3 text-xl font-semibold">
+          <h2 id="liens" className="text-h3 mb-3">
             Liens hypertextes
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             La commune de Grandrupt décline toute responsabilité quant au contenu des sites externes
             vers lesquels des liens pourraient être établis depuis ce site.
           </p>

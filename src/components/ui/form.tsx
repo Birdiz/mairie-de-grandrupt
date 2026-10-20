@@ -73,7 +73,7 @@ function FormItem({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div className={cn("space-y-2", className)} {...props} />
+      <div className={cn("flex flex-col gap-2", className)} {...props} />
     </FormItemContext.Provider>
   );
 }
@@ -108,7 +108,7 @@ function FormDescription({ className, ...props }: React.HTMLAttributes<HTMLParag
   return (
     <p
       id={formDescriptionId}
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-muted-foreground text-base", className)}
       {...props}
     />
   );
@@ -117,8 +117,12 @@ function FormDescription({ className, ...props }: React.HTMLAttributes<HTMLParag
 function FormMessage({
   className,
   children,
+  prefix,
   ...props
-}: React.HTMLAttributes<HTMLParagraphElement>) {
+}: React.HTMLAttributes<HTMLParagraphElement> & {
+  /** Mot écrit avant le message (« Erreur : ») pour ne pas compter sur la couleur. */
+  prefix?: string;
+}) {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message ?? "") : children;
 
@@ -129,11 +133,24 @@ function FormMessage({
   return (
     <p
       id={formMessageId}
-      className={cn("text-destructive text-sm font-medium", className)}
+      className={cn(
+        "text-destructive flex items-start gap-2 text-[1.0625rem] leading-snug font-semibold",
+        className,
+      )}
       role="alert"
       {...props}
     >
-      {body}
+      {/* Pictogramme + texte : la couleur ne porte jamais seule l'erreur */}
+      <span
+        aria-hidden="true"
+        className="bg-destructive mt-px flex size-5.5 flex-none items-center justify-center rounded-full text-[0.9375rem] font-bold text-white"
+      >
+        !
+      </span>
+      <span>
+        {prefix && <span>{prefix} </span>}
+        <span>{body}</span>
+      </span>
     </p>
   );
 }

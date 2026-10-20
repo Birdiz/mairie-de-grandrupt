@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, fireEvent } from "@testing-library/react";
 import { Nav } from "@/components/layout/Nav";
 
 vi.mock("next-intl", () => ({
@@ -110,5 +110,33 @@ describe("Nav", () => {
       .getAllByRole("link")
       .map((l) => l.getAttribute("href"));
     expect(hrefs).not.toContain("/entreprises");
+  });
+
+  it("names the menu button by its visible label and toggles it", () => {
+    mockUsePathname.mockReturnValue("/");
+    render(<Nav />);
+    const button = screen.getByRole("button", { name: "openMenu" });
+    expect(button).toHaveAttribute("aria-expanded", "false");
+    fireEvent.click(button);
+    expect(screen.getByRole("button", { name: "closeMenu" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+  });
+
+  it("flags the current page in words in the mobile menu", () => {
+    mockUsePathname.mockReturnValue("/histoire");
+    render(<Nav />);
+    const mobileNav = within(screen.getAllByRole("navigation")[1]);
+    expect(mobileNav.getByRole("link", { name: /histoire/ })).toHaveTextContent("currentPage");
+  });
+
+  it("offers a call link to the mairie in the mobile menu", () => {
+    mockUsePathname.mockReturnValue("/");
+    render(<Nav />);
+    const mobileNav = within(screen.getAllByRole("navigation")[1]);
+    expect(mobileNav.getByRole("link", { name: "callMairie" }).getAttribute("href")).toMatch(
+      /^tel:/,
+    );
   });
 });

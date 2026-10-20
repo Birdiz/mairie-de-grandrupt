@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { ActualitesHero } from "@/components/sections/ActualitesHero";
+import { PageHeader } from "@/components/sections/PageHeader";
 import { ActualitesList } from "@/components/sections/ActualitesList";
 import { getAllArticles } from "@/lib/actualites";
 
@@ -17,7 +17,7 @@ export default async function ActualitesPage() {
   const articles = await getAllArticles();
   return (
     <>
-      <ActualitesHero />
+      <PageHeader ns="actualites" />
       <ActualitesList articles={articles} />
     </>
   );

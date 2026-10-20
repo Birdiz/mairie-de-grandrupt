@@ -1,149 +1,190 @@
 {
   "nav": {
-    "home": "Accueil",
-    "histoire": "Histoire",
-    "actualites": "Actualités",
-    "entreprises": "Entreprises",
-    "contact": "Contact",
-    "skipToContent": "Aller au contenu principal",
-    "mainNav": "Navigation principale",
-    "openMenu": "Ouvrir le menu de navigation",
-    "closeMenu": "Fermer le menu de navigation"
+    "home": "Startseite",
+    "histoire": "Geschichte",
+    "actualites": "Aktuelles",
+    "entreprises": "Betriebe",
+    "contact": "Kontakt",
+    "skipToContent": "Zum Hauptinhalt springen",
+    "mainNav": "Hauptnavigation",
+    "openMenu": "Menü",
+    "closeMenu": "Schließen",
+    "currentPage": "(aktuelle Seite)",
+    "callMairie": "Rathaus anrufen",
+    "breadcrumb": "Brotkrumennavigation"
   },
   "home": {
     "meta": {
-      "description": "Site officiel de Grandrupt — actualités, démarches administratives et contact. Village des Vosges, Grand Est."
+      "description": "Offizielle Website von Grandrupt — Aktuelles, Verwaltungsangelegenheiten und Kontakt. Ein Dorf in den Vogesen, Region Grand Est."
     },
-    "title": "Bienvenue à Grandrupt",
-    "subtitle": "Village des Vosges",
-    "description": "Découvrez notre village, son histoire, ses actualités et ses entreprises locales.",
+    "title": "Willkommen in Grandrupt",
+    "subtitle": "Ein Dorf in den Vogesen",
+    "description": "Das Dorf am großen Bach, im Herzen der Vogesen. Hier finden Sie die Neuigkeiten der Gemeinde und Ihre Behördengänge im Rathaus.",
     "hero": {
-      "cta": "Découvrir le village"
+      "cta": "Das Dorf entdecken",
+      "primaryCta": "Rathaus kontaktieren",
+      "secondaryCta": "Öffnungszeiten und Anliegen"
     },
     "actualites": {
-      "title": "Actualités",
-      "seeAll": "Toutes les actualités",
-      "readMore": "Lire la suite"
+      "title": "Neueste Nachrichten",
+      "seeAll": "Alle Neuigkeiten",
+      "readMore": "Weiterlesen",
+      "empty": "Derzeit keine Nachrichten."
     },
     "services": {
-      "title": "Vos démarches",
-      "etatCivil": "État civil",
-      "urbanisme": "Urbanisme",
-      "elections": "Élections",
-      "aideSociale": "Aide sociale",
-      "cimetiere": "Cimetière",
-      "contact": "Contact"
+      "title": "Dienste des Rathauses",
+      "etatCivil": "Standesamt",
+      "urbanisme": "Bauen und Planen",
+      "elections": "Wahlen",
+      "aideSociale": "Sozialhilfe",
+      "cimetiere": "Friedhof",
+      "contact": "Kontakt",
+      "intro": "Das Sekretariat hilft Ihnen bei allen Anliegen, vor Ort oder telefonisch.",
+      "etatCivilText": "Geburt, Heirat, Tod, Familienstammbuch.",
+      "urbanismeText": "Baugenehmigung, Bauanzeige.",
+      "electionsText": "Eintragung ins Wählerverzeichnis, Vollmacht.",
+      "aideSocialeText": "Unterstützung für Einwohner, die sie brauchen.",
+      "cimetiereText": "Grabstellen und Pflege des Gemeindefriedhofs.",
+      "contactText": "Eine andere Frage? Das Sekretariat antwortet Ihnen."
     },
     "village": {
-      "title": "Grandrupt, au cœur des Vosges",
-      "text": "Niché dans la vallée du Rabodeau, Grandrupt est un village vosgien de caractère où la forêt de sapins côtoie les prairies verdoyantes. Avec moins d'une centaine d'habitants, il préserve un cadre de vie authentique, loin de l'agitation urbaine, tout en assurant à ses habitants les services essentiels.",
-      "cta": "En savoir plus"
+      "title": "Grandrupt, im Herzen der Vogesen",
+      "text": "Eingebettet in das Tal des Rabodeau ist Grandrupt ein Vogesendorf mit Charakter, in dem Tannenwälder an grüne Wiesen grenzen. Mit weniger als hundert Einwohnern bewahrt es ein ursprüngliches Lebensumfeld fernab der städtischen Hektik und sichert seinen Einwohnern zugleich die wichtigsten Dienstleistungen.",
+      "cta": "Die Geschichte des Dorfes entdecken",
+      "rupt": "Im Vogesen-Dialekt ist ein „rupt“ ein Bach: Grandrupt bedeutet der große Bach."
     },
     "contactBandeau": {
-      "title": "Une question ?",
-      "subtitle": "La mairie est à votre disposition pour vous accompagner dans vos démarches.",
-      "cta": "Contacter la mairie"
+      "title": "Eine Frage? Das Rathaus antwortet Ihnen.",
+      "subtitle": "Telefonisch, per Post oder direkt im Sekretariat.",
+      "cta": "Dem Rathaus schreiben"
+    },
+    "horaires": {
+      "title": "Das Rathaus ist geöffnet",
+      "phone": "Tel."
     }
   },
   "histoire": {
-    "title": "Histoire & Présentation",
-    "description": "L'histoire et la présentation de Grandrupt.",
+    "title": "Geschichte & Vorstellung",
+    "description": "Die Geschichte und Vorstellung von Grandrupt.",
     "hero": {
-      "subtitle": "Découvrez l'histoire et le patrimoine de notre village vosgien."
+      "subtitle": "Entdecken Sie die Geschichte und das Erbe unseres Vogesendorfes."
     },
     "presentation": {
-      "title": "Grandrupt, au cœur des Vosges",
-      "p1": "Niché dans la vallée du Rabodeau, entre forêts de sapins et prairies verdoyantes, Grandrupt est un village vosgien de caractère. Avec une petite centaine d'habitants, il offre un cadre de vie authentique et paisible, au cœur du massif vosgien, à quelques kilomètres de Senones.",
-      "p2": "Le village s'étend sur environ 9 km² à une altitude moyenne de 400 mètres. Ses paysages typiques des Hautes-Vosges, ses forêts domaniales et ses ruisseaux font de Grandrupt un lieu de ressourcement apprécié des amateurs de nature et de randonnée."
+      "title": "Grandrupt, im Herzen der Vogesen",
+      "p1": "Eingebettet in das Tal des Rabodeau, zwischen Tannenwäldern und grünen Wiesen, ist Grandrupt ein Vogesendorf mit Charakter. Mit knapp hundert Einwohnern bietet es ein ursprüngliches und ruhiges Lebensumfeld mitten im Vogesenmassiv, wenige Kilometer von Senones entfernt.",
+      "p2": "Das Dorf erstreckt sich über rund 9 km² auf einer mittleren Höhe von 400 Metern. Seine für die Hochvogesen typischen Landschaften, seine Staatswälder und seine Bäche machen Grandrupt zu einem Ort der Erholung, der bei Natur- und Wanderfreunden geschätzt wird."
     },
     "stats": {
-      "title": "Grandrupt en chiffres",
+      "title": "Grandrupt in Zahlen",
       "population": "~80",
-      "populationLabel": "habitants",
+      "populationLabel": "Einwohner",
       "altitude": "400 m",
-      "altitudeLabel": "altitude moyenne",
+      "altitudeLabel": "mittlere Höhe",
       "superficie": "9 km²",
-      "superficieLabel": "superficie",
-      "origine": "XIIe s.",
-      "origineLabel": "première mention"
+      "superficieLabel": "Fläche",
+      "origine": "12. Jh.",
+      "origineLabel": "erste Erwähnung"
     },
     "history": {
-      "title": "Quelques pages d'histoire",
-      "p1": "Les premières traces écrites de Grandrupt remontent au Moyen Âge, lorsque le village apparaît dans les registres abbatiaux de Senones. Comme nombre de hameaux vosgiens, il s'est développé autour de l'exploitation forestière et du travail du bois, activités qui ont longtemps façonné l'économie et le paysage local.",
-      "p2": "Au fil des siècles, Grandrupt a traversé les grandes pages de l'histoire lorraine : les guerres, les annexions, la reconstruction. Les générations successives ont su préserver l'identité et la solidarité caractéristiques des villages vosgiens, transmettant un héritage commun fait de simplicité et de résilience.",
-      "p3": "Aujourd'hui, la commune continue d'assurer à ses habitants les services essentiels tout en préservant son cadre naturel exceptionnel. La mairie reste le cœur de la vie communale, garante du lien entre les habitants et de la continuité des traditions locales."
+      "title": "Ein wenig Geschichte",
+      "p1": "Die ersten schriftlichen Spuren von Grandrupt reichen bis ins Mittelalter zurück, als das Dorf in den Registern der Abtei Senones erscheint. Wie viele Weiler in den Vogesen entwickelte es sich rund um die Forstwirtschaft und die Holzverarbeitung, Tätigkeiten, die Wirtschaft und Landschaft der Gegend lange geprägt haben.",
+      "p2": "Im Laufe der Jahrhunderte hat Grandrupt die großen Kapitel der lothringischen Geschichte durchlebt: Kriege, Annexionen, Wiederaufbau. Die aufeinanderfolgenden Generationen haben die Identität und den Zusammenhalt bewahrt, die die Vogesendörfer auszeichnen, und ein gemeinsames Erbe aus Schlichtheit und Widerstandskraft weitergegeben.",
+      "p3": "Heute sichert die Gemeinde ihren Einwohnern weiterhin die wichtigsten Dienstleistungen und bewahrt zugleich ihre außergewöhnliche Natur. Das Rathaus bleibt das Herz des Gemeindelebens, es hält die Einwohner zusammen und sorgt für das Fortbestehen der örtlichen Traditionen."
     }
   },
   "actualites": {
-    "title": "Actualités & Agenda",
-    "description": "Les dernières actualités et événements de Grandrupt.",
+    "title": "Aktuelles & Termine",
+    "description": "Die neuesten Nachrichten und Veranstaltungen aus Grandrupt.",
     "hero": {
-      "subtitle": "Restez informés des dernières nouvelles et décisions du village."
+      "subtitle": "Bleiben Sie über die neuesten Nachrichten und Beschlüsse des Dorfes informiert."
     },
-    "readMore": "Lire la suite",
-    "seeAll": "Toutes les actualités",
-    "backToList": "Retour aux actualités",
+    "readMore": "Weiterlesen",
+    "seeAll": "Alle Neuigkeiten",
+    "backToList": "Zurück zu den Neuigkeiten",
     "downloadDocument": "Dokument herunterladen",
     "downloadPv": "Protokoll herunterladen",
-    "pvBadge": "Sitzungsprotokoll"
+    "pvBadge": "Protokoll",
+    "count": "{count, plural, =0 {Keine Artikel} one {# Artikel} other {# Artikel}}",
+    "typeStandard": "Nachricht",
+    "typePv": "Gemeinderat",
+    "pdfTag": "PDF zum Herunterladen",
+    "published": "Veröffentlicht am",
+    "uploadedOn": "hochgeladen am {date}",
+    "previousPv": "Frühere Protokolle",
+    "otherNews": "Weitere Nachrichten",
+    "paperTitle": "Brauchen Sie eine Papierfassung?",
+    "paperText": "Die Protokolle hängen im Rathaus aus und können auf Anfrage im Sekretariat ausgedruckt werden.",
+    "documentPdf": "PDF-Dokument"
   },
   "entreprises": {
-    "title": "Entreprises du village",
-    "description": "Les entreprises et commerces locaux de Grandrupt."
+    "title": "Betriebe & Geschäfte",
+    "description": "Die Betriebe und Handwerker, die Grandrupt lebendig halten.",
+    "hero": {
+      "subtitle": "Entdecken Sie die Betriebe und Handwerker, die unser Dorf lebendig halten."
+    },
+    "intro": "Trotz seiner geringen Größe zählt Grandrupt einige Betriebe und Handwerker, die zum örtlichen Wirtschaftsleben beitragen und das Können der Vogesen weitertragen.",
+    "cta": {
+      "title": "Sind Sie Handwerker oder Unternehmer?",
+      "subtitle": "Lassen Sie Ihren Betrieb auf der Website der Gemeinde eintragen.",
+      "button": "Gemeinde kontaktieren"
+    }
   },
   "contact": {
-    "title": "Nous contacter",
-    "description": "Contactez la mairie de Grandrupt.",
+    "title": "Kontakt",
+    "description": "Kontaktieren Sie die Gemeinde Grandrupt.",
     "hero": {
-      "subtitle": "La mairie est à votre écoute pour toutes vos démarches administratives."
+      "subtitle": "Die Gemeindeverwaltung steht Ihnen bei allen Verwaltungsangelegenheiten zur Seite."
     },
     "form": {
-      "title": "Envoyez-nous un message",
-      "name": "Votre nom",
-      "namePlaceholder": "Jean Dupont",
-      "email": "Votre adresse e-mail",
-      "emailPlaceholder": "jean.dupont@exemple.fr",
-      "subject": "Sujet",
-      "subjectPlaceholder": "Objet de votre message",
-      "message": "Votre message",
-      "messagePlaceholder": "Écrivez votre message ici...",
-      "submit": "Envoyer le message",
-      "submitting": "Envoi en cours...",
-      "successTitle": "Message envoyé",
-      "successMessage": "Votre message a bien été transmis. Nous vous répondrons dans les meilleurs délais.",
-      "errorTitle": "Erreur",
-      "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
-      "requiredFields": "* Champs obligatoires"
+      "title": "Schreiben Sie uns eine Nachricht",
+      "name": "Ihr Name",
+      "namePlaceholder": "Max Mustermann",
+      "email": "Ihre E-Mail-Adresse",
+      "emailPlaceholder": "max.mustermann@beispiel.de",
+      "subject": "Betreff",
+      "subjectPlaceholder": "Betreff Ihrer Nachricht",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Schreiben Sie hier Ihre Nachricht...",
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet...",
+      "successTitle": "Nachricht gesendet",
+      "successMessage": "Ihre Nachricht wurde übermittelt. Wir antworten Ihnen so schnell wie möglich.",
+      "errorTitle": "Fehler",
+      "errorMessage": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+      "requiredFields": "* Pflichtfelder",
+      "errorPrefix": "Fehler:"
     },
     "address": {
       "title": "Adresse",
       "mairie": "Grandrupt",
       "street": "8 rue de la Mairie",
       "city": "88210 Grandrupt",
-      "phone": "Téléphone",
+      "phone": "Telefon",
       "phoneNumber": "03 29 41 03 74",
-      "email": "E-mail",
+      "email": "E-Mail",
       "emailAddress": "communedegrandrupt@orange.fr",
-      "hours": "Horaires d'ouverture",
-      "hoursDetail": "Mardi : 9h - 12h\nJeudi : 14h - 17h\nVendredi : 13h - 17h"
+      "hours": "Öffnungszeiten",
+      "hoursDetail": "Dienstag: 9 - 12 Uhr\nDonnerstag: 14 - 17 Uhr\nFreitag: 13 - 17 Uhr"
     }
   },
   "mentionsLegales": {
-    "title": "Mentions légales",
-    "description": "Informations légales relatives au site officiel de Grandrupt."
+    "title": "Impressum",
+    "description": "Rechtliche Hinweise zur offiziellen Website von Grandrupt."
   },
   "accessibilite": {
-    "title": "Accessibilité",
-    "description": "Déclaration d'accessibilité du site officiel de Grandrupt."
+    "title": "Barrierefreiheit",
+    "description": "Erklärung zur Barrierefreiheit der offiziellen Website von Grandrupt."
   },
   "notFound": {
-    "title": "Page introuvable",
-    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
-    "backHome": "Retour à l'accueil"
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "backHome": "Zurück zur Startseite"
   },
   "footer": {
-    "copyright": "© {year} Grandrupt. Tous droits réservés.",
-    "legalNotice": "Mentions légales",
-    "accessibility": "Accessibilité"
+    "copyright": "© {year} Grandrupt. Alle Rechte vorbehalten.",
+    "legalNotice": "Impressum",
+    "accessibility": "Barrierefreiheit: teilweise konform",
+    "mairie": "Rathaus Grandrupt",
+    "legalNav": "Rechtliche Hinweise"
   }
 }

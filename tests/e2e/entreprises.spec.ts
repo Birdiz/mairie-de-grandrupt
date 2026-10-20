@@ -14,7 +14,9 @@ test.describe("Entreprises", () => {
 
   test("chaque carte affiche un lien téléphone cliquable", async ({ page }) => {
     await page.goto("/entreprises");
-    const telLinks = page.locator('a[href^="tel:"]');
+    const telLinks = page
+      .getByRole("list", { name: "Liste des entreprises" })
+      .locator('a[href^="tel:"]');
     await expect(telLinks).toHaveCount(3);
   });
 

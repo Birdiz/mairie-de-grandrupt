@@ -59,22 +59,22 @@ export function ContactForm() {
       <div
         role="alert"
         aria-live="polite"
-        className="rounded-lg border border-green-200 bg-green-50 p-6 text-green-800"
+        className="border-primary bg-accent text-accent-foreground border-l-[5px] p-6"
       >
-        <h2 className="text-lg font-semibold">{t("successTitle")}</h2>
-        <p className="mt-1 text-sm">{t("successMessage")}</p>
+        <h2 className="text-h4">{t("successTitle")}</h2>
+        <p className="mt-2">{t("successMessage")}</p>
       </div>
     );
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
         {submitState === "error" && (
           <div
             role="alert"
             aria-live="assertive"
-            className="border-destructive/30 bg-destructive/10 text-destructive rounded-lg border p-4 text-sm"
+            className="border-destructive bg-card text-destructive border-l-[5px] p-4 font-semibold"
           >
             <strong>{t("errorTitle")} : </strong>
             {t("errorMessage")}
@@ -95,7 +95,7 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder={t("namePlaceholder")} autoComplete="name" required {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage prefix={t("errorPrefix")} />
             </FormItem>
           )}
         />
@@ -120,7 +120,7 @@ export function ContactForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage prefix={t("errorPrefix")} />
             </FormItem>
           )}
         />
@@ -139,7 +139,7 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder={t("subjectPlaceholder")} required {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage prefix={t("errorPrefix")} />
             </FormItem>
           )}
         />
@@ -164,7 +164,7 @@ export function ContactForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage prefix={t("errorPrefix")} />
             </FormItem>
           )}
         />
@@ -177,7 +177,7 @@ export function ContactForm() {
           >
             {submitState === "submitting" ? t("submitting") : t("submit")}
           </Button>
-          <p className="text-muted-foreground text-xs" aria-hidden="true">
+          <p className="text-muted-foreground text-small" aria-hidden="true">
             {t("requiredFields")}
           </p>
         </div>

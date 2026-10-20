@@ -12,25 +12,22 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function AccessibilitePage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <div className="mb-8">
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-        >
+    <div className="mx-auto max-w-6xl px-4 pt-5 pb-16 sm:px-6 lg:px-8">
+      <div className="mb-4">
+        <Link href="/" className="text-primary text-small inline-flex min-h-11 items-center">
           ← Accueil
         </Link>
       </div>
 
-      <h1 className="text-foreground mb-2 font-serif text-3xl font-bold">Accessibilité</h1>
+      <h1 className="text-h1 mb-2">Accessibilité</h1>
       <p className="text-muted-foreground mb-8">Déclaration d&apos;accessibilité — RGAA 4.1</p>
 
-      <div className="prose-content text-foreground space-y-8">
+      <div className="flex flex-col gap-10">
         <section aria-labelledby="etat">
-          <h2 id="etat" className="mb-3 text-xl font-semibold">
+          <h2 id="etat" className="text-h3 mb-3">
             État de conformité
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Le site <strong>grandrupt.fr</strong> est <strong>partiellement conforme</strong> avec
             le référentiel général d&apos;amélioration de l&apos;accessibilité (RGAA), version 4.1.
             Des efforts ont été mis en œuvre (navigation au clavier, contrastes, balises ARIA, lien
@@ -40,10 +37,10 @@ export default function AccessibilitePage() {
         </section>
 
         <section aria-labelledby="technologies">
-          <h2 id="technologies" className="mb-3 text-xl font-semibold">
+          <h2 id="technologies" className="text-h3 mb-3">
             Technologies utilisées
           </h2>
-          <ul className="text-muted-foreground list-inside list-disc space-y-1">
+          <ul className="list-disc space-y-1.5 pl-6">
             <li>HTML5</li>
             <li>CSS3</li>
             <li>JavaScript</li>
@@ -52,10 +49,10 @@ export default function AccessibilitePage() {
         </section>
 
         <section aria-labelledby="mesures">
-          <h2 id="mesures" className="mb-3 text-xl font-semibold">
+          <h2 id="mesures" className="text-h3 mb-3">
             Mesures prises en faveur de l&apos;accessibilité
           </h2>
-          <ul className="text-muted-foreground list-inside list-disc space-y-1">
+          <ul className="list-disc space-y-1.5 pl-6">
             <li>Lien d&apos;évitement vers le contenu principal</li>
             <li>Navigation entièrement accessible au clavier</li>
             <li>Indicateurs de focus visibles</li>
@@ -72,35 +69,32 @@ export default function AccessibilitePage() {
         </section>
 
         <section aria-labelledby="retour">
-          <h2 id="retour" className="mb-3 text-xl font-semibold">
+          <h2 id="retour" className="text-h3 mb-3">
             Retour d&apos;information et contact
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Si vous rencontrez un obstacle à l&apos;accessibilité qui vous empêche d&apos;accéder à
             un contenu ou à une fonctionnalité, vous pouvez nous le signaler par e-mail à{" "}
-            <a
-              href="mailto:communedegrandrupt@orange.fr"
-              className="hover:text-foreground underline transition-colors"
-            >
+            <a href="mailto:communedegrandrupt@orange.fr" className="text-primary">
               communedegrandrupt@orange.fr
             </a>{" "}
             ou via le{" "}
-            <Link href="/contact" className="hover:text-foreground underline transition-colors">
+            <Link href="/contact" className="text-primary">
               formulaire de contact
             </Link>
             .
           </p>
-          <p className="text-muted-foreground mt-3 leading-relaxed">
+          <p className="mt-3 max-w-[66ch] text-pretty">
             Nous nous engageons à vous répondre dans un délai raisonnable et à trouver une
             alternative accessible si nécessaire.
           </p>
         </section>
 
         <section aria-labelledby="recours">
-          <h2 id="recours" className="mb-3 text-xl font-semibold">
+          <h2 id="recours" className="text-h3 mb-3">
             Voie de recours
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="max-w-[66ch] text-pretty">
             Si vous constatez un défaut d&apos;accessibilité qui vous empêche d&apos;accéder à un
             contenu ou à une fonctionnalité du site, et que notre réponse ne vous satisfait pas,
             vous pouvez contacter le Défenseur des droits via{" "}
@@ -108,7 +102,7 @@ export default function AccessibilitePage() {
               href="https://www.defenseurdesdroits.fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground underline transition-colors"
+              className="text-primary"
             >
               defenseurdesdroits.fr
             </a>
@@ -117,7 +111,7 @@ export default function AccessibilitePage() {
         </section>
 
         <section aria-labelledby="date">
-          <h2 id="date" className="mb-3 text-xl font-semibold">
+          <h2 id="date" className="text-h3 mb-3">
             Date de la déclaration
           </h2>
           <p className="text-muted-foreground">
