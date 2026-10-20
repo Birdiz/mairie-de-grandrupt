@@ -22,6 +22,8 @@ export function ArticleCard({ article, headingLevel = "h3", variant = "default" 
   const locale = useLocale();
   const Heading = headingLevel;
   const type = article.type === "proces-verbal" ? t("typePv") : t("typeStandard");
+  // Not translated into this language: say so, and mark the French text (WCAG 3.1.2).
+  const textLang = article.contentLocale !== locale ? article.contentLocale : undefined;
 
   return (
     <article
@@ -32,6 +34,7 @@ export function ArticleCard({ article, headingLevel = "h3", variant = "default" 
     >
       <p className="text-muted-foreground group-hover:text-accent-foreground text-small order-first">
         <time dateTime={article.date}>{formatDate(article.date, locale)}</time> · {type}
+        {textLang && <> · {t("inFrench")}</>}
       </p>
       <Heading
         className={cn(
@@ -41,13 +44,17 @@ export function ArticleCard({ article, headingLevel = "h3", variant = "default" 
       >
         <Link
           href={`/actualites/${article.slug}`}
+          lang={textLang}
           className="after:absolute after:inset-0 focus-visible:outline-none"
         >
           {article.title}
         </Link>
       </Heading>
       {variant !== "compact" && article.excerpt && (
-        <p className={variant === "featured" ? "text-body" : "text-lg leading-[1.55]"}>
+        <p
+          lang={textLang}
+          className={variant === "featured" ? "text-body" : "text-lg leading-[1.55]"}
+        >
           {article.excerpt}
         </p>
       )}

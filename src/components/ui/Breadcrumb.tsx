@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
-type Crumb = { label: string; href?: string };
+type Crumb = { label: string; href?: string; lang?: string };
 
 /** Fil d'Ariane : commence toujours par l'accueil, la page courante n'est pas un lien. */
 export function Breadcrumb({ items }: { items: Crumb[] }) {
@@ -19,7 +19,9 @@ export function Breadcrumb({ items }: { items: Crumb[] }) {
                 {crumb.label}
               </Link>
             ) : (
-              <span aria-current="page">{crumb.label}</span>
+              <span aria-current="page" lang={crumb.lang}>
+                {crumb.label}
+              </span>
             )}
           </li>
         ))}

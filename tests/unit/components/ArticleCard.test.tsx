@@ -18,6 +18,7 @@ vi.mock("@/i18n/navigation", () => ({
 
 const article: Article = {
   slug: "pv-mars",
+  contentLocale: "fr",
   title: "Procès-verbal du conseil du 12 mars",
   date: "2026-03-15T00:00:00.000Z",
   type: "proces-verbal",

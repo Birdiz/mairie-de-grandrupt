@@ -126,6 +126,15 @@ describe("fillFromProcesVerbal", () => {
     expect(data.excerpt).toBeDefined();
   });
 
+  it("never fills a German or English version with the French PDF text", async () => {
+    const req = { ...makeReq(), locale: "de" };
+    const data = await run({ type: "proces-verbal", document: 1, date: "2026-03-12" }, req);
+
+    expect(data.title).toBeUndefined();
+    expect(data.content).toBeUndefined();
+    expect(req.payload.findByID).not.toHaveBeenCalled();
+  });
+
   it("leaves ordinary actualités untouched", async () => {
     const req = makeReq();
     const data = await run({ type: "standard", document: 1, date: "2026-03-12" }, req);

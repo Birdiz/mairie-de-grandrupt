@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { getAllArticles, getArticleBySlug } from "@/lib/actualites";
+import { getAllArticles, getArticleBySlug, type Locale } from "@/lib/actualites";
 import { formatDate } from "@/lib/dates";
 import { RichTextContent } from "@/components/ui/RichTextContent";
 import { DocumentDownload } from "@/components/ui/DocumentDownload";
@@ -14,8 +14,8 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const { locale, slug } = await params;
+  const article = await getArticleBySlug(slug, locale as Locale);
   if (!article) return {};
   return { title: article.title };
 }
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const article = await getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug, locale as Locale);
 
   if (!article) notFound();
 
@@ -31,17 +31,24 @@ export default async function ArticlePage({ params }: Props) {
   const tAddress = await getTranslations("contact.address");
   const isPv = article.type === "proces-verbal";
   // Les 3 articles du même type publiés avant celui-ci (liste déjà triée du plus récent au plus ancien)
-  const all = await getAllArticles();
+  const all = await getAllArticles(locale as Locale);
   const index = all.findIndex((a) => a.slug === article.slug);
   const related = all
     .slice(index + 1)
     .filter((a) => a.type === article.type)
     .slice(0, 3);
   const phone = tAddress("phoneNumber");
+  // Not translated into this language: the French text is marked as such (WCAG 3.1.2).
+  const textLang = article.contentLocale !== locale ? article.contentLocale : undefined;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-5 pb-16 sm:px-6 md:pt-7 md:pb-20 lg:px-8">
-      <Breadcrumb items={[{ label: t("title"), href: "/actualites" }, { label: article.title }]} />
+      <Breadcrumb
+        items={[
+          { label: t("title"), href: "/actualites" },
+          { label: article.title, lang: textLang },
+        ]}
+      />
 
       <div className="mt-6 grid gap-14 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-[72px]">
         <article className="flex max-w-[720px] flex-col gap-6">
@@ -54,8 +61,19 @@ export default async function ArticlePage({ params }: Props) {
               <time dateTime={article.date}>{formatDate(article.date, locale)}</time>
             </span>
           </div>
-          <h1 className="text-h1 text-pretty">{article.title}</h1>
-          {article.excerpt && <p className="text-chapo text-pretty">{article.excerpt}</p>}
+          <h1 lang={textLang} className="text-h1 text-pretty">
+            {article.title}
+          </h1>
+          {textLang && (
+            <p className="border-secondary-foreground bg-secondary border-l-[5px] px-4 py-3 font-semibold">
+              {isPv ? t("onlyFrenchPv") : t("onlyFrench")}
+            </p>
+          )}
+          {article.excerpt && (
+            <p lang={textLang} className="text-chapo text-pretty">
+              {article.excerpt}
+            </p>
+          )}
 
           {article.document && (
             <DocumentDownload
@@ -66,7 +84,9 @@ export default async function ArticlePage({ params }: Props) {
             />
           )}
 
-          <RichTextContent content={article.content} className="mt-4" />
+          <div lang={textLang} className="mt-4">
+            <RichTextContent content={article.content} />
+          </div>
 
           <div className="border-border mt-4 border-t pt-6">
             <Link
@@ -93,6 +113,7 @@ export default async function ArticlePage({ params }: Props) {
                   <li key={a.slug} className="border-border border-b py-3">
                     <Link
                       href={`/actualites/${a.slug}`}
+                      lang={a.contentLocale !== locale ? a.contentLocale : undefined}
                       className="text-primary text-[1.1875rem] font-semibold"
                     >
                       {a.title}

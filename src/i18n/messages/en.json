@@ -115,7 +115,10 @@
     "otherNews": "Other news",
     "paperTitle": "Need a paper copy?",
     "paperText": "The minutes are posted at the town hall and can be printed on request at the secretariat.",
-    "documentPdf": "PDF document"
+    "documentPdf": "PDF document",
+    "onlyFrench": "This article is only available in French.",
+    "onlyFrenchPv": "Official document available in French only.",
+    "inFrench": "in French"
   },
   "entreprises": {
     "title": "Businesses & Shops",

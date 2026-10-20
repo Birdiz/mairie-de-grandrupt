@@ -65,9 +65,12 @@ export const slugifyFromTitle: FieldHook = ({ value, data }) => {
 async function revalidateArticlePaths(slug?: string): Promise<void> {
   try {
     const { revalidatePath } = await import("next/cache");
-    revalidatePath("/actualites");
-    revalidatePath("/"); // homepage preview
-    if (slug) revalidatePath(`/actualites/${slug}`);
+    // Every language version of the pages ("" = French without prefix, as served).
+    for (const prefix of ["", "/fr", "/de", "/en"]) {
+      revalidatePath(`${prefix}/actualites`);
+      revalidatePath(prefix || "/"); // homepage preview
+      if (slug) revalidatePath(`${prefix}/actualites/${slug}`);
+    }
   } catch {
     // No-op outside a Next request context (e.g. seed/migration scripts).
   }
@@ -113,6 +116,9 @@ export const fillFromProcesVerbal: CollectionBeforeValidateHook = async ({
   req,
 }) => {
   if (!data || data.type !== "proces-verbal" || !data.document) return data;
+  // Procès-verbaux are French only: never fill a German or English version
+  // with the French title and text extracted from the PDF.
+  if (req.locale && req.locale !== "fr") return data;
 
   const isBlank = (value: unknown) => typeof value !== "string" || value.trim().length === 0;
   const seanceDate = data.date ?? originalDoc?.date;

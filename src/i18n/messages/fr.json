@@ -115,7 +115,10 @@
     "otherNews": "Autres actualités",
     "paperTitle": "Besoin d'une version papier ?",
     "paperText": "Les procès-verbaux sont affichés en mairie et peuvent être imprimés sur demande au secrétariat.",
-    "documentPdf": "Document PDF"
+    "documentPdf": "Document PDF",
+    "onlyFrench": "Cet article n'est disponible qu'en français.",
+    "onlyFrenchPv": "Document officiel disponible en français uniquement.",
+    "inFrench": "en français"
   },
   "entreprises": {
     "title": "Entreprises & Commerces",

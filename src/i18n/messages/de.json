@@ -115,7 +115,10 @@
     "otherNews": "Weitere Nachrichten",
     "paperTitle": "Brauchen Sie eine Papierfassung?",
     "paperText": "Die Protokolle hängen im Rathaus aus und können auf Anfrage im Sekretariat ausgedruckt werden.",
-    "documentPdf": "PDF-Dokument"
+    "documentPdf": "PDF-Dokument",
+    "onlyFrench": "Dieser Artikel ist nur auf Französisch verfügbar.",
+    "onlyFrenchPv": "Amtliches Dokument, nur auf Französisch verfügbar.",
+    "inFrench": "auf Französisch"
   },
   "entreprises": {
     "title": "Betriebe & Geschäfte",
