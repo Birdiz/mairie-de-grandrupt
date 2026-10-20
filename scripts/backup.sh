@@ -26,10 +26,14 @@ fi
 
 archive="grandrupt-backup-$STAMP.tar.gz"
 # Conteneur jetable qui monte les volumes en lecture seule et archive leur contenu.
+# Les volumes sont montés sous /src, absent de l'image alpine : monté sur un
+# chemin existant (ex. /media), un volume vide serait rempli par Docker avec le
+# contenu de l'image et sa racine passerait en root, ce qui empêcherait l'app
+# (uid 1001) d'y écrire.
 docker run --rm \
-  -v "$data_vol":/data:ro \
-  ${media_vol:+-v "$media_vol":/media:ro} \
+  -v "$data_vol":/src/data:ro \
+  ${media_vol:+-v "$media_vol":/src/media:ro} \
   -v "$OUT_ABS":/backup \
-  alpine sh -c "tar czf /backup/$archive -C / data $([ -n '$media_vol' ] && echo media)"
+  alpine tar czf "/backup/$archive" -C /src data ${media_vol:+media}
 
 echo "✓ Sauvegarde créée : $OUT_ABS/$archive"
