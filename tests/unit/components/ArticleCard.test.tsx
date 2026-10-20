@@ -5,6 +5,7 @@ import type { Article } from "@/lib/actualites";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
+  useLocale: () => "fr",
 }));
 
 vi.mock("@/i18n/navigation", () => ({

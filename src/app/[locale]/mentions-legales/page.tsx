@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { LegalSection } from "@/components/ui/LegalSection";
+import { telHref } from "@/lib/phone";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("mentionsLegales");
@@ -10,111 +12,75 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function MentionsLegalesPage() {
+export default async function MentionsLegalesPage() {
+  const t = await getTranslations("mentionsLegales");
+  const tAddress = await getTranslations("contact.address");
+  const locale = await getLocale();
+  const email = tAddress("emailAddress");
+  const phone = tAddress("phoneNumber");
+  const rich = {
+    strong: (chunks: React.ReactNode) => <strong>{chunks}</strong>,
+    mail: (chunks: React.ReactNode) => (
+      <a href={`mailto:${email}`} className="text-primary">
+        {chunks}
+      </a>
+    ),
+  };
+
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-5 pb-16 sm:px-6 lg:px-8">
-      <div className="mb-4">
-        <Link href="/" className="text-primary text-small inline-flex min-h-11 items-center">
-          ← Accueil
-        </Link>
-      </div>
+    <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 pt-5 pb-16 sm:px-6 lg:px-8">
+      <Breadcrumb items={[{ label: t("title") }]} />
+      <h1 className="text-h1">{t("title")}</h1>
+      {locale !== "fr" && (
+        <p className="text-muted-foreground max-w-[66ch]">{t("translationNotice")}</p>
+      )}
 
-      <h1 className="text-h1 mb-8">Mentions légales</h1>
-
-      <div className="flex flex-col gap-10">
-        <section aria-labelledby="editeur">
-          <h2 id="editeur" className="text-h3 mb-3">
-            Éditeur du site
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            Le présent site est édité par la <strong>commune de Grandrupt</strong> (88210), Vosges,
-            France.
-          </p>
-          <ul className="mt-3 list-disc space-y-1.5 pl-6">
+      <div className="mt-4 flex flex-col gap-10">
+        <LegalSection id="editeur" title={t("editeur.title")}>
+          <p className="text-pretty">{t.rich("editeur.intro", rich)}</p>
+          <ul className="list-disc space-y-1.5 pl-6">
             <li>
-              <strong>Adresse :</strong> 8 rue de la Mairie, 88210 Grandrupt
+              <strong>{t("editeur.address")}</strong> {tAddress("street")}, {tAddress("city")}
             </li>
             <li>
-              <strong>Téléphone :</strong> 03 29 41 03 74
-            </li>
-            <li>
-              <strong>E-mail :</strong>{" "}
-              <a href="mailto:communedegrandrupt@orange.fr" className="text-primary">
-                communedegrandrupt@orange.fr
+              <strong>{t("editeur.phone")}</strong>{" "}
+              <a href={telHref(phone)} className="text-primary">
+                {phone}
               </a>
             </li>
             <li>
-              <strong>Responsable de la publication :</strong> Le Maire de Grandrupt
+              <strong>{t("editeur.email")}</strong>{" "}
+              <a href={`mailto:${email}`} className="text-primary">
+                {email}
+              </a>
+            </li>
+            <li>
+              <strong>{t("editeur.publisher")}</strong> {t("editeur.publisherName")}
             </li>
           </ul>
-        </section>
+        </LegalSection>
 
-        <section aria-labelledby="hebergeur">
-          <h2 id="hebergeur" className="text-h3 mb-3">
-            Hébergeur
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            Ce site est hébergé par un prestataire tiers. Pour toute question relative à
-            l&apos;hébergement, veuillez contacter la mairie.
-          </p>
-        </section>
+        <LegalSection id="hebergeur" title={t("hebergeur.title")}>
+          <p className="text-pretty">{t("hebergeur.text")}</p>
+        </LegalSection>
 
-        <section aria-labelledby="propriete">
-          <h2 id="propriete" className="text-h3 mb-3">
-            Propriété intellectuelle
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            L&apos;ensemble du contenu de ce site (textes, images, graphismes) est la propriété de
-            Grandrupt ou de ses partenaires. Toute reproduction, représentation ou diffusion,
-            intégrale ou partielle, est interdite sans l&apos;autorisation écrite préalable de la
-            commune.
-          </p>
-        </section>
+        <LegalSection id="propriete" title={t("propriete.title")}>
+          <p className="text-pretty">{t("propriete.text")}</p>
+        </LegalSection>
 
-        <section aria-labelledby="donnees">
-          <h2 id="donnees" className="text-h3 mb-3">
-            Données personnelles
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE
-            2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez
-            d&apos;un droit d&apos;accès, de rectification et de suppression des données vous
-            concernant.
-          </p>
-          <p className="mt-3 max-w-[66ch] text-pretty">
-            Les données collectées via le formulaire de contact (nom, adresse e-mail, sujet et
-            message) sont utilisées uniquement pour répondre à votre demande et ne sont pas
-            conservées au-delà de ce traitement.
-          </p>
-          <p className="mt-3 max-w-[66ch] text-pretty">
-            Pour exercer vos droits ou pour toute question relative à vos données personnelles,
-            contactez la mairie à{" "}
-            <a href="mailto:communedegrandrupt@orange.fr" className="text-primary">
-              communedegrandrupt@orange.fr
-            </a>
-            .
-          </p>
-        </section>
+        <LegalSection id="donnees" title={t("donnees.title")}>
+          <p className="text-pretty">{t("donnees.p1")}</p>
+          <p className="text-pretty">{t("donnees.p2")}</p>
+          <p className="text-pretty">{t.rich("donnees.p3", { ...rich, email })}</p>
+        </LegalSection>
 
-        <section aria-labelledby="cookies">
-          <h2 id="cookies" className="text-h3 mb-3">
-            Cookies
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            Ce site n&apos;utilise pas de cookies de traçage ou de profilage. Aucun cookie tiers à
-            des fins publicitaires n&apos;est déposé sur votre terminal.
-          </p>
-        </section>
+        <LegalSection id="cookies" title={t("cookies.title")}>
+          <p className="text-pretty">{t("cookies.text")}</p>
+        </LegalSection>
 
-        <section aria-labelledby="liens">
-          <h2 id="liens" className="text-h3 mb-3">
-            Liens hypertextes
-          </h2>
-          <p className="max-w-[66ch] text-pretty">
-            La commune de Grandrupt décline toute responsabilité quant au contenu des sites externes
-            vers lesquels des liens pourraient être établis depuis ce site.
-          </p>
-        </section>
+        <LegalSection id="liens" title={t("liens.title")}>
+          <p className="text-pretty">{t("liens.text")}</p>
+        </LegalSection>
       </div>
     </div>
   );

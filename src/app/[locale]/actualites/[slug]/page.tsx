@@ -50,7 +50,8 @@ export default async function ArticlePage({ params }: Props) {
               {isPv ? t("typePv") : t("typeStandard")}
             </span>
             <span>
-              {t("published")} <time dateTime={article.date}>{formatDate(article.date)}</time>
+              {t("published")}{" "}
+              <time dateTime={article.date}>{formatDate(article.date, locale)}</time>
             </span>
           </div>
           <h1 className="text-h1 text-pretty">{article.title}</h1>
@@ -60,7 +61,7 @@ export default async function ArticlePage({ params }: Props) {
             <DocumentDownload
               document={article.document}
               label={t(isPv ? "downloadPv" : "downloadDocument")}
-              meta={t("uploadedOn", { date: formatDate(article.date) })}
+              meta={t("uploadedOn", { date: formatDate(article.date, locale) })}
               typeLabel={t("documentPdf")}
             />
           )}
@@ -96,7 +97,7 @@ export default async function ArticlePage({ params }: Props) {
                     >
                       {a.title}
                     </Link>
-                    <p className="text-muted-foreground text-base">{formatDate(a.date)}</p>
+                    <p className="text-muted-foreground text-base">{formatDate(a.date, locale)}</p>
                   </li>
                 ))}
               </ul>

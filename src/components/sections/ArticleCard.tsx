@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Article } from "@/lib/actualites";
 import { formatDate } from "@/lib/dates";
@@ -19,6 +19,7 @@ type Props = {
  */
 export function ArticleCard({ article, headingLevel = "h3", variant = "default" }: Props) {
   const t = useTranslations("actualites");
+  const locale = useLocale();
   const Heading = headingLevel;
   const type = article.type === "proces-verbal" ? t("typePv") : t("typeStandard");
 
@@ -30,7 +31,7 @@ export function ArticleCard({ article, headingLevel = "h3", variant = "default" 
       )}
     >
       <p className="text-muted-foreground group-hover:text-accent-foreground text-small order-first">
-        <time dateTime={article.date}>{formatDate(article.date)}</time> · {type}
+        <time dateTime={article.date}>{formatDate(article.date, locale)}</time> · {type}
       </p>
       <Heading
         className={cn(

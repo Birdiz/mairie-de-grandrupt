@@ -170,11 +170,76 @@
   },
   "mentionsLegales": {
     "title": "Mentions légales",
-    "description": "Informations légales relatives au site officiel de Grandrupt."
+    "description": "Informations légales relatives au site officiel de Grandrupt.",
+    "translationNotice": "La version française fait foi.",
+    "editeur": {
+      "title": "Éditeur du site",
+      "intro": "Le présent site est édité par la <strong>commune de Grandrupt</strong> (88210), Vosges, France.",
+      "address": "Adresse :",
+      "phone": "Téléphone :",
+      "email": "E-mail :",
+      "publisher": "Responsable de la publication :",
+      "publisherName": "Le Maire de Grandrupt"
+    },
+    "hebergeur": {
+      "title": "Hébergeur",
+      "text": "Ce site est hébergé par un prestataire tiers. Pour toute question relative à l'hébergement, veuillez contacter la mairie."
+    },
+    "propriete": {
+      "title": "Propriété intellectuelle",
+      "text": "L'ensemble du contenu de ce site (textes, images, graphismes) est la propriété de Grandrupt ou de ses partenaires. Toute reproduction, représentation ou diffusion, intégrale ou partielle, est interdite sans l'autorisation écrite préalable de la commune."
+    },
+    "donnees": {
+      "title": "Données personnelles",
+      "p1": "Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant.",
+      "p2": "Les données collectées via le formulaire de contact (nom, adresse e-mail, sujet et message) sont utilisées uniquement pour répondre à votre demande et ne sont pas conservées au-delà de ce traitement.",
+      "p3": "Pour exercer vos droits ou pour toute question relative à vos données personnelles, contactez la mairie à <mail>{email}</mail>."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "Ce site n'utilise pas de cookies de traçage ou de profilage. Aucun cookie tiers à des fins publicitaires n'est déposé sur votre terminal."
+    },
+    "liens": {
+      "title": "Liens hypertextes",
+      "text": "La commune de Grandrupt décline toute responsabilité quant au contenu des sites externes vers lesquels des liens pourraient être établis depuis ce site."
+    }
   },
   "accessibilite": {
     "title": "Accessibilité",
-    "description": "Déclaration d'accessibilité du site officiel de Grandrupt."
+    "description": "Déclaration d'accessibilité du site officiel de Grandrupt.",
+    "translationNotice": "La version française fait foi.",
+    "subtitle": "Déclaration d'accessibilité — RGAA 4.1",
+    "etat": {
+      "title": "État de conformité",
+      "text": "Le site <strong>grandrupt.fr</strong> est <strong>partiellement conforme</strong> avec le référentiel général d'amélioration de l'accessibilité (RGAA), version 4.1. Des efforts ont été mis en œuvre (navigation au clavier, contrastes, balises ARIA, lien d'évitement) mais une conformité totale n'a pas encore été auditée formellement."
+    },
+    "technologies": {
+      "title": "Technologies utilisées"
+    },
+    "mesures": {
+      "title": "Mesures prises en faveur de l'accessibilité",
+      "skipLink": "Lien d'évitement vers le contenu principal",
+      "keyboard": "Navigation entièrement accessible au clavier",
+      "focus": "Indicateurs de focus visibles",
+      "aria": "Attributs <code>aria-label</code> et <code>aria-current</code> sur la navigation",
+      "contrast": "Contrastes de couleurs conformes aux critères WCAG AA",
+      "alt": "Textes alternatifs sur les éléments non textuels",
+      "headings": "Structure de titres hiérarchisée (h1 → h2 → h3)",
+      "lang": "Langue de la page déclarée (attribut <code>lang</code>)"
+    },
+    "retour": {
+      "title": "Retour d'information et contact",
+      "p1": "Si vous rencontrez un obstacle à l'accessibilité qui vous empêche d'accéder à un contenu ou à une fonctionnalité, vous pouvez nous le signaler par e-mail à <mail>{email}</mail> ou via le <contact>formulaire de contact</contact>.",
+      "p2": "Nous nous engageons à vous répondre dans un délai raisonnable et à trouver une alternative accessible si nécessaire."
+    },
+    "recours": {
+      "title": "Voie de recours",
+      "text": "Si vous constatez un défaut d'accessibilité qui vous empêche d'accéder à un contenu ou à une fonctionnalité du site, et que notre réponse ne vous satisfait pas, vous pouvez contacter le Défenseur des droits via <link>defenseurdesdroits.fr</link>."
+    },
+    "date": {
+      "title": "Date de la déclaration",
+      "text": "Cette déclaration a été établie le <strong>{date}</strong>."
+    }
   },
   "notFound": {
     "title": "Page introuvable",
