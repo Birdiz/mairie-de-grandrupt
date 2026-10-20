@@ -9,7 +9,7 @@ test.describe("Navigation", () => {
 
   test("navigation links are accessible", async ({ page }) => {
     await page.goto("/");
-    const nav = page.getByRole("navigation");
+    const nav = page.getByRole("navigation", { name: "Navigation principale" });
     await expect(nav).toBeVisible();
   });
 

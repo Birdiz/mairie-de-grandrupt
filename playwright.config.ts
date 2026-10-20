@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  globalSetup: "./tests/e2e/global-setup.ts",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -9,6 +10,9 @@ export default defineConfig({
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "html",
   use: {
     baseURL: "http://localhost:3000",
+    // Public et tests en français : sans ça, next-intl suit l'Accept-Language
+    // du navigateur (en-US par défaut) et redirige vers /en.
+    locale: "fr-FR",
     trace: "on-first-retry",
   },
   projects: [
