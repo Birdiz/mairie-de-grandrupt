@@ -52,3 +52,8 @@ next-env.d.ts
 
 # payload (generated — rebuild with `npm run generate:types`)
 src/payload-types.ts
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report
