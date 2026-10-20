@@ -38,11 +38,17 @@ test.describe("Actualités", () => {
     await expect(page.getByRole("link", { name: /retour aux actualités/i }).first()).toBeVisible();
   });
 
-  // Bug connu : la page 404 s'affiche mais avec un statut HTTP 200 (soft 404),
-  // probablement parce que [locale]/loading.tsx lance le streaming avant notFound().
-  test.fixme("une URL d'article inconnue renvoie une 404", async ({ page }) => {
+  // Une frontière loading.tsx au-dessus du notFound() de l'article ferait
+  // partir la réponse en streaming avec un 200 (soft 404).
+  test("une URL d'article inconnue renvoie une 404", async ({ page }) => {
     const response = await page.goto("/actualites/article-inexistant");
     expect(response?.status()).toBe(404);
+    await expect(page.getByRole("heading", { name: /page introuvable/i })).toBeVisible();
+  });
+
+  test("la page d'un article connu renvoie un 200", async ({ page }) => {
+    const response = await page.goto("/actualites/conseil-municipal-mars-2026");
+    expect(response?.status()).toBe(200);
   });
 
   test("la page d'accueil affiche les 3 dernières actualités", async ({ page }) => {

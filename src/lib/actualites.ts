@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
@@ -77,8 +78,11 @@ export async function getAllArticles(): Promise<Article[]> {
   return docs.map(toArticle);
 }
 
-/** A single published article by slug, or null. */
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+/**
+ * A single published article by slug, or null. Cached per request: the article
+ * route's layout, metadata and page all ask for it.
+ */
+export const getArticleBySlug = cache(async (slug: string): Promise<Article | null> => {
   const payload = await getClient();
   const { docs } = await payload.find({
     collection: "actualites",
@@ -90,4 +94,4 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     overrideAccess: true,
   });
   return docs[0] ? toArticle(docs[0]) : null;
-}
+});

@@ -161,6 +161,8 @@ Après toute modification d'une collection (champ ajouté, etc.), générer une 
 src/
 ├── app/
 │   ├── [locale]/        # Pages i18n (layout, pages)
+│   │   ├── (chargement)/        # Pages avec écran de chargement (loading.tsx)
+│   │   └── actualites/[slug]/   # Article : 404 vérifiée avant le chargement
 │   ├── (payload)/       # Back-office Payload (/admin) + API REST/GraphQL
 │   ├── api/             # API routes maison (contact, etc.)
 │   └── layout.tsx       # Root layout (passthrough)
