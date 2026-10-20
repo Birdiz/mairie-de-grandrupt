@@ -89,7 +89,16 @@
   },
   "entreprises": {
     "title": "Entreprises du village",
-    "description": "Les entreprises et commerces locaux de Grandrupt."
+    "description": "Les entreprises et commerces locaux de Grandrupt.",
+    "hero": {
+      "subtitle": "Entdecken Sie die Betriebe und Handwerker, die unser Dorf lebendig halten."
+    },
+    "intro": "Trotz seiner geringen Größe zählt Grandrupt einige Betriebe und Handwerker, die zum örtlichen Wirtschaftsleben beitragen und das Können der Vogesen weitertragen.",
+    "cta": {
+      "title": "Sind Sie Handwerker oder Unternehmer?",
+      "subtitle": "Lassen Sie Ihren Betrieb auf der Website der Gemeinde eintragen.",
+      "button": "Gemeinde kontaktieren"
+    }
   },
   "contact": {
     "title": "Nous contacter",
