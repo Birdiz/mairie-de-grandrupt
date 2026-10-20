@@ -7,8 +7,11 @@
     "contact": "Contact",
     "skipToContent": "Skip to main content",
     "mainNav": "Main navigation",
-    "openMenu": "Open the navigation menu",
-    "closeMenu": "Close the navigation menu"
+    "openMenu": "Menu",
+    "closeMenu": "Close",
+    "currentPage": "(current page)",
+    "callMairie": "Call the town hall",
+    "breadcrumb": "Breadcrumb"
   },
   "home": {
     "meta": {
@@ -16,33 +19,48 @@
     },
     "title": "Welcome to Grandrupt",
     "subtitle": "A village in the Vosges",
-    "description": "Discover our village, its history, its news and its local businesses.",
+    "description": "The village of the great stream, in the heart of the Vosges mountains. Find the latest news from the commune and your town hall procedures here.",
     "hero": {
-      "cta": "Discover the village"
+      "cta": "Discover the village",
+      "primaryCta": "Contact the town hall",
+      "secondaryCta": "Opening hours and procedures"
     },
     "actualites": {
-      "title": "News",
+      "title": "Latest news",
       "seeAll": "All news",
-      "readMore": "Read more"
+      "readMore": "Read more",
+      "empty": "No news at the moment."
     },
     "services": {
-      "title": "Your procedures",
+      "title": "Town hall services",
       "etatCivil": "Civil registry",
       "urbanisme": "Planning and building",
       "elections": "Elections",
       "aideSociale": "Social assistance",
       "cimetiere": "Cemetery",
-      "contact": "Contact"
+      "contact": "Contact",
+      "intro": "The secretariat helps you with all your procedures, in person or by phone.",
+      "etatCivilText": "Birth, marriage, death, family record book.",
+      "urbanismeText": "Building permits, declarations of works.",
+      "electionsText": "Registering on the electoral roll, proxy voting.",
+      "aideSocialeText": "Support for residents who need it.",
+      "cimetiereText": "Plots and upkeep of the municipal cemetery.",
+      "contactText": "Another question? The secretariat will answer."
     },
     "village": {
       "title": "Grandrupt, in the heart of the Vosges",
       "text": "Nestled in the Rabodeau valley, Grandrupt is a Vosges village full of character, where fir forests meet green meadows. With fewer than a hundred inhabitants, it offers an authentic way of life, far from the bustle of the city, while providing its residents with essential services.",
-      "cta": "Learn more"
+      "cta": "Discover the village's history",
+      "rupt": "In the Vosges dialect, a “rupt” is a stream: Grandrupt means the great stream."
     },
     "contactBandeau": {
-      "title": "Any questions?",
-      "subtitle": "The town hall is here to help you with your procedures.",
-      "cta": "Contact the town hall"
+      "title": "A question? The town hall will answer.",
+      "subtitle": "By phone, by post or by dropping in at the secretariat.",
+      "cta": "Write to the town hall"
+    },
+    "horaires": {
+      "title": "The town hall is open",
+      "phone": "Tel."
     }
   },
   "histoire": {
@@ -85,7 +103,18 @@
     "backToList": "Back to news",
     "downloadDocument": "Download the document",
     "downloadPv": "Download the minutes",
-    "pvBadge": "Minutes"
+    "pvBadge": "Minutes",
+    "count": "{count, plural, =0 {No articles} one {# article} other {# articles}}",
+    "typeStandard": "News",
+    "typePv": "Municipal council",
+    "pdfTag": "PDF to download",
+    "published": "Published on",
+    "uploadedOn": "uploaded on {date}",
+    "previousPv": "Previous minutes",
+    "otherNews": "Other news",
+    "paperTitle": "Need a paper copy?",
+    "paperText": "The minutes are posted at the town hall and can be printed on request at the secretariat.",
+    "documentPdf": "PDF document"
   },
   "entreprises": {
     "title": "Businesses & Shops",
@@ -122,7 +151,8 @@
       "successMessage": "Your message has been sent. We will reply as soon as possible.",
       "errorTitle": "Error",
       "errorMessage": "Something went wrong. Please try again or contact us directly.",
-      "requiredFields": "* Required fields"
+      "requiredFields": "* Required fields",
+      "errorPrefix": "Error:"
     },
     "address": {
       "title": "Address",
@@ -153,6 +183,8 @@
   "footer": {
     "copyright": "© {year} Grandrupt. All rights reserved.",
     "legalNotice": "Legal notice",
-    "accessibility": "Accessibility"
+    "accessibility": "Accessibility: partially compliant",
+    "mairie": "Grandrupt Town Hall",
+    "legalNav": "Legal links"
   }
 }

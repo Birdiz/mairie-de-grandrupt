@@ -7,8 +7,11 @@
     "contact": "Kontakt",
     "skipToContent": "Zum Hauptinhalt springen",
     "mainNav": "Hauptnavigation",
-    "openMenu": "Navigationsmenü öffnen",
-    "closeMenu": "Navigationsmenü schließen"
+    "openMenu": "Menü",
+    "closeMenu": "Schließen",
+    "currentPage": "(aktuelle Seite)",
+    "callMairie": "Rathaus anrufen",
+    "breadcrumb": "Brotkrumennavigation"
   },
   "home": {
     "meta": {
@@ -16,33 +19,48 @@
     },
     "title": "Willkommen in Grandrupt",
     "subtitle": "Ein Dorf in den Vogesen",
-    "description": "Entdecken Sie unser Dorf, seine Geschichte, seine Neuigkeiten und seine örtlichen Betriebe.",
+    "description": "Das Dorf am großen Bach, im Herzen der Vogesen. Hier finden Sie die Neuigkeiten der Gemeinde und Ihre Behördengänge im Rathaus.",
     "hero": {
-      "cta": "Das Dorf entdecken"
+      "cta": "Das Dorf entdecken",
+      "primaryCta": "Rathaus kontaktieren",
+      "secondaryCta": "Öffnungszeiten und Anliegen"
     },
     "actualites": {
-      "title": "Aktuelles",
+      "title": "Neueste Nachrichten",
       "seeAll": "Alle Neuigkeiten",
-      "readMore": "Weiterlesen"
+      "readMore": "Weiterlesen",
+      "empty": "Derzeit keine Nachrichten."
     },
     "services": {
-      "title": "Ihre Behördengänge",
+      "title": "Dienste des Rathauses",
       "etatCivil": "Standesamt",
       "urbanisme": "Bauen und Planen",
       "elections": "Wahlen",
       "aideSociale": "Sozialhilfe",
       "cimetiere": "Friedhof",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+      "intro": "Das Sekretariat hilft Ihnen bei allen Anliegen, vor Ort oder telefonisch.",
+      "etatCivilText": "Geburt, Heirat, Tod, Familienstammbuch.",
+      "urbanismeText": "Baugenehmigung, Bauanzeige.",
+      "electionsText": "Eintragung ins Wählerverzeichnis, Vollmacht.",
+      "aideSocialeText": "Unterstützung für Einwohner, die sie brauchen.",
+      "cimetiereText": "Grabstellen und Pflege des Gemeindefriedhofs.",
+      "contactText": "Eine andere Frage? Das Sekretariat antwortet Ihnen."
     },
     "village": {
       "title": "Grandrupt, im Herzen der Vogesen",
       "text": "Eingebettet in das Tal des Rabodeau ist Grandrupt ein Vogesendorf mit Charakter, in dem Tannenwälder an grüne Wiesen grenzen. Mit weniger als hundert Einwohnern bewahrt es ein ursprüngliches Lebensumfeld fernab der städtischen Hektik und sichert seinen Einwohnern zugleich die wichtigsten Dienstleistungen.",
-      "cta": "Mehr erfahren"
+      "cta": "Die Geschichte des Dorfes entdecken",
+      "rupt": "Im Vogesen-Dialekt ist ein „rupt“ ein Bach: Grandrupt bedeutet der große Bach."
     },
     "contactBandeau": {
-      "title": "Haben Sie eine Frage?",
-      "subtitle": "Die Gemeindeverwaltung unterstützt Sie gerne bei Ihren Behördengängen.",
-      "cta": "Gemeinde kontaktieren"
+      "title": "Eine Frage? Das Rathaus antwortet Ihnen.",
+      "subtitle": "Telefonisch, per Post oder direkt im Sekretariat.",
+      "cta": "Dem Rathaus schreiben"
+    },
+    "horaires": {
+      "title": "Das Rathaus ist geöffnet",
+      "phone": "Tel."
     }
   },
   "histoire": {
@@ -85,7 +103,18 @@
     "backToList": "Zurück zu den Neuigkeiten",
     "downloadDocument": "Dokument herunterladen",
     "downloadPv": "Protokoll herunterladen",
-    "pvBadge": "Protokoll"
+    "pvBadge": "Protokoll",
+    "count": "{count, plural, =0 {Keine Artikel} one {# Artikel} other {# Artikel}}",
+    "typeStandard": "Nachricht",
+    "typePv": "Gemeinderat",
+    "pdfTag": "PDF zum Herunterladen",
+    "published": "Veröffentlicht am",
+    "uploadedOn": "hochgeladen am {date}",
+    "previousPv": "Frühere Protokolle",
+    "otherNews": "Weitere Nachrichten",
+    "paperTitle": "Brauchen Sie eine Papierfassung?",
+    "paperText": "Die Protokolle hängen im Rathaus aus und können auf Anfrage im Sekretariat ausgedruckt werden.",
+    "documentPdf": "PDF-Dokument"
   },
   "entreprises": {
     "title": "Betriebe & Geschäfte",
@@ -122,7 +151,8 @@
       "successMessage": "Ihre Nachricht wurde übermittelt. Wir antworten Ihnen so schnell wie möglich.",
       "errorTitle": "Fehler",
       "errorMessage": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
-      "requiredFields": "* Pflichtfelder"
+      "requiredFields": "* Pflichtfelder",
+      "errorPrefix": "Fehler:"
     },
     "address": {
       "title": "Adresse",
@@ -153,6 +183,8 @@
   "footer": {
     "copyright": "© {year} Grandrupt. Alle Rechte vorbehalten.",
     "legalNotice": "Impressum",
-    "accessibility": "Barrierefreiheit"
+    "accessibility": "Barrierefreiheit: teilweise konform",
+    "mairie": "Rathaus Grandrupt",
+    "legalNav": "Rechtliche Hinweise"
   }
 }

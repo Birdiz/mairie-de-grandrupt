@@ -6,17 +6,15 @@ test.describe("Actualités", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 
-  test("affiche des liens 'Lire la suite'", async ({ page }) => {
+  test("chaque carte d'actualité porte un lien sur son titre", async ({ page }) => {
     await page.goto("/actualites");
-    await expect(page.getByRole("link", { name: /lire la suite/i }).first()).toBeVisible();
+    const firstCard = page.getByRole("main").getByRole("article").first();
+    await expect(firstCard.getByRole("link")).toBeVisible();
   });
 
   test("naviguer vers un article affiche son contenu", async ({ page }) => {
     await page.goto("/actualites");
-    await page
-      .getByRole("link", { name: /lire la suite/i })
-      .first()
-      .click();
+    await page.getByRole("main").getByRole("article").first().getByRole("link").click();
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // L'URL contient /actualites/
     await expect(page).toHaveURL(/\/actualites\/.+/);
@@ -39,9 +37,9 @@ test.describe("Actualités", () => {
     expect(response?.status()).toBe(404);
   });
 
-  test("la page d'accueil affiche les 3 dernières actualités", async ({ page }) => {
+  test("la page d'accueil affiche les 4 dernières actualités", async ({ page }) => {
     await page.goto("/");
-    const readMoreLinks = page.getByRole("link", { name: /lire la suite/i });
-    await expect(readMoreLinks).toHaveCount(3);
+    const cards = page.getByRole("main").getByRole("article");
+    await expect(cards).toHaveCount(4);
   });
 });

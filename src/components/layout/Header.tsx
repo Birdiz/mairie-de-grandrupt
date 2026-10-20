@@ -4,19 +4,21 @@ import { Nav } from "./Nav";
 
 export function Header() {
   return (
-    <header className="border-border bg-background/95 relative z-50 border-b backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:py-5">
+    <header className="border-border bg-card relative z-50 border-b">
+      <div className="mx-auto flex h-[76px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 md:h-[104px] lg:px-8">
         <Link
           href="/"
-          className="focus-visible:ring-ring flex items-center gap-3 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:outline-none"
+          className="text-foreground flex items-center gap-2.5 no-underline md:gap-3.5"
           aria-label="Grandrupt — Accueil"
         >
-          <Logo className="h-10 w-auto shrink-0 md:h-12" />
-          <span className="flex flex-col leading-tight">
-            <span className="text-foreground font-heading text-xl font-bold md:text-2xl">
+          <Logo className="h-11 w-auto shrink-0 md:h-15" />
+          <span className="flex flex-col">
+            <span className="font-heading text-2xl leading-[1.05] font-bold md:text-[1.875rem]">
               Grandrupt
             </span>
-            <span className="text-muted-foreground text-xs md:text-base">Vosges · 88210</span>
+            <span className="text-muted-foreground text-[0.9375rem] md:text-base">
+              Vosges · 88210
+            </span>
           </span>
         </Link>
         <Nav />

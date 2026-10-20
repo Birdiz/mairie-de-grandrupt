@@ -9,7 +9,11 @@ test.describe("Navigation", () => {
 
   test("navigation links are accessible", async ({ page }) => {
     await page.goto("/");
-    const nav = page.getByRole("navigation");
+    // Sur ordinateur, la navigation principale ; sur mobile, le bouton « Menu » qui l'ouvre
+    const nav = page
+      .getByRole("navigation", { name: /navigation principale/i })
+      .or(page.getByRole("button", { name: /^menu$/i }))
+      .first();
     await expect(nav).toBeVisible();
   });
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { HistoireHero } from "@/components/sections/HistoireHero";
+import { PageHeader } from "@/components/sections/PageHeader";
 import { HistoireContentSection } from "@/components/sections/HistoireContentSection";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HistoirePage() {
   return (
     <>
-      <HistoireHero />
+      <PageHeader ns="histoire" />
       <HistoireContentSection />
     </>
   );

@@ -1,57 +1,19 @@
 import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { Article } from "@/lib/actualites";
-import { formatDate } from "@/lib/dates";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { ArticleCard } from "./ArticleCard";
 
 export function ActualitesList({ articles }: { articles: Article[] }) {
   const t = useTranslations("actualites");
 
   return (
-    <section className="bg-background py-24" aria-labelledby="actualites-list-title">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        <FadeIn className="mb-14">
-          <h2
-            id="actualites-list-title"
-            className="font-heading text-foreground text-4xl md:text-5xl"
-          >
-            {articles.length} {articles.length > 1 ? "articles" : "article"}
-          </h2>
-        </FadeIn>
-
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article, i) => (
-            <FadeIn
-              key={article.slug}
-              delay={i === 0 ? undefined : i === 1 ? "delay-150" : "delay-300"}
-            >
-              <article className="border-border bg-card flex h-full flex-col rounded-xl border p-8 transition-shadow hover:shadow-md">
-                <div className="mb-3 flex flex-wrap items-center gap-3">
-                  <time dateTime={article.date} className="text-muted-foreground font-sans text-sm">
-                    {formatDate(article.date)}
-                  </time>
-                  {article.type === "proces-verbal" && (
-                    <span className="bg-primary/10 text-primary rounded-full px-3 py-1 font-sans text-xs font-semibold">
-                      {t("pvBadge")}
-                    </span>
-                  )}
-                </div>
-                <h3 className="font-heading text-foreground mb-3 text-xl leading-snug">
-                  {article.title}
-                </h3>
-                <p className="text-muted-foreground mb-6 line-clamp-3 flex-1 font-sans text-sm leading-relaxed">
-                  {article.excerpt}
-                </p>
-                <Link
-                  href={`/actualites/${article.slug}`}
-                  className="text-primary focus-visible:ring-ring inline-flex items-center gap-1 font-sans text-sm font-semibold hover:underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-                >
-                  {t("readMore")}
-                  <ArrowRight size={14} aria-hidden="true" />
-                </Link>
-              </article>
-            </FadeIn>
+    <section aria-labelledby="actualites-list-title">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-16 sm:px-6 lg:px-8">
+        <h2 id="actualites-list-title" className="text-h3">
+          {t("count", { count: articles.length })}
+        </h2>
+        <div className="grid gap-x-14 md:grid-cols-2">
+          {articles.map((article) => (
+            <ArticleCard key={article.slug} article={article} />
           ))}
         </div>
       </div>
