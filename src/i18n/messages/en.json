@@ -89,7 +89,16 @@
   },
   "entreprises": {
     "title": "Entreprises du village",
-    "description": "Les entreprises et commerces locaux de Grandrupt."
+    "description": "Les entreprises et commerces locaux de Grandrupt.",
+    "hero": {
+      "subtitle": "Discover the businesses and craftspeople who keep our village alive."
+    },
+    "intro": "Despite its small size, Grandrupt is home to a few businesses and craftspeople who contribute to the local economy and carry on the know-how of the Vosges.",
+    "cta": {
+      "title": "Are you a craftsperson or business owner?",
+      "subtitle": "Have your business listed on the town hall website.",
+      "button": "Contact the town hall"
+    }
   },
   "contact": {
     "title": "Nous contacter",
