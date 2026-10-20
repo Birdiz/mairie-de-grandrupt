@@ -9,6 +9,7 @@ import {
 
 export const Users: CollectionConfig = {
   slug: "users",
+  labels: { singular: "Utilisateur", plural: "Utilisateurs" },
   auth: true,
   admin: {
     useAsTitle: "email",
@@ -40,10 +41,11 @@ export const Users: CollectionConfig = {
     ],
   },
   fields: [
-    { name: "name", type: "text" },
+    { name: "name", type: "text", label: "Nom" },
     {
       name: "role",
       type: "select",
+      label: "Rôle",
       required: true,
       defaultValue: "writer",
       options: [
