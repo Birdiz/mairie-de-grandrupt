@@ -9,7 +9,13 @@ import {
 
 export const Users: CollectionConfig = {
   slug: "users",
-  auth: true,
+  labels: { singular: "Utilisateur", plural: "Utilisateurs" },
+  auth: {
+    // In production the site is HTTPS-only (Caddy), so the session cookie gets
+    // the Secure flag and is never sent over plain HTTP. Off in development,
+    // which runs on http://localhost.
+    cookies: { secure: process.env.NODE_ENV === "production" },
+  },
   admin: {
     useAsTitle: "email",
     defaultColumns: ["name", "email", "role"],
@@ -40,10 +46,11 @@ export const Users: CollectionConfig = {
     ],
   },
   fields: [
-    { name: "name", type: "text" },
+    { name: "name", type: "text", label: "Nom" },
     {
       name: "role",
       type: "select",
+      label: "Rôle",
       required: true,
       defaultValue: "writer",
       options: [
