@@ -1,40 +1,43 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+
+const STATS = ["population", "altitude", "superficie", "origine"] as const;
 
 export function VillageSection() {
   const t = useTranslations("home.village");
+  const tStats = useTranslations("histoire.stats");
 
   return (
-    <section className="bg-background py-24" aria-labelledby="village-title">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        <div className="flex flex-col-reverse gap-12 lg:flex-row lg:items-center lg:gap-20">
-          {/* Texte */}
-          <FadeIn className="flex-1">
-            <h2 id="village-title" className="font-heading text-foreground text-4xl md:text-5xl">
-              {t("title")}
-            </h2>
-            <p className="text-muted-foreground mt-6 max-w-prose font-sans text-base leading-relaxed">
-              {t("text")}
-            </p>
-            <Link
-              href="/histoire"
-              className="text-primary focus-visible:ring-ring mt-8 inline-flex items-center gap-2 font-sans text-sm font-semibold hover:underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-            >
-              {t("cta")}
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </FadeIn>
-
-          {/* Placeholder image — à remplacer par next/image */}
-          <FadeIn delay="delay-200" className="flex-1">
-            <div
-              className="from-primary/80 to-primary/40 aspect-[4/3] w-full rounded-2xl bg-gradient-to-br"
-              role="img"
-              aria-label="Vue du village de Grandrupt dans les Vosges"
-            />
-          </FadeIn>
+    <section className="border-border bg-card border-y" aria-labelledby="village-title">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 py-9 sm:px-6 md:grid-cols-2 md:py-16 lg:px-8">
+        <div className="flex flex-col gap-4.5">
+          <h2 id="village-title" className="text-h2">
+            {t("title")}
+          </h2>
+          <p className="text-pretty">{t("rupt")}</p>
+          <p className="text-pretty">{t("text")}</p>
+          <Link
+            href="/histoire"
+            className="text-primary flex min-h-11 items-center self-start text-[1.1875rem] font-semibold"
+          >
+            {t("cta")}
+          </Link>
+        </div>
+        {/* Pas encore de photo : les chiffres clés du village tiennent la place */}
+        <div className="flex flex-col gap-4">
+          <h3 className="text-h4">{tStats("title")}</h3>
+          <dl className="grid grid-cols-2 gap-x-8">
+            {STATS.map((key) => (
+              <div key={key} className="border-brand-marine flex flex-col border-t-[3px] pt-3 pb-5">
+                <dt className="text-muted-foreground text-small order-last">
+                  {tStats(`${key}Label`)}
+                </dt>
+                <dd className="font-heading text-primary text-[2rem] leading-tight font-bold">
+                  {tStats(key)}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

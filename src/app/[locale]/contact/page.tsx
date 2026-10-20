@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { ContactHero } from "@/components/sections/ContactHero";
+import { PageHeader } from "@/components/sections/PageHeader";
 import { ContactContentSection } from "@/components/sections/ContactContentSection";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ContactPage() {
   return (
     <>
-      <ContactHero />
+      <PageHeader ns="contact" />
       <ContactContentSection />
     </>
   );

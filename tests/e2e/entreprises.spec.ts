@@ -8,13 +8,15 @@ test.describe("Entreprises", () => {
 
   test("affiche les cartes des entreprises", async ({ page }) => {
     await page.goto("/entreprises");
-    const cards = page.getByRole("listitem");
+    const cards = page.getByRole("list", { name: "Liste des entreprises" }).getByRole("listitem");
     await expect(cards).toHaveCount(3);
   });
 
   test("chaque carte affiche un lien téléphone cliquable", async ({ page }) => {
     await page.goto("/entreprises");
-    const telLinks = page.locator('a[href^="tel:"]');
+    const telLinks = page
+      .getByRole("list", { name: "Liste des entreprises" })
+      .locator('a[href^="tel:"]');
     await expect(telLinks).toHaveCount(3);
   });
 

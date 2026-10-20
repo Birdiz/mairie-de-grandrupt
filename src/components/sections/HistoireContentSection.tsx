@@ -1,99 +1,56 @@
 import { useTranslations } from "next-intl";
-import { FadeIn } from "@/components/ui/FadeIn";
+
+const STATS = ["population", "altitude", "superficie", "origine"] as const;
 
 export function HistoireContentSection() {
   const t = useTranslations("histoire");
 
   return (
-    <section className="bg-background py-24" aria-labelledby="histoire-presentation-title">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        {/* Présentation + chiffres clés */}
-        <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
-          {/* Colonne texte (3/5) */}
-          <FadeIn className="lg:col-span-3">
-            <h2
-              id="histoire-presentation-title"
-              className="font-heading text-foreground text-4xl md:text-5xl"
-            >
-              {t("presentation.title")}
-            </h2>
-            <p className="text-muted-foreground mt-6 font-sans text-base leading-relaxed">
-              {t("presentation.p1")}
-            </p>
-            <p className="text-muted-foreground mt-4 font-sans text-base leading-relaxed">
-              {t("presentation.p2")}
-            </p>
-          </FadeIn>
-
-          {/* Colonne chiffres clés (2/5) */}
-          <FadeIn delay="delay-200" className="lg:col-span-2">
-            <div className="bg-secondary h-full rounded-2xl p-8">
-              <h3 className="font-heading text-foreground mb-6 text-xl">{t("stats.title")}</h3>
-              <dl className="grid grid-cols-2 gap-6">
-                <div>
-                  <dd className="font-heading text-primary text-3xl font-bold">
-                    {t("stats.population")}
-                  </dd>
-                  <dt className="text-muted-foreground mt-1 font-sans text-sm">
-                    {t("stats.populationLabel")}
-                  </dt>
-                </div>
-                <div>
-                  <dd className="font-heading text-primary text-3xl font-bold">
-                    {t("stats.altitude")}
-                  </dd>
-                  <dt className="text-muted-foreground mt-1 font-sans text-sm">
-                    {t("stats.altitudeLabel")}
-                  </dt>
-                </div>
-                <div>
-                  <dd className="font-heading text-primary text-3xl font-bold">
-                    {t("stats.superficie")}
-                  </dd>
-                  <dt className="text-muted-foreground mt-1 font-sans text-sm">
-                    {t("stats.superficieLabel")}
-                  </dt>
-                </div>
-                <div>
-                  <dd className="font-heading text-primary text-3xl font-bold">
-                    {t("stats.origine")}
-                  </dd>
-                  <dt className="text-muted-foreground mt-1 font-sans text-sm">
-                    {t("stats.origineLabel")}
-                  </dt>
-                </div>
-              </dl>
-            </div>
-          </FadeIn>
+    <div className="mx-auto flex max-w-6xl flex-col gap-14 px-4 pb-16 sm:px-6 lg:px-8">
+      {/* Présentation + chiffres clés */}
+      <section
+        aria-labelledby="histoire-presentation-title"
+        className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-16"
+      >
+        <div className="flex max-w-[66ch] flex-col gap-4">
+          <h2 id="histoire-presentation-title" className="text-h2">
+            {t("presentation.title")}
+          </h2>
+          <p className="text-pretty">{t("presentation.p1")}</p>
+          <p className="text-pretty">{t("presentation.p2")}</p>
         </div>
 
-        {/* Histoire */}
-        <FadeIn>
-          <hr className="border-border my-16" />
-        </FadeIn>
+        <div className="border-border bg-card flex flex-col gap-4 self-start border p-6 md:p-8">
+          <h3 className="text-h4">{t("stats.title")}</h3>
+          <dl className="grid grid-cols-2 gap-x-8">
+            {STATS.map((key) => (
+              <div key={key} className="border-brand-marine flex flex-col border-t-[3px] pt-3 pb-5">
+                <dt className="text-muted-foreground text-small order-last">
+                  {t(`stats.${key}Label`)}
+                </dt>
+                <dd className="font-heading text-primary text-[2rem] leading-tight font-bold">
+                  {t(`stats.${key}`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-        <FadeIn>
-          <div className="grid lg:grid-cols-5 lg:gap-16">
-            <div className="lg:col-span-3">
-              <h2
-                id="histoire-history-title"
-                className="font-heading text-foreground text-3xl md:text-4xl"
-              >
-                {t("history.title")}
-              </h2>
-              <p className="text-muted-foreground mt-6 font-sans text-base leading-relaxed">
-                {t("history.p1")}
-              </p>
-              <p className="text-muted-foreground mt-4 font-sans text-base leading-relaxed">
-                {t("history.p2")}
-              </p>
-              <p className="text-muted-foreground mt-4 font-sans text-base leading-relaxed">
-                {t("history.p3")}
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
+      <div aria-hidden="true" className="motif-rupt" />
+
+      {/* Histoire */}
+      <section
+        aria-labelledby="histoire-history-title"
+        className="flex max-w-[66ch] flex-col gap-4"
+      >
+        <h2 id="histoire-history-title" className="text-h2">
+          {t("history.title")}
+        </h2>
+        <p className="text-pretty">{t("history.p1")}</p>
+        <p className="text-pretty">{t("history.p2")}</p>
+        <p className="text-pretty">{t("history.p3")}</p>
+      </section>
+    </div>
   );
 }

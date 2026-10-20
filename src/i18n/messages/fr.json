@@ -7,8 +7,11 @@
     "contact": "Contact",
     "skipToContent": "Aller au contenu principal",
     "mainNav": "Navigation principale",
-    "openMenu": "Ouvrir le menu de navigation",
-    "closeMenu": "Fermer le menu de navigation"
+    "openMenu": "Menu",
+    "closeMenu": "Fermer",
+    "currentPage": "(page actuelle)",
+    "callMairie": "Appeler la mairie",
+    "breadcrumb": "Fil d'Ariane"
   },
   "home": {
     "meta": {
@@ -16,33 +19,48 @@
     },
     "title": "Bienvenue à Grandrupt",
     "subtitle": "Village des Vosges",
-    "description": "Découvrez notre village, son histoire, ses actualités et ses entreprises locales.",
+    "description": "Le village du grand ruisseau, au cœur du massif vosgien. Retrouvez ici les nouvelles de la commune et vos démarches en mairie.",
     "hero": {
-      "cta": "Découvrir le village"
+      "cta": "Découvrir le village",
+      "primaryCta": "Contacter la mairie",
+      "secondaryCta": "Horaires et démarches"
     },
     "actualites": {
-      "title": "Actualités",
+      "title": "Dernières actualités",
       "seeAll": "Toutes les actualités",
-      "readMore": "Lire la suite"
+      "readMore": "Lire la suite",
+      "empty": "Aucune actualité pour le moment."
     },
     "services": {
-      "title": "Vos démarches",
+      "title": "Services de la mairie",
       "etatCivil": "État civil",
       "urbanisme": "Urbanisme",
       "elections": "Élections",
       "aideSociale": "Aide sociale",
       "cimetiere": "Cimetière",
-      "contact": "Contact"
+      "contact": "Contact",
+      "intro": "Le secrétariat vous aide pour toutes vos démarches, sur place ou par téléphone.",
+      "etatCivilText": "Naissance, mariage, décès, livret de famille.",
+      "urbanismeText": "Permis de construire, déclaration de travaux.",
+      "electionsText": "Inscription sur les listes, procuration.",
+      "aideSocialeText": "Accompagnement des habitants qui en ont besoin.",
+      "cimetiereText": "Concessions et entretien du cimetière communal.",
+      "contactText": "Une autre question ? Le secrétariat vous répond."
     },
     "village": {
       "title": "Grandrupt, au cœur des Vosges",
       "text": "Niché dans la vallée du Rabodeau, Grandrupt est un village vosgien de caractère où la forêt de sapins côtoie les prairies verdoyantes. Avec moins d'une centaine d'habitants, il préserve un cadre de vie authentique, loin de l'agitation urbaine, tout en assurant à ses habitants les services essentiels.",
-      "cta": "En savoir plus"
+      "cta": "Découvrir l'histoire du village",
+      "rupt": "En patois vosgien, un « rupt » est un ruisseau : Grandrupt, c'est le grand ruisseau."
     },
     "contactBandeau": {
-      "title": "Une question ?",
-      "subtitle": "La mairie est à votre disposition pour vous accompagner dans vos démarches.",
-      "cta": "Contacter la mairie"
+      "title": "Une question ? La mairie vous répond.",
+      "subtitle": "Par téléphone, par courrier ou en passant au secrétariat.",
+      "cta": "Écrire à la mairie"
+    },
+    "horaires": {
+      "title": "La mairie est ouverte",
+      "phone": "Tél."
     }
   },
   "histoire": {
@@ -85,7 +103,17 @@
     "backToList": "Retour aux actualités",
     "downloadDocument": "Télécharger le document",
     "downloadPv": "Télécharger le procès-verbal",
-    "pvBadge": "Procès-verbal"
+    "pvBadge": "Procès-verbal",
+    "count": "{count, plural, =0 {Aucun article} one {# article} other {# articles}}",
+    "typeStandard": "Actualité",
+    "typePv": "Conseil municipal",
+    "pdfTag": "PDF à télécharger",
+    "published": "Publié le",
+    "uploadedOn": "mis en ligne le {date}",
+    "previousPv": "Procès-verbaux précédents",
+    "otherNews": "Autres actualités",
+    "paperTitle": "Besoin d'une version papier ?",
+    "paperText": "Les procès-verbaux sont affichés en mairie et peuvent être imprimés sur demande au secrétariat."
   },
   "entreprises": {
     "title": "Entreprises & Commerces",
@@ -122,7 +150,8 @@
       "successMessage": "Votre message a bien été transmis. Nous vous répondrons dans les meilleurs délais.",
       "errorTitle": "Erreur",
       "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
-      "requiredFields": "* Champs obligatoires"
+      "requiredFields": "* Champs obligatoires",
+      "errorPrefix": "Erreur :"
     },
     "address": {
       "title": "Adresse",
@@ -153,6 +182,8 @@
   "footer": {
     "copyright": "© {year} Grandrupt. Tous droits réservés.",
     "legalNotice": "Mentions légales",
-    "accessibility": "Accessibilité"
+    "accessibility": "Accessibilité : partiellement conforme",
+    "mairie": "Mairie de Grandrupt",
+    "legalNav": "Liens légaux"
   }
 }

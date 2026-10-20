@@ -15,6 +15,11 @@ describe("cn", () => {
     expect(cn("text-red-500", "text-blue-500")).toBe("text-blue-500");
   });
 
+  it("keeps a colour next to a design-system text size (text-h1…text-small)", () => {
+    expect(cn("text-primary", "text-h3")).toBe("text-primary text-h3");
+    expect(cn("text-h2", "text-small")).toBe("text-small");
+  });
+
   it("handles conditional object syntax", () => {
     expect(cn({ foo: true, bar: false, baz: true })).toBe("foo baz");
   });
