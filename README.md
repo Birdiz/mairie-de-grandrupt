@@ -68,6 +68,16 @@ make install      # Installer les dépendances
 make clean        # Supprimer .next/
 ```
 
+## Intégration continue
+
+GitHub Actions ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) tourne sur chaque PR et chaque push sur `main`, en trois jobs parallèles :
+
+- **Lint, types, tests, build** — l'équivalent de `make ci` ;
+- **E2E Chromium** — Playwright sur le serveur de production standalone, avec une base neuve (les migrations Payload sont donc rejouées) ;
+- **Build Docker** — vérifie que l'image de prod se construit, sans la publier.
+
+En local, `make e2e` lance les trois navigateurs sur le serveur de dev. Dependabot ([`.github/dependabot.yml`](.github/dependabot.yml)) ouvre chaque lundi des PR groupées pour npm et les actions GitHub.
+
 ## Administration des actualités (back-office)
 
 Les actualités sont gérées depuis le back-office Payload, accessible sur **`/admin`**.
@@ -151,6 +161,8 @@ Après toute modification d'une collection (champ ajouté, etc.), générer une 
 src/
 ├── app/
 │   ├── [locale]/        # Pages i18n (layout, pages)
+│   │   ├── (chargement)/        # Pages avec écran de chargement (loading.tsx)
+│   │   └── actualites/[slug]/   # Article : 404 vérifiée avant le chargement
 │   ├── (payload)/       # Back-office Payload (/admin) + API REST/GraphQL
 │   ├── api/             # API routes maison (contact, etc.)
 │   └── layout.tsx       # Root layout (passthrough)

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
@@ -113,21 +114,23 @@ export async function getAllArticles(locale: Locale = "fr"): Promise<Article[]> 
   return docs.map((doc) => toArticle(doc, locale));
 }
 
-/** A single published article by slug, or null, in `locale` when translated. */
-export async function getArticleBySlug(
-  slug: string,
-  locale: Locale = "fr",
-): Promise<Article | null> {
-  const payload = await getClient();
-  const { docs } = await payload.find({
-    collection: "actualites",
-    where: {
-      and: [{ slug: { equals: slug } }, { _status: { equals: "published" } }],
-    },
-    depth: 1,
-    limit: 1,
-    overrideAccess: true,
-    locale: "all",
-  });
-  return docs[0] ? toArticle(docs[0], locale) : null;
-}
+/**
+ * A single published article by slug, or null, in `locale` when translated.
+ * Cached per request: the article route's layout, metadata and page all ask for it.
+ */
+export const getArticleBySlug = cache(
+  async (slug: string, locale: Locale = "fr"): Promise<Article | null> => {
+    const payload = await getClient();
+    const { docs } = await payload.find({
+      collection: "actualites",
+      where: {
+        and: [{ slug: { equals: slug } }, { _status: { equals: "published" } }],
+      },
+      depth: 1,
+      limit: 1,
+      overrideAccess: true,
+      locale: "all",
+    });
+    return docs[0] ? toArticle(docs[0], locale) : null;
+  },
+);

@@ -1,4 +1,5 @@
-export default function Loading() {
+/** Spinner shown by the `loading.tsx` files while a page streams in. */
+export function PageLoading() {
   return (
     <div className="flex flex-1 items-center justify-center py-24" aria-label="Chargement…">
       <div
