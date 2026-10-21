@@ -11,7 +11,8 @@
     "closeMenu": "Close",
     "currentPage": "(current page)",
     "callMairie": "Call the town hall",
-    "breadcrumb": "Breadcrumb"
+    "breadcrumb": "Breadcrumb",
+    "language": "Language"
   },
   "home": {
     "meta": {
@@ -114,7 +115,10 @@
     "otherNews": "Other news",
     "paperTitle": "Need a paper copy?",
     "paperText": "The minutes are posted at the town hall and can be printed on request at the secretariat.",
-    "documentPdf": "PDF document"
+    "documentPdf": "PDF document",
+    "onlyFrench": "This article is only available in French.",
+    "onlyFrenchPv": "Official document available in French only.",
+    "inFrench": "in French"
   },
   "entreprises": {
     "title": "Businesses & Shops",
@@ -169,11 +173,76 @@
   },
   "mentionsLegales": {
     "title": "Legal notice",
-    "description": "Legal information about the official website of Grandrupt."
+    "description": "Legal information about the official website of Grandrupt.",
+    "translationNotice": "This translation is provided for information only; the French version is the only legally binding one.",
+    "editeur": {
+      "title": "Site publisher",
+      "intro": "This website is published by the <strong>commune of Grandrupt</strong> (88210), Vosges, France.",
+      "address": "Address:",
+      "phone": "Phone:",
+      "email": "Email:",
+      "publisher": "Director of publication:",
+      "publisherName": "The Mayor of Grandrupt"
+    },
+    "hebergeur": {
+      "title": "Hosting",
+      "text": "This website is hosted by a third-party provider. For any question about hosting, please contact the town hall."
+    },
+    "propriete": {
+      "title": "Intellectual property",
+      "text": "All content on this website (texts, images, graphics) is the property of Grandrupt or its partners. Any reproduction, representation or distribution, in whole or in part, is prohibited without the prior written permission of the commune."
+    },
+    "donnees": {
+      "title": "Personal data",
+      "p1": "In accordance with the General Data Protection Regulation (GDPR — Regulation (EU) 2016/679) and the amended French Data Protection Act of 6 January 1978, you have the right to access, correct and delete data concerning you.",
+      "p2": "The data collected through the contact form (name, email address, subject and message) is used only to answer your request and is not kept beyond that.",
+      "p3": "To exercise your rights or for any question about your personal data, contact the town hall at <mail>{email}</mail>."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "This website does not use tracking or profiling cookies. No third-party advertising cookie is placed on your device."
+    },
+    "liens": {
+      "title": "Hyperlinks",
+      "text": "The commune of Grandrupt accepts no responsibility for the content of external websites that may be linked from this website."
+    }
   },
   "accessibilite": {
     "title": "Accessibility",
-    "description": "Accessibility statement for the official website of Grandrupt."
+    "description": "Accessibility statement for the official website of Grandrupt.",
+    "translationNotice": "This translation is provided for information only; the French version is the only legally binding one.",
+    "subtitle": "Accessibility statement — RGAA 4.1 (French accessibility standard)",
+    "etat": {
+      "title": "Compliance status",
+      "text": "The <strong>grandrupt.fr</strong> website is <strong>partially compliant</strong> with the French general accessibility improvement framework (RGAA), version 4.1. Efforts have been made (keyboard navigation, contrast, ARIA attributes, skip link), but full compliance has not yet been formally audited."
+    },
+    "technologies": {
+      "title": "Technologies used"
+    },
+    "mesures": {
+      "title": "Accessibility measures",
+      "skipLink": "Skip link to the main content",
+      "keyboard": "Navigation fully usable with a keyboard",
+      "focus": "Visible focus indicators",
+      "aria": "<code>aria-label</code> and <code>aria-current</code> attributes on the navigation",
+      "contrast": "Colour contrast meeting WCAG AA criteria",
+      "alt": "Text alternatives for non-text content",
+      "headings": "Hierarchical heading structure (h1 → h2 → h3)",
+      "lang": "Page language declared (<code>lang</code> attribute)"
+    },
+    "retour": {
+      "title": "Feedback and contact",
+      "p1": "If you encounter an accessibility barrier that prevents you from accessing content or a feature, you can report it by email to <mail>{email}</mail> or through the <contact>contact form</contact>.",
+      "p2": "We undertake to reply within a reasonable time and to find an accessible alternative if needed."
+    },
+    "recours": {
+      "title": "Remedies",
+      "text": "If you notice an accessibility issue that prevents you from accessing content or a feature of the website, and our answer does not satisfy you, you can contact the Défenseur des droits (French rights ombudsman) via <link>defenseurdesdroits.fr</link>."
+    },
+    "date": {
+      "title": "Date of this statement",
+      "text": "This statement was drawn up on <strong>{date}</strong>."
+    }
   },
   "notFound": {
     "title": "Page not found",

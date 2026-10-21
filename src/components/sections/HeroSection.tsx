@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/lib/button-variants";
 import { Logo } from "@/components/layout/Logo";
 import { cn } from "@/lib/utils";

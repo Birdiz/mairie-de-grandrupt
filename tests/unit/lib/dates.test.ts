@@ -23,4 +23,13 @@ describe("formatDate", () => {
   it("handles full ISO datetime strings (as stored by Payload)", () => {
     expect(formatDate("2026-03-08T00:00:00.000Z")).toMatch(/2026/);
   });
+
+  it("formats in German and English when asked", () => {
+    expect(formatDate("2026-03-08", "de")).toBe("8. März 2026");
+    expect(formatDate("2026-03-08", "en")).toBe("8 March 2026");
+  });
+
+  it("falls back to French for an unknown language", () => {
+    expect(formatDate("2026-03-08", "xx")).toMatch(/mars/);
+  });
 });

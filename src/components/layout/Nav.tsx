@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { telHref } from "@/lib/phone";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useState, useEffect, useRef } from "react";
 
 const navItems = [
@@ -55,7 +55,7 @@ export function Nav() {
   return (
     <>
       {/* Desktop nav : liens sur toute la hauteur de l'en-tête, page active = gras + barre de 4 px */}
-      <nav aria-label={t("mainNav")} className="hidden self-stretch md:flex">
+      <nav aria-label={t("mainNav")} className="hidden self-stretch lg:flex">
         <ul className="flex items-stretch gap-2">
           {navItems.map(({ href, labelKey }) => {
             const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -78,6 +78,7 @@ export function Nav() {
           })}
         </ul>
       </nav>
+      <LanguageSwitcher className="border-border ml-4 hidden border-l pl-4 lg:block" />
 
       {/* Mobile : bouton avec un libellé visible, qui est aussi son nom accessible */}
       <button
@@ -86,7 +87,7 @@ export function Nav() {
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="border-secondary-foreground bg-card text-secondary-foreground flex min-h-12 items-center gap-2.5 rounded-sm border-2 px-3.5 text-lg font-bold md:hidden"
+        className="border-secondary-foreground bg-card text-secondary-foreground flex min-h-12 items-center gap-2.5 rounded-sm border-2 px-3.5 text-lg font-bold lg:hidden"
       >
         <span aria-hidden="true" className="flex flex-col gap-1">
           <span className="bg-secondary-foreground h-[2.5px] w-[18px]" />
@@ -102,7 +103,7 @@ export function Nav() {
         id="mobile-menu"
         aria-label={t("mainNav")}
         className={cn(
-          "bg-card absolute top-full right-0 left-0 h-[calc(100dvh-100%)] overflow-y-auto px-4 pt-2 pb-6 md:hidden",
+          "bg-card absolute top-full right-0 left-0 h-[calc(100dvh-100%)] overflow-y-auto px-4 pt-2 pb-6 lg:hidden",
           isOpen ? "flex flex-col" : "hidden",
         )}
       >
@@ -132,6 +133,7 @@ export function Nav() {
             );
           })}
         </ul>
+        <LanguageSwitcher variant="full" className="pt-6" />
         <a
           href={telHref(tAddress("phoneNumber"))}
           className="bg-primary text-primary-foreground hover:bg-primary-hover mt-6 flex min-h-13 items-center justify-center rounded-sm text-[1.1875rem] font-semibold no-underline hover:underline"

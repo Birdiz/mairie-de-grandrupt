@@ -27,4 +27,20 @@ test.describe("Navigation", () => {
     await page.goto("/contact");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
+
+  test("le sélecteur de langue garde la page et la langue", async ({ page, isMobile }) => {
+    await page.goto("/histoire");
+    if (isMobile) await page.getByRole("button", { name: /^menu$/i }).click();
+    await page
+      .getByRole("link", { name: /deutsch/i })
+      .first()
+      .click();
+    await expect(page).toHaveURL(/\/de\/histoire$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "de");
+    if (isMobile) await page.getByRole("button", { name: /^menü$/i }).click();
+    await expect(page.getByRole("link", { name: "Kontakt" }).first()).toHaveAttribute(
+      "href",
+      "/de/contact",
+    );
+  });
 });

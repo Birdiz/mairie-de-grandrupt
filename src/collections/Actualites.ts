@@ -42,7 +42,12 @@ export const Actualites: CollectionConfig = {
       name: "title",
       type: "text",
       required: true,
+      localized: true,
       label: "Titre",
+      admin: {
+        description:
+          "Pour traduire l'article, choisissez Deutsch ou English en haut de page. Les procès-verbaux restent en français.",
+      },
     },
     {
       name: "type",
@@ -91,6 +96,7 @@ export const Actualites: CollectionConfig = {
       type: "textarea",
       required: true,
       maxLength: 300,
+      localized: true,
       label: "Résumé",
       admin: { description: "Court résumé affiché dans la liste des actualités." },
     },
@@ -122,6 +128,7 @@ export const Actualites: CollectionConfig = {
       name: "content",
       type: "richText",
       required: true,
+      localized: true,
       label: "Contenu",
     },
   ],

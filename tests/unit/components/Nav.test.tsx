@@ -4,16 +4,14 @@ import { Nav } from "@/components/layout/Nav";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
+  useLocale: () => "fr",
 }));
 
 const mockUsePathname = vi.fn(() => "/");
 
-vi.mock("next/navigation", () => ({
+vi.mock("@/i18n/navigation", () => ({
   usePathname: () => mockUsePathname(),
-}));
-
-vi.mock("next/link", () => ({
-  default: ({
+  Link: ({
     children,
     href,
     ...props
@@ -28,22 +26,33 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+/** Desktop and mobile main navs (the language switchers are separate, named navs). */
+function getMainNavs() {
+  return screen.getAllByRole("navigation", { name: "mainNav" });
+}
+
 /** The component renders both desktop + mobile navs. Scope to the desktop one. */
 function getDesktopNav() {
-  return within(screen.getAllByRole("navigation")[0]);
+  return within(getMainNavs()[0]);
 }
 
 describe("Nav", () => {
   it("renders desktop and mobile navigation landmarks", () => {
     mockUsePathname.mockReturnValue("/");
     render(<Nav />);
-    expect(screen.getAllByRole("navigation")).toHaveLength(2);
+    expect(getMainNavs()).toHaveLength(2);
+  });
+
+  it("offers the language switcher on desktop and in the mobile menu", () => {
+    mockUsePathname.mockReturnValue("/");
+    render(<Nav />);
+    expect(screen.getAllByRole("navigation", { name: "language" })).toHaveLength(2);
   });
 
   it("has aria-label on both navs", () => {
     mockUsePathname.mockReturnValue("/");
     render(<Nav />);
-    for (const nav of screen.getAllByRole("navigation")) {
+    for (const nav of getMainNavs()) {
       expect(nav).toHaveAttribute("aria-label", "mainNav");
     }
   });
@@ -127,14 +136,14 @@ describe("Nav", () => {
   it("flags the current page in words in the mobile menu", () => {
     mockUsePathname.mockReturnValue("/histoire");
     render(<Nav />);
-    const mobileNav = within(screen.getAllByRole("navigation")[1]);
+    const mobileNav = within(getMainNavs()[1]);
     expect(mobileNav.getByRole("link", { name: /histoire/ })).toHaveTextContent("currentPage");
   });
 
   it("offers a call link to the mairie in the mobile menu", () => {
     mockUsePathname.mockReturnValue("/");
     render(<Nav />);
-    const mobileNav = within(screen.getAllByRole("navigation")[1]);
+    const mobileNav = within(getMainNavs()[1]);
     expect(mobileNav.getByRole("link", { name: "callMairie" }).getAttribute("href")).toMatch(
       /^tel:/,
     );

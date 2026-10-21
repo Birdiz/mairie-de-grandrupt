@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import { getArticleBySlug } from "@/lib/actualites";
+import { getArticleBySlug, type Locale } from "@/lib/actualites";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 // notFound() only sets a 404 status if it runs before the response starts
@@ -11,7 +11,8 @@ type Props = {
 // loading.tsx (which wraps the page only) and above no other loading boundary,
 // so an unknown slug answers 404 instead of a soft 404.
 export default async function ArticleLayout({ children, params }: Props) {
-  const { slug } = await params;
-  if (!(await getArticleBySlug(slug))) notFound();
+  const { locale, slug } = await params;
+  // Same arguments as the page, so the cached lookup is shared.
+  if (!(await getArticleBySlug(slug, locale as Locale))) notFound();
   return children;
 }

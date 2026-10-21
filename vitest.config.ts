@@ -17,6 +17,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
+      // Same alias as tsconfig; tests that touch src/lib/actualites.ts mock it.
+      "@payload-config": resolve(__dirname, "./src/payload.config.ts"),
     },
   },
 });

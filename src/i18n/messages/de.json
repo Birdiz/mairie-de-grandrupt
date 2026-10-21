@@ -11,7 +11,8 @@
     "closeMenu": "Schließen",
     "currentPage": "(aktuelle Seite)",
     "callMairie": "Rathaus anrufen",
-    "breadcrumb": "Brotkrumennavigation"
+    "breadcrumb": "Brotkrumennavigation",
+    "language": "Sprache"
   },
   "home": {
     "meta": {
@@ -114,7 +115,10 @@
     "otherNews": "Weitere Nachrichten",
     "paperTitle": "Brauchen Sie eine Papierfassung?",
     "paperText": "Die Protokolle hängen im Rathaus aus und können auf Anfrage im Sekretariat ausgedruckt werden.",
-    "documentPdf": "PDF-Dokument"
+    "documentPdf": "PDF-Dokument",
+    "onlyFrench": "Dieser Artikel ist nur auf Französisch verfügbar.",
+    "onlyFrenchPv": "Amtliches Dokument, nur auf Französisch verfügbar.",
+    "inFrench": "auf Französisch"
   },
   "entreprises": {
     "title": "Betriebe & Geschäfte",
@@ -169,11 +173,76 @@
   },
   "mentionsLegales": {
     "title": "Impressum",
-    "description": "Rechtliche Hinweise zur offiziellen Website von Grandrupt."
+    "description": "Rechtliche Hinweise zur offiziellen Website von Grandrupt.",
+    "translationNotice": "Diese Übersetzung dient nur zur Information; rechtsverbindlich ist allein die französische Fassung.",
+    "editeur": {
+      "title": "Herausgeber der Website",
+      "intro": "Diese Website wird von der <strong>Gemeinde Grandrupt</strong> (88210), Vogesen, Frankreich, herausgegeben.",
+      "address": "Adresse:",
+      "phone": "Telefon:",
+      "email": "E-Mail:",
+      "publisher": "Verantwortlich für den Inhalt:",
+      "publisherName": "Der Bürgermeister von Grandrupt"
+    },
+    "hebergeur": {
+      "title": "Hosting",
+      "text": "Diese Website wird von einem externen Anbieter gehostet. Bei Fragen zum Hosting wenden Sie sich bitte an das Rathaus."
+    },
+    "propriete": {
+      "title": "Geistiges Eigentum",
+      "text": "Alle Inhalte dieser Website (Texte, Bilder, Grafiken) sind Eigentum von Grandrupt oder seinen Partnern. Jede vollständige oder teilweise Vervielfältigung, Darstellung oder Verbreitung ist ohne vorherige schriftliche Genehmigung der Gemeinde untersagt."
+    },
+    "donnees": {
+      "title": "Personenbezogene Daten",
+      "p1": "Gemäß der Datenschutz-Grundverordnung (DSGVO — Verordnung (EU) 2016/679) und dem geänderten französischen Datenschutzgesetz vom 6. Januar 1978 haben Sie das Recht auf Auskunft, Berichtigung und Löschung der Sie betreffenden Daten.",
+      "p2": "Die über das Kontaktformular erhobenen Daten (Name, E-Mail-Adresse, Betreff und Nachricht) werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht darüber hinaus aufbewahrt.",
+      "p3": "Um Ihre Rechte auszuüben oder bei Fragen zu Ihren personenbezogenen Daten wenden Sie sich an das Rathaus unter <mail>{email}</mail>."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "Diese Website verwendet keine Tracking- oder Profiling-Cookies. Es werden keine Werbe-Cookies von Drittanbietern auf Ihrem Gerät gespeichert."
+    },
+    "liens": {
+      "title": "Links",
+      "text": "Die Gemeinde Grandrupt übernimmt keine Verantwortung für den Inhalt externer Websites, auf die von dieser Website aus verlinkt wird."
+    }
   },
   "accessibilite": {
     "title": "Barrierefreiheit",
-    "description": "Erklärung zur Barrierefreiheit der offiziellen Website von Grandrupt."
+    "description": "Erklärung zur Barrierefreiheit der offiziellen Website von Grandrupt.",
+    "translationNotice": "Diese Übersetzung dient nur zur Information; rechtsverbindlich ist allein die französische Fassung.",
+    "subtitle": "Erklärung zur Barrierefreiheit — RGAA 4.1 (französischer Standard für Barrierefreiheit)",
+    "etat": {
+      "title": "Stand der Vereinbarkeit",
+      "text": "Die Website <strong>grandrupt.fr</strong> ist <strong>teilweise konform</strong> mit dem französischen Referenzrahmen zur Verbesserung der Barrierefreiheit (RGAA), Version 4.1. Es wurden Maßnahmen umgesetzt (Tastaturbedienung, Kontraste, ARIA-Attribute, Sprunglink), eine vollständige Konformität wurde jedoch noch nicht formell geprüft."
+    },
+    "technologies": {
+      "title": "Verwendete Technologien"
+    },
+    "mesures": {
+      "title": "Maßnahmen zur Barrierefreiheit",
+      "skipLink": "Sprunglink zum Hauptinhalt",
+      "keyboard": "Vollständig per Tastatur bedienbare Navigation",
+      "focus": "Sichtbare Fokusanzeigen",
+      "aria": "Attribute <code>aria-label</code> und <code>aria-current</code> in der Navigation",
+      "contrast": "Farbkontraste gemäß den WCAG-AA-Kriterien",
+      "alt": "Textalternativen für Nicht-Text-Inhalte",
+      "headings": "Hierarchische Überschriftenstruktur (h1 → h2 → h3)",
+      "lang": "Angegebene Sprache der Seite (Attribut <code>lang</code>)"
+    },
+    "retour": {
+      "title": "Rückmeldung und Kontakt",
+      "p1": "Wenn Sie auf eine Barriere stoßen, die Ihnen den Zugang zu einem Inhalt oder einer Funktion verwehrt, können Sie uns dies per E-Mail an <mail>{email}</mail> oder über das <contact>Kontaktformular</contact> melden.",
+      "p2": "Wir verpflichten uns, Ihnen in angemessener Frist zu antworten und bei Bedarf eine barrierefreie Alternative zu finden."
+    },
+    "recours": {
+      "title": "Rechtsbehelf",
+      "text": "Wenn Sie einen Mangel an Barrierefreiheit feststellen, der Ihnen den Zugang zu einem Inhalt oder einer Funktion der Website verwehrt, und unsere Antwort Sie nicht zufriedenstellt, können Sie sich an den Défenseur des droits (französischer Bürgerbeauftragter) wenden: <link>defenseurdesdroits.fr</link>."
+    },
+    "date": {
+      "title": "Datum der Erklärung",
+      "text": "Diese Erklärung wurde am <strong>{date}</strong> erstellt."
+    }
   },
   "notFound": {
     "title": "Seite nicht gefunden",

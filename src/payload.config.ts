@@ -41,6 +41,17 @@ export default buildConfig({
     fallbackLanguage: "fr",
     translations: { fr: frOverrides },
   },
+  // Content languages (the admin UI itself stays in French). Articles can be
+  // translated field by field; a missing translation falls back to French.
+  localization: {
+    locales: [
+      { code: "fr", label: "Français" },
+      { code: "de", label: "Deutsch" },
+      { code: "en", label: "English" },
+    ],
+    defaultLocale: "fr",
+    fallback: true,
+  },
   collections: [Actualites, Media, Documents, Users],
   editor: lexicalEditor(),
   secret,

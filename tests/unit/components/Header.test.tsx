@@ -6,8 +6,8 @@ vi.mock("@/components/layout/Nav", () => ({
   Nav: () => null,
 }));
 
-vi.mock("next/link", () => ({
-  default: ({
+vi.mock("@/i18n/navigation", () => ({
+  Link: ({
     children,
     href,
     ...props
