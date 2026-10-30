@@ -35,7 +35,7 @@ describe("SITE_URL", () => {
 
   it("robots.txt falls back to the canonical www address", () => {
     delete process.env.SITE_URL;
-    expect(robots().sitemap).toBe("https://www.grandrupt.fr/sitemap.xml");
+    expect(robots().sitemap).toBe("https://www.village-de-grandrupt.fr/sitemap.xml");
   });
 
   it("every sitemap URL uses the configured domain", async () => {

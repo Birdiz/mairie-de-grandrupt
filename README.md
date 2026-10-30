@@ -32,16 +32,16 @@ Variables d'environnement (voir `.env.example`) :
 # Resend (formulaire de contact)
 RESEND_API_KEY=re_xxxxxxxxxxxx
 CONTACT_EMAIL_TO=communedegrandrupt@orange.fr
-CONTACT_EMAIL_FROM=noreply@grandrupt.fr
+CONTACT_EMAIL_FROM=noreply@village-de-grandrupt.fr
 
 # Payload CMS
 PAYLOAD_SECRET=<chaîne_aléatoire_longue>   # openssl rand -base64 32
-DATABASE_URI=file:./data/payload.db        # SQLite (chemin relatif au dossier de l'app)
+DATABASE_URI=file:./data/payload.db          # SQLite (chemin relatif au dossier de l'app)
 
 # Domaine (production ; laisser vide en local)
-SITE_DOMAIN=www.grandrupt.fr               # adresse canonique servie par Caddy
-SITE_DOMAIN_APEX=grandrupt.fr              # domaine nu, redirigé en 301 vers le www
-SITE_URL=https://www.grandrupt.fr          # URL absolue (sitemap.xml, robots.txt)
+SITE_DOMAIN=www.village-de-grandrupt.fr      # adresse canonique servie par Caddy
+SITE_DOMAIN_APEX=village-de-grandrupt.fr     # domaine nu, redirigé en 301 vers le www
+SITE_URL=https://www.village-de-grandrupt.fr # URL absolue (sitemap.xml, robots.txt)
 ```
 
 ## Commandes
@@ -125,8 +125,8 @@ Deux enregistrements, **tous les deux vers l'IP publique du serveur** :
 | `A`  | `@`   | `<IP_du_VPS>` |
 | `A`  | `www` | `<IP_du_VPS>` |
 
-Ajouter les mêmes en `AAAA` si le serveur a une IPv6. Caddy sert `www.grandrupt.fr`
-(`SITE_DOMAIN`) et redirige `grandrupt.fr` (`SITE_DOMAIN_APEX`) dessus en 301.
+Ajouter les mêmes en `AAAA` si le serveur a une IPv6. Caddy sert `www.village-de-grandrupt.fr`
+(`SITE_DOMAIN`) et redirige `village-de-grandrupt.fr` (`SITE_DOMAIN_APEX`) dessus en 301.
 
 > Le DNS doit résoudre **avant** le premier démarrage : Caddy demande les certificats Let's Encrypt au lancement, et la validation échoue si le domaine ne pointe pas encore vers le serveur. Sans `SITE_DOMAIN`, Caddy sert `https://localhost` avec un certificat auto-signé (utile pour un test local).
 
@@ -134,7 +134,7 @@ Ajouter les mêmes en `AAAA` si le serveur a une IPv6. Caddy sert `www.grandrupt
 
 1. **Variables d'environnement** (`.env.local`) : `RESEND_API_KEY`, `PAYLOAD_SECRET` (≥ 32 car. — refusé au démarrage sinon), `SITE_DOMAIN`, `SITE_DOMAIN_APEX`, `SITE_URL`.
 2. **Nom de domaine** : le déposer **au nom de la commune**, pas à celui du prestataire ou d'un élu à titre personnel. L'AFNIC protège les noms de collectivités territoriales (art. L45-2 du CPCE), et un dépôt par un tiers peut être contesté — sans compter le risque de perdre le domaine au moment de passer la main.
-3. **Domaine vérifié chez Resend** : ajouter les enregistrements DNS fournis par Resend (`TXT` DKIM + SPF, éventuellement `MX` pour le retour) sur `grandrupt.fr`. Sans cette vérification, les messages du formulaire de contact envoyés depuis `CONTACT_EMAIL_FROM` sont rejetés ou classés en spam.
+3. **Domaine vérifié chez Resend** : ajouter les enregistrements DNS fournis par Resend (`TXT` DKIM + SPF, éventuellement `MX` pour le retour) sur `village-de-grandrupt.fr`. Sans cette vérification, les messages du formulaire de contact envoyés depuis `CONTACT_EMAIL_FROM` sont rejetés ou classés en spam.
 4. **Données persistantes** : quatre volumes nommés (`mairie-data` = base SQLite, `mairie-media` = uploads, `caddy_data`/`caddy_config` = certificats). Ils survivent aux redéploiements.
 5. **Premier admin** : après le premier démarrage, créer le compte sur `/admin` (auto-promu administrateur).
 6. **Schéma de base** : en production, Payload désactive le `push` et exécute les **migrations** au démarrage (versionnées dans `src/migrations/`, embarquées via `prodMigrations`) — automatique. En dev, le schéma se synchronise via `push`.
