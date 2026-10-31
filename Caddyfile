@@ -2,8 +2,8 @@
 #
 # SITE_DOMAIN and SITE_DOMAIN_APEX are read from the environment
 # (docker-compose.prod.yml passes them).
-# - SITE_DOMAIN is the canonical address actually served, e.g. www.grandrupt.fr.
-# - SITE_DOMAIN_APEX is the bare domain, e.g. grandrupt.fr, permanently
+# - SITE_DOMAIN is the canonical address actually served, e.g. www.village-de-grandrupt.fr.
+# - SITE_DOMAIN_APEX is the bare domain, e.g. village-de-grandrupt.fr, permanently
 #   redirected to the canonical one so both spellings work.
 # Left unset they fall back to `localhost` / `apex.localhost`, where Caddy serves
 # its own self-signed certificates — handy for a local smoke test.

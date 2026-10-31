@@ -214,7 +214,7 @@
     "subtitle": "Accessibility statement — RGAA 4.1 (French accessibility standard)",
     "etat": {
       "title": "Compliance status",
-      "text": "The <strong>grandrupt.fr</strong> website is <strong>partially compliant</strong> with the French general accessibility improvement framework (RGAA), version 4.1. Efforts have been made (keyboard navigation, contrast, ARIA attributes, skip link), but full compliance has not yet been formally audited."
+      "text": "The <strong>village-de-grandrupt.fr</strong> website is <strong>partially compliant</strong> with the French general accessibility improvement framework (RGAA), version 4.1. Efforts have been made (keyboard navigation, contrast, ARIA attributes, skip link), but full compliance has not yet been formally audited."
     },
     "technologies": {
       "title": "Technologies used"

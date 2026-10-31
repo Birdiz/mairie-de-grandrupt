@@ -9,7 +9,7 @@ const envSchema = z.object({
   CONTACT_EMAIL_FROM: z
     .string()
     .email("CONTACT_EMAIL_FROM doit être une adresse e-mail valide")
-    .default("noreply@grandrupt.fr"),
+    .default("noreply@village-de-grandrupt.fr"),
 });
 
 export const env = envSchema.parse({

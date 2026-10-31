@@ -214,7 +214,7 @@
     "subtitle": "Erklärung zur Barrierefreiheit — RGAA 4.1 (französischer Standard für Barrierefreiheit)",
     "etat": {
       "title": "Stand der Vereinbarkeit",
-      "text": "Die Website <strong>grandrupt.fr</strong> ist <strong>teilweise konform</strong> mit dem französischen Referenzrahmen zur Verbesserung der Barrierefreiheit (RGAA), Version 4.1. Es wurden Maßnahmen umgesetzt (Tastaturbedienung, Kontraste, ARIA-Attribute, Sprunglink), eine vollständige Konformität wurde jedoch noch nicht formell geprüft."
+      "text": "Die Website <strong>village-de-grandrupt.fr</strong> ist <strong>teilweise konform</strong> mit dem französischen Referenzrahmen zur Verbesserung der Barrierefreiheit (RGAA), Version 4.1. Es wurden Maßnahmen umgesetzt (Tastaturbedienung, Kontraste, ARIA-Attribute, Sprunglink), eine vollständige Konformität wurde jedoch noch nicht formell geprüft."
     },
     "technologies": {
       "title": "Verwendete Technologien"

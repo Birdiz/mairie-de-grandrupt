@@ -214,7 +214,7 @@
     "subtitle": "Déclaration d'accessibilité — RGAA 4.1",
     "etat": {
       "title": "État de conformité",
-      "text": "Le site <strong>grandrupt.fr</strong> est <strong>partiellement conforme</strong> avec le référentiel général d'amélioration de l'accessibilité (RGAA), version 4.1. Des efforts ont été mis en œuvre (navigation au clavier, contrastes, balises ARIA, lien d'évitement) mais une conformité totale n'a pas encore été auditée formellement."
+      "text": "Le site <strong>village-de-grandrupt.fr</strong> est <strong>partiellement conforme</strong> avec le référentiel général d'amélioration de l'accessibilité (RGAA), version 4.1. Des efforts ont été mis en œuvre (navigation au clavier, contrastes, balises ARIA, lien d'évitement) mais une conformité totale n'a pas encore été auditée formellement."
     },
     "technologies": {
       "title": "Technologies utilisées"

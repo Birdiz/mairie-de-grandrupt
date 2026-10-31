@@ -7,5 +7,5 @@
  * image can serve any domain.
  */
 export function siteUrl(): string {
-  return (process.env.SITE_URL ?? "https://www.grandrupt.fr").replace(/\/$/, "");
+  return (process.env.SITE_URL ?? "https://www.village-de-grandrupt.fr").replace(/\/$/, "");
 }
