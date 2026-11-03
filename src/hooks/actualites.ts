@@ -69,18 +69,39 @@ async function uniqueSlug(
   }
 }
 
+/** Whether `slug` is what `uniqueSlug` would give for `title`, rather than a slug typed by hand. */
+function isDerivedFrom(slug: unknown, title: unknown): boolean {
+  if (typeof slug !== "string" || typeof title !== "string") return false;
+  const base = slugify(title);
+  if (!base) return false;
+  return (
+    slug === base || (slug.startsWith(`${base}-`) && /^\d+$/.test(slug.slice(base.length + 1)))
+  );
+}
+
 /**
  * Auto-derive a URL slug from the title when none is provided, and keep a typed
- * one URL-safe. The slug then stays as it is when the title changes, so that
- * links to a published article keep working; clearing the field derives it anew.
+ * one URL-safe. A derived slug follows the French title when it changes, even on
+ * a published article, whose old URL then stops working. A slug typed by hand
+ * stays as it is, and clearing the field derives it anew.
  */
 export const slugifyFromTitle: FieldHook = async ({ value, data, originalDoc, req }) => {
   const typed = typeof value === "string" ? slugify(value) : "";
-  if (typed) return typed;
-  // Partial API update that does not touch the slug.
-  if (value === undefined && originalDoc?.slug) return originalDoc.slug;
-  const base = typeof data?.title === "string" ? slugify(data.title) : "";
-  return base ? uniqueSlug(base, req, originalDoc?.id) : value;
+  // A partial API update does not send the slug: it counts as unchanged.
+  const slug = typed || (value === undefined ? originalDoc?.slug : undefined);
+  const title = data?.title ?? originalDoc?.title;
+  const base = typeof title === "string" ? slugify(title) : "";
+  if (!slug) return base ? uniqueSlug(base, req, originalDoc?.id) : value;
+
+  const translating = Boolean(req.locale) && req.locale !== "fr";
+  const titleChanged =
+    Boolean(base) && typeof originalDoc?.title === "string" && base !== slugify(originalDoc.title);
+  const follows =
+    !translating &&
+    titleChanged &&
+    slug === originalDoc?.slug &&
+    isDerivedFrom(slug, originalDoc?.title);
+  return follows ? uniqueSlug(base, req, originalDoc?.id) : slug;
 };
 
 /**
@@ -118,8 +139,12 @@ async function revalidateArticlePaths(slug?: string): Promise<void> {
   }
 }
 
-export const revalidateActualite: CollectionAfterChangeHook = async ({ doc }) => {
+export const revalidateActualite: CollectionAfterChangeHook = async ({ doc, previousDoc }) => {
   await revalidateArticlePaths(doc?.slug);
+  // The slug followed the title: the old URL must not keep serving a cached page.
+  if (previousDoc?.slug && previousDoc.slug !== doc?.slug) {
+    await revalidateArticlePaths(previousDoc.slug);
+  }
   return doc;
 };
 

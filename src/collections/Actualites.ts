@@ -79,7 +79,7 @@ export const Actualites: CollectionConfig = {
       admin: {
         position: "sidebar",
         description:
-          "Laissez vide pour le générer depuis le titre à l'enregistrement. Ex : fete-du-village-2026",
+          "Généré depuis le titre à l'enregistrement, et mis à jour s'il change, sauf si vous le saisissez vous-même. Attention : l'adresse d'un article publié change alors, et ses anciens liens ne fonctionnent plus.",
       },
       hooks: {
         beforeValidate: [slugifyFromTitle],

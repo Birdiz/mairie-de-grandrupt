@@ -1,12 +1,16 @@
 import path from "path";
 import { describe, it, expect, vi } from "vitest";
+import { revalidatePath } from "next/cache";
 import {
   enforcePublishPermission,
   fillFromProcesVerbal,
+  revalidateActualite,
   slugify,
   slugifyFromTitle,
   validateSlug,
 } from "@/hooks/actualites";
+
+vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 
 const t = ((k: string) => k) as any;
 const changeArgs = (status: string, user: unknown) =>
@@ -87,14 +91,88 @@ describe("slugifyFromTitle", () => {
     });
   });
 
-  it("keeps the slug when a partial update only changes the title", async () => {
-    const args = fieldArgs(undefined, "Nouveau titre", { originalDoc: { slug: "ancien-titre" } });
-    expect(await slugifyFromTitle(args)).toBe("ancien-titre");
+  it("derives the slug from the saved title when a partial update clears it", async () => {
+    const args = fieldArgs("", undefined, {
+      originalDoc: { slug: "x", title: "Titre enregistré" },
+    });
+    expect(await slugifyFromTitle(args)).toBe("titre-enregistre");
+  });
+
+  describe("when the title changes", () => {
+    const derived = { id: 7, slug: "ancien-titre", title: "Ancien titre" };
+
+    it("follows the new title", async () => {
+      const args = fieldArgs("ancien-titre", "Nouveau titre", { originalDoc: derived });
+      expect(await slugifyFromTitle(args)).toBe("nouveau-titre");
+    });
+
+    it("follows it too when a partial update does not send the slug", async () => {
+      const args = fieldArgs(undefined, "Nouveau titre", { originalDoc: derived });
+      expect(await slugifyFromTitle(args)).toBe("nouveau-titre");
+    });
+
+    it("follows it from a slug that had a duplicate suffix", async () => {
+      const originalDoc = { ...derived, slug: "ancien-titre-2" };
+      const args = fieldArgs("ancien-titre-2", "Nouveau titre", { originalDoc });
+      expect(await slugifyFromTitle(args)).toBe("nouveau-titre");
+    });
+
+    it("adds a suffix when the new slug is taken", async () => {
+      const args = fieldArgs("ancien-titre", "Nouveau titre", {
+        originalDoc: derived,
+        taken: ["nouveau-titre"],
+      });
+      expect(await slugifyFromTitle(args)).toBe("nouveau-titre-2");
+    });
+
+    it("keeps a slug typed by hand", async () => {
+      const originalDoc = { ...derived, slug: "mon-slug" };
+      const args = fieldArgs("mon-slug", "Nouveau titre", { originalDoc });
+      expect(await slugifyFromTitle(args)).toBe("mon-slug");
+    });
+
+    it("keeps a slug typed by hand on a partial update", async () => {
+      const originalDoc = { ...derived, slug: "mon-slug" };
+      const args = fieldArgs(undefined, "Nouveau titre", { originalDoc });
+      expect(await slugifyFromTitle(args)).toBe("mon-slug");
+    });
+
+    it("lets a slug typed at the same time win", async () => {
+      const args = fieldArgs("mon-slug", "Nouveau titre", { originalDoc: derived });
+      expect(await slugifyFromTitle(args)).toBe("mon-slug");
+    });
+
+    it("keeps the slug when only the punctuation changes", async () => {
+      const originalDoc = { ...derived, slug: "ancien-titre-2" };
+      const args = fieldArgs("ancien-titre-2", "Ancien titre !", { originalDoc });
+      expect(await slugifyFromTitle(args)).toBe("ancien-titre-2");
+    });
+
+    it("keeps the slug when a translation changes its title", async () => {
+      const args = fieldArgs("ancien-titre", "Neuer Titel", { originalDoc: derived });
+      args.req.locale = "de";
+      args.originalDoc = { ...derived, title: "Alter Titel" };
+      expect(await slugifyFromTitle(args)).toBe("ancien-titre");
+    });
   });
 
   it("derives the slug anew when the field is cleared", async () => {
     const args = fieldArgs("", "Nouveau titre", { originalDoc: { slug: "ancien-titre" } });
     expect(await slugifyFromTitle(args)).toBe("nouveau-titre");
+  });
+});
+
+describe("revalidateActualite", () => {
+  const paths = () => vi.mocked(revalidatePath).mock.calls.map(([path]) => path);
+
+  it("also refreshes the old URL when the slug changes", async () => {
+    vi.mocked(revalidatePath).mockClear();
+    await revalidateActualite({
+      doc: { slug: "nouveau-titre" },
+      previousDoc: { slug: "ancien-titre" },
+    } as any);
+    expect(paths()).toContain("/actualites/nouveau-titre");
+    expect(paths()).toContain("/actualites/ancien-titre");
   });
 });
 
