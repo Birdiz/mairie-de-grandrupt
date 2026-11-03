@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   const from = env.CONTACT_EMAIL_FROM;
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from,
       to,
       replyTo: email,
@@ -50,6 +50,8 @@ export async function POST(request: NextRequest) {
         <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
       `,
     });
+    // The SDK resolves with { error } instead of throwing when the API refuses a message.
+    if (error) throw error;
   } catch (error) {
     console.error("[contact route] Resend error:", error);
     return NextResponse.json({ error: "Échec de l'envoi de l'e-mail." }, { status: 500 });
