@@ -5,13 +5,23 @@ import {
   fillFromProcesVerbal,
   slugify,
   slugifyFromTitle,
+  validateSlug,
 } from "@/hooks/actualites";
 
 const t = ((k: string) => k) as any;
 const changeArgs = (status: string, user: unknown) =>
   ({ data: { _status: status }, req: { user, t }, operation: "create" }) as any;
-const fieldArgs = (value: unknown, title?: string) =>
-  ({ value, data: title ? { title } : {} }) as any;
+/** `taken` lists the slugs other articles already use. */
+const fieldArgs = (
+  value: unknown,
+  title?: string,
+  { taken = [], originalDoc }: { taken?: string[]; originalDoc?: unknown } = {},
+) => {
+  const count = vi.fn(async ({ where }: any) => ({
+    totalDocs: taken.includes(where.and[0].slug.equals) ? 1 : 0,
+  }));
+  return { value, data: title ? { title } : {}, originalDoc, req: { payload: { count } } } as any;
+};
 
 describe("enforcePublishPermission (publish gate)", () => {
   it("blocks a writer from publishing", () => {
@@ -40,16 +50,69 @@ describe("enforcePublishPermission (publish gate)", () => {
 });
 
 describe("slugifyFromTitle", () => {
-  it("derives an accent-free, hyphenated slug from the title", () => {
-    expect(slugifyFromTitle(fieldArgs("", "Fête du Village 2026 !"))).toBe("fete-du-village-2026");
+  it("derives an accent-free, hyphenated slug from the title", async () => {
+    expect(await slugifyFromTitle(fieldArgs("", "Fête du Village 2026 !"))).toBe(
+      "fete-du-village-2026",
+    );
   });
 
-  it("keeps an explicit slug when provided", () => {
-    expect(slugifyFromTitle(fieldArgs("mon-slug", "Un Titre"))).toBe("mon-slug");
+  it("keeps an explicit slug when provided", async () => {
+    expect(await slugifyFromTitle(fieldArgs("mon-slug", "Un Titre"))).toBe("mon-slug");
   });
 
-  it("strips accents", () => {
-    expect(slugifyFromTitle(fieldArgs("", "Réunion à l'école"))).toBe("reunion-a-l-ecole");
+  it("strips accents", async () => {
+    expect(await slugifyFromTitle(fieldArgs("", "Réunion à l'école"))).toBe("reunion-a-l-ecole");
+  });
+
+  it("makes a typed slug URL-safe", async () => {
+    expect(await slugifyFromTitle(fieldArgs("Fête du village", "Un Titre"))).toBe(
+      "fete-du-village",
+    );
+  });
+
+  it("falls back to the title when the typed slug has nothing usable", async () => {
+    expect(await slugifyFromTitle(fieldArgs("!!!", "Un Titre"))).toBe("un-titre");
+  });
+
+  it("adds a suffix when another article has the same title", async () => {
+    const args = fieldArgs("", "Avis", { taken: ["avis", "avis-2"] });
+    expect(await slugifyFromTitle(args)).toBe("avis-3");
+  });
+
+  it("does not count the article being saved as a duplicate", async () => {
+    const args = fieldArgs("", "Avis", { originalDoc: { id: 7 } });
+    await slugifyFromTitle(args);
+    expect(args.req.payload.count.mock.calls[0][0].where.and[1]).toEqual({
+      id: { not_equals: 7 },
+    });
+  });
+
+  it("keeps the slug when a partial update only changes the title", async () => {
+    const args = fieldArgs(undefined, "Nouveau titre", { originalDoc: { slug: "ancien-titre" } });
+    expect(await slugifyFromTitle(args)).toBe("ancien-titre");
+  });
+
+  it("derives the slug anew when the field is cleared", async () => {
+    const args = fieldArgs("", "Nouveau titre", { originalDoc: { slug: "ancien-titre" } });
+    expect(await slugifyFromTitle(args)).toBe("nouveau-titre");
+  });
+});
+
+describe("validateSlug", () => {
+  it("accepts a blank slug when the title can provide one", () => {
+    expect(validateSlug("", { data: { title: "Un Titre" } })).toBe(true);
+  });
+
+  it("accepts a typed slug when the title cannot provide one", () => {
+    expect(validateSlug("avis", { data: { title: "!!!" } })).toBe(true);
+  });
+
+  it("refuses when neither the slug nor the title can provide one", () => {
+    expect(validateSlug("", { data: { title: "!!!" } })).toEqual(expect.any(String));
+  });
+
+  it("leaves a blank title to the title field's own error", () => {
+    expect(validateSlug("", { data: {} })).toBe(true);
   });
 });
 
@@ -60,6 +123,7 @@ function makeReq(doc: unknown = { filename: "proces-verbal.pdf" }) {
   return {
     payload: {
       collections: { documents: { config: { upload: { staticDir: FIXTURES } } } },
+      count: vi.fn().mockResolvedValue({ totalDocs: 0 }),
       findByID: vi.fn().mockResolvedValue(doc),
       logger: { warn: vi.fn() },
     },

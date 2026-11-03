@@ -2,6 +2,7 @@ import { cache } from "react";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import { hasRichText } from "@/lib/richtext";
 
 export type ArticleMedia = {
   url: string;
@@ -28,7 +29,8 @@ export type Article = {
   date: string;
   type: ArticleType;
   excerpt: string;
-  content: SerializedEditorState;
+  /** Null for an article that is just a PDF. */
+  content: SerializedEditorState | null;
   coverImage: ArticleMedia | null;
   document: ArticleDocument | null;
 };
@@ -56,9 +58,10 @@ function isFilled(value: unknown): boolean {
 
 /**
  * Builds the article shown in `locale`. An article counts as translated when
- * its title and content exist in that language; otherwise the whole article is
- * shown in French, so languages are never mixed. Procès-verbaux are official
- * documents and always stay in French.
+ * its title and content exist in that language (an article with no French text,
+ * just a PDF, only needs its title); otherwise the whole article is shown in
+ * French, so languages are never mixed. Procès-verbaux are official documents
+ * and always stay in French.
  */
 export function toArticle(doc: any, locale: Locale = "fr"): Article {
   const cover = doc?.coverImage && typeof doc.coverImage === "object" ? doc.coverImage : null;
@@ -68,9 +71,10 @@ export function toArticle(doc: any, locale: Locale = "fr"): Article {
     locale !== "fr" &&
     type !== "proces-verbal" &&
     isFilled(inLocale(doc.title, locale)) &&
-    isFilled(inLocale(doc.content, locale));
+    (hasRichText(inLocale(doc.content, locale)) || !hasRichText(inLocale(doc.content, "fr")));
   const contentLocale: Locale = translated ? locale : "fr";
   const excerpt = inLocale(doc.excerpt, contentLocale);
+  const content = inLocale(doc.content, contentLocale);
   return {
     slug: doc.slug,
     contentLocale,
@@ -78,7 +82,7 @@ export function toArticle(doc: any, locale: Locale = "fr"): Article {
     date: toDateString(doc.date),
     type,
     excerpt: String((isFilled(excerpt) ? excerpt : inLocale(doc.excerpt, "fr")) ?? ""),
-    content: inLocale(doc.content, contentLocale) as SerializedEditorState,
+    content: hasRichText(content) ? (content as SerializedEditorState) : null,
     coverImage:
       cover && typeof cover.url === "string"
         ? { url: cover.url, alt: typeof cover.alt === "string" ? cover.alt : "" }

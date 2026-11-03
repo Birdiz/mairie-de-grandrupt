@@ -84,9 +84,11 @@ export default async function ArticlePage({ params }: Props) {
             />
           )}
 
-          <div lang={textLang} className="mt-4">
-            <RichTextContent content={article.content} />
-          </div>
+          {article.content && (
+            <div lang={textLang} className="mt-4">
+              <RichTextContent content={article.content} />
+            </div>
+          )}
 
           <div className="border-border mt-4 border-t pt-6">
             <Link
