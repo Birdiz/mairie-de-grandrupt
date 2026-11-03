@@ -48,6 +48,43 @@ describe("toArticle", () => {
     expect(toArticle(partial, "de").title).toBe("Fête du village");
   });
 
+  describe("article that is just a PDF", () => {
+    const emptied = { root: { children: [{ type: "paragraph", children: [] }] } };
+    const pdfOnly = {
+      ...doc,
+      title: { fr: "Avis", de: "Hinweis", en: null },
+      excerpt: { fr: null, de: null, en: null },
+      content: { fr: null, de: null, en: null },
+    };
+
+    it("has no content or summary", () => {
+      const article = toArticle(pdfOnly, "fr");
+      expect(article.content).toBeNull();
+      expect(article.excerpt).toBe("");
+    });
+
+    it("treats an emptied editor as no content", () => {
+      const article = toArticle({ ...pdfOnly, content: { fr: emptied, de: null, en: null } }, "fr");
+      expect(article.content).toBeNull();
+    });
+
+    it("only needs its title to count as translated", () => {
+      const article = toArticle(pdfOnly, "de");
+      expect(article.contentLocale).toBe("de");
+      expect(article.title).toBe("Hinweis");
+    });
+
+    it("stays in French when its title is not translated", () => {
+      expect(toArticle(pdfOnly, "en").contentLocale).toBe("fr");
+    });
+  });
+
+  it("does not count an emptied editor as a translation", () => {
+    const emptied = { root: { children: [{ type: "paragraph", children: [] }] } };
+    const partial = { ...doc, content: { fr: content("fr"), de: emptied, en: null } };
+    expect(toArticle(partial, "de").contentLocale).toBe("fr");
+  });
+
   it("still reads single-language documents", () => {
     const plain = { ...doc, title: "Titre", excerpt: "Résumé", content: content("x") };
     expect(toArticle(plain, "fr").title).toBe("Titre");

@@ -46,12 +46,54 @@ export function slugify(title: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
-/** Auto-derive a URL slug from the title when none is provided. */
-export const slugifyFromTitle: FieldHook = ({ value, data }) => {
-  if (typeof value === "string" && value.length > 0) return value;
-  const title = data?.title;
-  if (typeof title !== "string") return value;
-  return slugify(title);
+/** Turn `base` into a slug no other article uses, adding -2, -3… when it is taken. */
+async function uniqueSlug(
+  base: string,
+  req: PayloadRequest,
+  id?: string | number,
+): Promise<string> {
+  for (let n = 1; ; n++) {
+    const candidate = n === 1 ? base : `${base}-${n}`;
+    const { totalDocs } = await req.payload.count({
+      collection: "actualites",
+      where: {
+        and: [
+          { slug: { equals: candidate } },
+          ...(id !== undefined ? [{ id: { not_equals: id } }] : []),
+        ],
+      },
+      overrideAccess: true,
+      req,
+    });
+    if (totalDocs === 0) return candidate;
+  }
+}
+
+/**
+ * Auto-derive a URL slug from the title when none is provided, and keep a typed
+ * one URL-safe. The slug then stays as it is when the title changes, so that
+ * links to a published article keep working; clearing the field derives it anew.
+ */
+export const slugifyFromTitle: FieldHook = async ({ value, data, originalDoc, req }) => {
+  const typed = typeof value === "string" ? slugify(value) : "";
+  if (typed) return typed;
+  // Partial API update that does not touch the slug.
+  if (value === undefined && originalDoc?.slug) return originalDoc.slug;
+  const base = typeof data?.title === "string" ? slugify(data.title) : "";
+  return base ? uniqueSlug(base, req, originalDoc?.id) : value;
+};
+
+/**
+ * The slug field may be left blank, as `slugifyFromTitle` fills it on save. It is
+ * refused only when neither it nor the title holds a character usable in a URL.
+ * A blank title is left to the title field's own error.
+ */
+export const validateSlug = (value: unknown, { data }: { data?: { title?: unknown } }) => {
+  const title = typeof data?.title === "string" ? data.title : "";
+  if (title.trim().length === 0) return true;
+  return slugify(typeof value === "string" ? value : "") || slugify(title)
+    ? true
+    : "Le titre ne permet pas de générer un identifiant URL : saisissez-en un.";
 };
 
 /**
@@ -107,8 +149,8 @@ function documentPath(req: PayloadRequest, filename: string): string | null {
  * empty title), hence the explicit slug derivation below.
  *
  * Extraction failures (scanned PDF with no text layer, unreadable file) are
- * deliberately swallowed: the upload still succeeds and Payload asks for the
- * missing fields the usual way instead of throwing an opaque error.
+ * deliberately swallowed: the article is then saved with its PDF alone, which is
+ * enough to publish it, and the summary and text can be typed in by hand.
  */
 export const fillFromProcesVerbal: CollectionBeforeValidateHook = async ({
   data,
@@ -127,7 +169,8 @@ export const fillFromProcesVerbal: CollectionBeforeValidateHook = async ({
     data.title = `Procès-verbal du conseil municipal du ${formatDate(String(seanceDate))}`;
   }
   if (isBlank(data.slug) && typeof data.title === "string" && data.title.length > 0) {
-    data.slug = slugify(data.title);
+    const base = slugify(data.title);
+    if (base) data.slug = await uniqueSlug(base, req, originalDoc?.id);
   }
 
   const needsBody = isBlank(data.excerpt) || !data.content;

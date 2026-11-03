@@ -1,3 +1,4 @@
+import { validations } from "payload";
 import type { CollectionConfig } from "payload";
 import { isLoggedIn, isPublisherOrAdmin } from "../access/index.ts";
 import {
@@ -6,7 +7,11 @@ import {
   revalidateActualite,
   revalidateActualiteDelete,
   slugifyFromTitle,
+  validateSlug,
 } from "../hooks/actualites.ts";
+
+/** An article can be just a PDF: its summary and text are then optional. */
+const requiredWithoutPdf = (data: unknown) => !(data as { document?: unknown })?.document;
 
 export const Actualites: CollectionConfig = {
   slug: "actualites",
@@ -68,17 +73,18 @@ export const Actualites: CollectionConfig = {
     {
       name: "slug",
       type: "text",
-      required: true,
       unique: true,
       index: true,
       label: "Identifiant URL",
       admin: {
         position: "sidebar",
-        description: "Généré depuis le titre. Ex : fete-du-village-2026",
+        description:
+          "Laissez vide pour le générer depuis le titre à l'enregistrement. Ex : fete-du-village-2026",
       },
       hooks: {
         beforeValidate: [slugifyFromTitle],
       },
+      validate: validateSlug,
     },
     {
       name: "date",
@@ -94,11 +100,15 @@ export const Actualites: CollectionConfig = {
     {
       name: "excerpt",
       type: "textarea",
-      required: true,
       maxLength: 300,
       localized: true,
       label: "Résumé",
-      admin: { description: "Court résumé affiché dans la liste des actualités." },
+      admin: {
+        description:
+          "Court résumé affiché dans la liste des actualités. Facultatif si un PDF est joint.",
+      },
+      validate: (value, options) =>
+        validations.textarea(value, { ...options, required: requiredWithoutPdf(options.data) }),
     },
     {
       name: "coverImage",
@@ -115,7 +125,7 @@ export const Actualites: CollectionConfig = {
       label: "Document PDF joint",
       admin: {
         description:
-          "Proposé au téléchargement en bas de l'article. Obligatoire pour un procès-verbal.",
+          "Proposé au téléchargement dans l'article. Un PDF seul suffit : le résumé et le contenu deviennent facultatifs. Obligatoire pour un procès-verbal.",
       },
       // A procès-verbal without its PDF would not satisfy the commune's legal
       // publication duty (art. L2121-25 CGCT), so the file is required there.
@@ -127,9 +137,11 @@ export const Actualites: CollectionConfig = {
     {
       name: "content",
       type: "richText",
-      required: true,
       localized: true,
       label: "Contenu",
+      admin: { description: "Facultatif si un PDF est joint." },
+      validate: (value, options) =>
+        validations.richText(value, { ...options, required: requiredWithoutPdf(options.data) }),
     },
   ],
 };
